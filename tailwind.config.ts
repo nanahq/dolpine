@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
@@ -14,16 +14,16 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'nana-blue': "#00C2E8",
-        'nana-lime': "#4ADE80",
-        'nana-purple': "#C084FC",
+        'nana-blue': '#00C2E8',
+        'nana-lime': '#4ADE80',
+        'nana-purple': '#C084FC',
         'nana-stone': '#A8A29E',
       },
       borderRadius: {
-        20: "20",
+        20: '20',
       },
       fontFamily: {
-        Omnes: ['Omnes', 'sans-serif']
+        Omnes: ['Omnes', 'sans-serif'],
       },
     },
   },

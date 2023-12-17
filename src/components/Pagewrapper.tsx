@@ -16,28 +16,31 @@ interface PagewrapperProps {
 export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
   defaultTitle,
   page,
-    children
+  children,
 }) => {
   const router = useRouter();
   const routePath = useMemo(() => router.asPath, [router.asPath]);
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const title = defaultTitle ?? "Nana";
+  const title = defaultTitle ?? 'Nana';
   const description =
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     page?.meta?.seo?.description ??
     'Discover local flavors with Nana. Browse our diverse menu featuring African dishes, jollof rice, and more. Enjoy the convenience of our reliable restaurant delivery service, bringing your favorite meals to your doorstep. Order now and savor the taste of home comfort.';
 
-  const image = "/thumbnail.jpg";
-  const domain = "https://trynanaapp.com";
+  const image = '/thumbnail.jpg';
+  const domain = 'https://trynanaapp.com';
   return (
     <div className="overflow-hidden">
       <Head>
         <title>{`${title} - Food Delivery From Your Favourites`}</title>
         <meta name="description" content={description} />
-        <meta property="og:site_name" content={`${title} - Food Delivery From Your Favourites`} />
+        <meta
+          property="og:site_name"
+          content={`${title} - Food Delivery From Your Favourites`}
+        />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta
@@ -45,11 +48,17 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           property="og:url"
           content={`${domain}${routePath}`}
         />
-        <meta property="og:title" content={`${title} - Food Delivery From Your Favourites`} />
+        <meta
+          property="og:title"
+          content={`${title} - Food Delivery From Your Favourites`}
+        />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
         <meta property="twitter:url" content={`${domain}${routePath}`} />
-        <meta property="twitter:title" content={`${title} - Food Delivery From Your Favourites`} />
+        <meta
+          property="twitter:title"
+          content={`${title} - Food Delivery From Your Favourites`}
+        />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={image} />
         <link

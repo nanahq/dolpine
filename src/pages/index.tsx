@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { PageWrapper } from '@/components/Pagewrapper';
 
 export default function Home() {
