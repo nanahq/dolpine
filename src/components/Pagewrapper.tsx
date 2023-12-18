@@ -1,6 +1,8 @@
 import React, { FC, PropsWithChildren, useMemo } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import {Header} from "@/components/layout/Header";
+import {Footer} from "@/components/layout/Footer";
 
 interface Page {
   seo?: {
@@ -74,7 +76,11 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           href="/favicon-16x16.png"
         />
       </Head>
-      <main>{children}</main>
+      <div className="md:container lg:py-5 pb-20">
+        <Header />
+        <main>{children}</main>
+      </div>
+      <Footer />
     </div>
   );
 };

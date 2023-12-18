@@ -11,3 +11,29 @@
 body {
     @apply font-Omnes overflow-x-hidden;
 }
+
+.swiper-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+
+}
+
+.swiper-slider-wrapper {
+    position: absolute;
+    top: -16rem;
+}
+
+.after-line::after {
+    content: '';
+    display: block;
+    width: 40%;
+    height: 5px; /* Adjust the height of the line as needed */
+    background-color: #00C2E8;
+    border-radius: 10px;
+}
+
+.feature-slide-item {
+    display: flex !important;
+    flex-direction: row !important;
+}
