@@ -1,4 +1,3 @@
-// pages/sitemap.xml.js
 const homepage = "https://trynanaapp.com";
 
 function generateSiteMap() {
