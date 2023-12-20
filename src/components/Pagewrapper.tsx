@@ -32,7 +32,7 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
     page?.meta?.seo?.description ??
     'Discover local flavors with Nana. Browse our diverse menu featuring African dishes, jollof rice, and more. Enjoy the convenience of our reliable restaurant delivery service, bringing your favorite meals to your doorstep. Order now and savor the taste of home comfort.';
 
-  const image = '/thumbnail.png;
+  const image = '/thumbnail.png';
   const domain = 'https://trynanaapp.com';
   return (
     <div className="overflow-hidden">
