@@ -27,15 +27,36 @@ export const QA: FaqQuestionI[] = [
     index: 4,
   },
 ];
+
+export const VendorQA: FaqQuestionI[] = [
+  {
+    question: 'How do i join Nana as a vendor?',
+    answer:
+      'Joing Nana as a vendor is easy and can be done in 3 steps. Download them Nana Vendors app, sign up and complete your profile, our representative will contact you with forms to sign and that is it.',
+    index: 1,
+  },
+  {
+    question: 'How are payments made?',
+    answer:
+      'Payments are made automatically the next day. For sales made today, payments will be made tomorrow before noon. ',
+    index: 2,
+  },
+  {
+    question: 'How do i onboard my existing customers to Nana?',
+    answer:
+      'Onboarding your existing customers is easy. Just spread the work about Nana and leave the rest to us',
+    index: 3,
+  },
+];
 export interface FaqQuestionI {
   question: string;
   answer: string;
   index: number;
 }
 
-export const FaqComponent = () => {
+export const FaqComponent: React.FC<{ qa: FaqQuestionI[] }> = (props) => {
   const [currentIndex, setCurrentIndex] = useState(1);
-  const [currentAnswer, setCurrentAnswer] = useState(QA[0]);
+  const [currentAnswer, setCurrentAnswer] = useState(props.qa[0]);
 
   const setQuestion = (question: FaqQuestionI): void => {
     setCurrentIndex(() => question.index);
@@ -43,7 +64,10 @@ export const FaqComponent = () => {
   };
 
   return (
-    <section className="bg-black h-[500px] relative my-[20rem] lg:my-[20rem] rounded-[20px]">
+    <section
+      id="faq"
+      className="bg-black h-[500px] relative mt-[20rem] rounded-[20px]"
+    >
       <div className="flex flex-row items-center justify-center">
         <div className="border-2 bg-white w-full lg:w-[1000px] md:h-[500px]  border-black absolute -top-[10rem] text-white rounded-[20px]">
           <div className="p-8 flex flex-col-reverse md:flex-row flex-1 items-baseline ">
@@ -54,7 +78,7 @@ export const FaqComponent = () => {
                 </h1>
               </div>
               <div className="flex flex-col items-start">
-                {QA.map((qa) => (
+                {props.qa.map((qa) => (
                   <QuestionButton
                     key={qa.index}
                     question={qa}

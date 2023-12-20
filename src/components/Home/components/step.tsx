@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { ActionButton } from "@/components/ActionButton";
+import Image from 'next/image';
+import { ActionButton } from '@/components/ActionButton';
 
 export const StepOne = () => {
   return (

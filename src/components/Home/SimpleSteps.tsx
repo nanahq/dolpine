@@ -7,8 +7,8 @@ import {
   StepOne,
   StepThree,
   StepTwo,
-} from "@/components/Home/components/step";
-import {Feature} from "@/components/Home/components/Features";
+} from '@/components/Home/components/step';
+import { Feature } from '@/components/Home/components/Features';
 
 SwiperCore.use([A11y, Autoplay, Navigation]);
 
@@ -25,12 +25,12 @@ const sliderOptions: SwiperOptions = {
   modules: [A11y, Autoplay, Navigation],
   breakpoints: {
     1024: {
-      slidesPerView: "auto",
+      slidesPerView: 'auto',
       autoplay: {
         delay: 5000,
       },
-    }
-  }
+    },
+  },
 };
 
 const sliderOptions2: SwiperOptions = {
@@ -39,7 +39,7 @@ const sliderOptions2: SwiperOptions = {
   autoplay: {
     delay: 100,
     stopOnLastSlide: false,
-    waitForTransition: false
+    waitForTransition: false,
   },
   loop: true,
   slidesPerView: 2,
@@ -71,7 +71,7 @@ export const SimpleSteps = () => {
         </SwiperSlide>
       </Swiper>
       <div className="container lg:-mt-[8rem] pb-20">
-        <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-center justify-between text-white">
+        <div className="flex flex-col my-20 space-y-4 lg:space-y-0 lg:flex-row items-center justify-between text-white">
           <div className="w-full lg:w-1/2 font-bold">
             <h1 className="font-bold text-3xl lg:text-[50px]">
               Nana, handles all delivery and payment wahala!
@@ -87,8 +87,9 @@ export const SimpleSteps = () => {
         <div className="bg-nana-blue py-5 lg:py-20 px-6 lg:px-20 mt-10 lg:mt-24 flex flex-col lg:flex-row lg:items-center justify-between rounded-[20px]">
           <div className="w-full lg:w-1/2">
             <h1 className="text-white font-bold text-xl lg:text-3xl">
-              Get <span className="text-black  text-2xl lg:text-4xl">₦400 off</span> your
-              first order when you using this promo code.
+              Get{' '}
+              <span className="text-black  text-2xl lg:text-4xl">₦400 off</span>{' '}
+              your first order when you using this promo code.
             </h1>
           </div>
           <div className="bg-white relative rounded-[20px] mt-2 px-4 lg:px-10 py-3 lg:py-5 ">
@@ -96,11 +97,8 @@ export const SimpleSteps = () => {
             <div className="bg-nana-purple rounded-full w-6 h-6 absolute top-2 left-2" />
           </div>
         </div>
-        <div className="mt-20">
-          <Swiper
-            {...sliderOptions2}
-            className="w-full max-w-max"
-          >
+        <div className="mt-40">
+          <Swiper {...sliderOptions2} className="w-full max-w-max">
             <SwiperSlide className="feature-slide-item">
               <Feature feature="Order Tracking" />
             </SwiperSlide>

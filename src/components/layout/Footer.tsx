@@ -1,11 +1,14 @@
-import Image from "next/image";
-import { ActionButton } from "@/components/ActionButton";
-import React from "react";
-import Link from "next/link";
+import Image from 'next/image';
+import { ActionButton } from '@/components/ActionButton';
+import React from 'react';
+import Link from 'next/link';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
 export const Footer = () => {
   return (
-    <footer className="bg-nana-blue py-16 rounded-t-[20px]">
+    <footer className="bg-nana-blue py-16 flex flex-col rounded-t-[20px]">
       <div className="container flex flex-col md:flex-row w-full justify-between">
         <div className="w-full mr-0 md:mr-10 md:w-1/2">
           <div className="flex flex-col">
@@ -37,7 +40,7 @@ export const Footer = () => {
             <h1 className="text-3xl text-white font-bold mb-2">Company</h1>
             <ul>
               <li>
-                <FooterLink link="/company" label="About Nana" />
+                <FooterLink link="/" label="About Nana" />
               </li>
               <li>
                 <FooterLink link="/vendors" label="Become a vendor" />
@@ -52,7 +55,7 @@ export const Footer = () => {
                 <FooterLink link="/privacy" label="Privacy Policy" />
               </li>
               <li>
-                <FooterLink link="/terms-condition" label="Terms of usage" />
+                <FooterLink link="/terms" label="Terms of usage" />
               </li>
             </ul>
           </div>
@@ -81,13 +84,49 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+      <div className="container my-12 flex flex-col-reverse md:flex-row w-full justify-between">
+        <div>
+          <p className="text-white mt-8 md:mt-0">
+            ©All Rights Reserved 2023, NanaEats Logistics.
+          </p>
+        </div>
+        <div className="flex flex-row items-center space-x-3 font-bold justify-center">
+          <a className="flex flex-row items-center">
+            <FontAwesomeIcon
+              className="w-4 h-4 text-nana-stone"
+              icon={faSquare}
+              size="lg"
+              color="#fff"
+            />
+            <p className="text-white ml-1">Facebook</p>
+          </a>
+          <a className="flex flex-row items-center">
+            <FontAwesomeIcon
+              className="w-4 h-4 text-nana-purple"
+              icon={faSquare}
+              size="lg"
+              color="#fff"
+            />
+            <p className="text-white ml-1">Instagram</p>
+          </a>
+          <a className="flex flex-row items-center">
+            <FontAwesomeIcon
+              className="w-4 h-4 text-nana-lime"
+              icon={faSquare}
+              size="lg"
+              color="#fff"
+            />
+            <p className="text-white ml-1">Linkedin</p>
+          </a>
+        </div>
+      </div>
     </footer>
   );
 };
 
 const FooterLink: React.FC<{ link: string; label: string }> = (props) => {
   return (
-    <div className="text-white my-3 text-lg hover:text-black">
+    <div className="text-white my-3 hover:underline text-lg">
       <Link href={props.link}>{props.label}</Link>
     </div>
   );
