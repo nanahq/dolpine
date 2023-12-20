@@ -4,7 +4,7 @@ import Image from 'next/image';
 export const HomePageHero: React.FC<unknown> = () => {
   return (
     <>
-      <section className="hidden md:block mt-32 bg-black flex flex-col items-center w-full mt-[3rem] h-[40rem] rounded-[20px]">
+      <section className="hidden md:block mt-[6rem] bg-black flex flex-col items-center w-full mt-[3rem] h-[40rem] rounded-[20px]">
         <div className="container">
           <div className="flex flex-row items-center justify-center md:px-[6rem] lg:px-[10rem] pt-[4.3rem]">
             <h1 className="text-white md:text-[30px] lg:text-[50px] text-center">

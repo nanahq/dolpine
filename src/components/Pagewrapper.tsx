@@ -30,18 +30,18 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     page?.meta?.seo?.description ??
-    'Discover local flavors with Nana. Browse our diverse menu featuring African dishes, jollof rice, and more. Enjoy the convenience of our reliable restaurant delivery service, bringing your favorite meals to your doorstep. Order now and savor the taste of home comfort.';
+    'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you';
 
   const image = '/thumbnail.png';
-  const domain = 'https://trynanaapp.com';
+  const domain = 'https://www.trynanaapp.com';
   return (
     <div className="overflow-hidden">
       <Head>
-        <title>{`${title} - Food Delivery From Your Favourites`}</title>
+        <title>{`${title} - Food Delivery Near You`}</title>
         <meta name="description" content={description} />
         <meta
           property="og:site_name"
-          content={`${title} - Food Delivery From Your Favourites`}
+          content={`${title} - Food Delivery Near You`}
         />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -53,17 +53,17 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           property="og:title"
-          content={`${title} - Food Delivery From Your Favourites`}
+          content={`${title} - Food Delivery Near You`}
         />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
+        <meta property="og:image" content={`${domain}${image}`} />
         <meta property="twitter:url" content={`${domain}${routePath}`} />
         <meta
           property="twitter:title"
-          content={`${title} - Food Delivery From Your Favourites`}
+          content={`${title} - Food Delivery Near You`}
         />
         <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={image} />
+        <meta property="twitter:image" content={`${domain}${image}`} />
         <link
           rel="icon"
           type="image/png"
