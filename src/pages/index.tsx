@@ -1,9 +1,16 @@
 import { PageWrapper } from '@/components/Pagewrapper';
+import { HomePageHero } from '@/components/Home/Hero';
+import { GetStarted } from '@/components/Home/GetStarted';
+import { SimpleSteps } from '@/components/Home/SimpleSteps';
+import { FaqComponent, QA } from '@/components/Home/Faq';
 
 export default function Home() {
   return (
     <PageWrapper>
-      <h1 className="font-bold">Hello world</h1>
+      <HomePageHero />
+      <GetStarted />
+      <SimpleSteps />
+      <FaqComponent qa={QA} />
     </PageWrapper>
   );
 }

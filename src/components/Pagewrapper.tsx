@@ -1,6 +1,8 @@
 import React, { FC, PropsWithChildren, useMemo } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 interface Page {
   seo?: {
@@ -30,7 +32,7 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
     page?.meta?.seo?.description ??
     'Discover local flavors with Nana. Browse our diverse menu featuring African dishes, jollof rice, and more. Enjoy the convenience of our reliable restaurant delivery service, bringing your favorite meals to your doorstep. Order now and savor the taste of home comfort.';
 
-  const image = '/thumbnail.jpg';
+  const image = '/thumbnail.png;
   const domain = 'https://trynanaapp.com';
   return (
     <div className="overflow-hidden">
@@ -48,6 +50,7 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           property="og:url"
           content={`${domain}${routePath}`}
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           property="og:title"
           content={`${title} - Food Delivery From Your Favourites`}
@@ -74,7 +77,11 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           href="/favicon-16x16.png"
         />
       </Head>
-      <main>{children}</main>
+      <div className="md:container lg:py-5 pb-20">
+        <Header />
+        <main>{children}</main>
+      </div>
+      <Footer />
     </div>
   );
 };

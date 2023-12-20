@@ -20,6 +20,7 @@
       2,
       { "args": "all", "argsIgnorePattern": "^_" }
     ],
+    "@typescript-eslint/no-explicit-any": "warning",
     "no-unused-labels": "error",
     "no-unused-expressions": "error",
     "no-duplicate-imports": "error"
