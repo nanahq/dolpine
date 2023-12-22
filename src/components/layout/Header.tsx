@@ -22,6 +22,7 @@ export const Header: React.FC<HeaderProps> = () => {
                     className="object-contain aspect-[25:16]"
                     src="/logo-white.png"
                     alt="Nana Food delivery logo"
+                    sizes="100vw"
                   />
                 </div>
               </Link>
@@ -48,6 +49,7 @@ export const Header: React.FC<HeaderProps> = () => {
                 className="object-contain aspect-[25:16]"
                 src="/logo-blue.png"
                 alt="Nana Food delivery logo"
+                sizes="100vw"
               />
             </div>
           </Link>
@@ -72,6 +74,7 @@ export const Header: React.FC<HeaderProps> = () => {
                   className="object-contain aspect-[25:16]"
                   src="/logo-blue.png"
                   alt="Nana Food delivery logo"
+                  sizes="100vw"
                 />
               </div>
               <button
