@@ -3,6 +3,23 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import Script from 'next/script'
+
+import * as snippet from '@segment/snippet'
+
+console.log(process.env.NEXT_PUBLIC_ANALYTICS_WRITE_KEY,)
+function renderSnippet() {
+  const opts = {
+    apiKey: process.env.NEXT_PUBLIC_ANALYTICS_WRITE_KEY,
+    page: true,
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    return snippet.max(opts)
+  }
+
+  return snippet.min(opts)
+}
 
 interface Page {
   seo?: {
@@ -75,6 +92,10 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           type="image/png"
           sizes="16x16"
           href="/favicon-16x16.png"
+        />
+        <Script
+            id="segment-script"
+            dangerouslySetInnerHTML={{ __html: renderSnippet() }}
         />
       </Head>
       <div className="md:container lg:py-5 pb-20">
