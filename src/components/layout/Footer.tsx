@@ -32,7 +32,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="hidden mt-10 text-white">
-            <p>@2023 NanaEats Logistics Limited</p>
+            <p>@2024 Imagyne Ventures Limited</p>
           </div>
         </div>
         <div className="w-full mt-16 md:mt-0 md:w-1/2 flex flex-wrap md:flex-nowrap space-x-0 md:space-x-10 items-center">
@@ -46,7 +46,7 @@ export const Footer = () => {
                 <FooterLink link="/vendors" label="Become a vendor" />
               </li>
               <li>
-                <FooterLink link="/" label="Deliver with Nana" />
+                <FooterLink link="/company" label="Company" />
               </li>
               <li>
                 <FooterLink link="/" label="Nana for business" />
@@ -87,7 +87,7 @@ export const Footer = () => {
       <div className="container my-12 flex flex-col-reverse md:flex-row w-full justify-between">
         <div>
           <p className="text-white mt-8 md:mt-0">
-            ©All Rights Reserved 2023, NanaEats Logistics.
+            ©All Rights Reserved 2024, Imagyne Ventures Limited.
           </p>
         </div>
         <div className="flex flex-row items-center space-x-3 font-bold justify-center">
