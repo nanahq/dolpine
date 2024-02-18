@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = () => {
                 <HeaderLink link="#faq" label="FAQ" />
               </div>
               <div className="flex w-1/3 flex-row space-x-4 justify-end items-center">
-                <HeaderLink link="/" label="Company" />
+                <HeaderLink link="/company" label="Company" />
                 <HeaderLink link="/" label="Locations" />
               </div>
             </div>
