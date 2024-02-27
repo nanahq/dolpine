@@ -8,7 +8,7 @@ const DeletePage = () => {
     const handleSubmit = async () => {
         try {
             setLoading(true)
-            await fetch('https://api.trynanaapp.com/api-gateway/v1/user/delete-request')
+            await fetch(`https://api.trynanaapp.com/api-gateway/v1/user/delete-request/${phone}`)
             setSuccess(success)
         } catch (error) {
             console.log(error)
@@ -23,8 +23,8 @@ const DeletePage = () => {
                     <div className="bg-white p-3 rounded-lg w-[500px] mt-[100px]">
                         {success ? (
                             <>
-                                <h1 className="font-bold text-xl mb-2">Your Request is sent</h1>
-                                <p className="text-xl">We will reach out to confirm your request</p>
+                                <h1 className="font-bold text-xl mb-5 text-center">Your Request is sent</h1>
+                                <p className="text-xl">We will reach out to confirm your request before processing.</p>
                             </>
                             ) : (
                             <>
