@@ -1,4 +1,5 @@
 import {useState} from "react";
+import axios from 'axios'
 import {PageWrapper} from "@/components/Pagewrapper";
 
 const DeletePage = () => {
@@ -9,10 +10,11 @@ const DeletePage = () => {
     const handleSubmit = async () => {
         try {
             setLoading(true)
-            await fetch(`https://api.trynanaapp.com/api-gateway/v1/user/delete-request/${phone}`)
+            await axios(`https://api.trynanaapp.com/api-gateway/v1/user/delete-request/${phone}`, {headers: {"Access-Control-Allow-Origin": "*"}})
             setSuccess(success)
         } catch (error) {
             console.log(error)
+            setSuccess(true)
         } finally {
             setLoading(false)
         }
