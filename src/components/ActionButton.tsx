@@ -9,12 +9,13 @@ export const ActionButton: React.FC<
     type: 'ios' | 'android';
   }>
 > = (props) => {
+    const storeLink = props.type === 'android' ? 'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app' : ''
   return (
     <button
       onClick={props.onPress}
       className={classNames('rounded-lg md:w-[17em] py-4 px-2', props.style)}
     >
-      <div className="flex flex-row items-center justify-center">
+      <a href={storeLink} target="_blank" className="flex flex-row items-center justify-center">
         {props.type === 'ios' ? (
           <AppleStore className="" />
         ) : (
@@ -23,7 +24,7 @@ export const ActionButton: React.FC<
         <p className="text-white ml-1">{`Download on ${
           props.type === 'ios' ? 'Apple Store' : 'Google Play'
         }`}</p>
-      </div>
+      </a>
     </button>
   );
 };
