@@ -1,24 +1,25 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+import React, { FC, PropsWithChildren, useMemo, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import Script from 'next/script'
+import Script from 'next/script';
+import Cookies from 'js-cookie';
+import { nanoid } from 'nanoid';
+import * as snippet from '@segment/snippet';
+import { AnalyticsBrowser } from '@segment/analytics-next';
 
-import * as snippet from '@segment/snippet'
-
-console.log(process.env.NEXT_PUBLIC_ANALYTICS_WRITE_KEY,)
 function renderSnippet() {
   const opts = {
     apiKey: process.env.NEXT_PUBLIC_ANALYTICS_WRITE_KEY,
     page: true,
-  }
+  };
 
-  if (process.env.NODE_ENV === 'development') {
-    return snippet.max(opts)
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return snippet.max(opts);
+  // }
 
-  return snippet.min(opts)
+  return snippet.min(opts);
 }
 
 interface Page {
@@ -49,6 +50,26 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
     page?.meta?.seo?.description ??
     'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you';
 
+  useEffect(() => {
+    const analyticsWriteKey = process.env.NEXT_PUBLIC_ANALYTICS_WRITE_KEY;
+    let trackingCookie = Cookies.get('TRACKING_UUID_NANA');
+
+    if (!trackingCookie) {
+      const id = nanoid();
+      Cookies.set('TRACKING_UUID_NANA', id, { expires: 180 });
+      trackingCookie = id;
+    }
+
+    if (analyticsWriteKey) {
+      const analytics = AnalyticsBrowser.load({
+        writeKey: analyticsWriteKey,
+      });
+
+      if (analytics) {
+        analytics.identify(trackingCookie);
+      }
+    }
+  }, []);
   const image = '/thumbnail.png';
   const domain = 'https://www.trynanaapp.com';
   return (
@@ -56,9 +77,9 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
       <Head>
         <title>{`${title} - Food Delivery`}</title>
         <meta name="description" content={description} />
-        <meta
-          property="og:site_name"
-          content={`${title}`}
+        <meta 
+        property="og:site_name" 
+        content={`${title}`} 
         />
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -68,16 +89,16 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           content={`${domain}${routePath}`}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          property="og:title"
-          content={`${title} - Food Delivery`}
+        <meta 
+        property="og:title" 
+        content={`${title} - Food Delivery`} 
         />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={`${domain}${image}`} />
         <meta property="twitter:url" content={`${domain}${routePath}`} />
-        <meta
-          property="twitter:title"
-          content={`${title} - Food Delivery`}
+        <meta 
+        property="twitter:title" 
+        content={`${title} - Food Delivery`} 
         />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={`${domain}${image}`} />
@@ -94,8 +115,8 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           href="/favicon-16x16.png"
         />
         <Script
-            id="segment-script"
-            dangerouslySetInnerHTML={{ __html: renderSnippet() }}
+          id="segment-script"
+          dangerouslySetInnerHTML={{ __html: renderSnippet() }}
         />
       </Head>
       <div className="md:container lg:py-5 pb-20">
