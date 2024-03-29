@@ -69,10 +69,6 @@ export const PageWrapper: FC<PropsWithChildren<PagewrapperProps>> = ({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        {/* <Script
-          id="segment-script"
-          dangerouslySetInnerHTML={{ __html: renderSnippet() }}
-        /> */}
       </Head>
       <div className="md:container lg:py-5 pb-20">
         <Header />
