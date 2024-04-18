@@ -1,0 +1,40 @@
+import './globals.css';
+import { PageWrapper } from '@/app/components/layout/Wrapper';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Nana | Vendor Partners',
+  description: 'Deliver Experiences while earning money',
+  keywords:
+    'Food delivery, food delivery driver kano, Food, delivery, order food online',
+  appLinks: {
+    android: {
+      package: 'com.nanaeats.nana_rider',
+      url: 'https://play.google.com/store/apps/details?id=com.nanaeats.nana_rider',
+    },
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <PageWrapper
+          defaultTitle="Become a delivery partner"
+          page={{
+            seo: {
+              description: 'Become a partner | Delivery joy and earn money',
+              title: 'Nana for riders',
+            },
+          }}
+        >
+          {children}
+        </PageWrapper>
+      </body>
+    </html>
+  );
+}

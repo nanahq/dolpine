@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { analytics } from '@/lib/segment';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 import Cookies from 'js-cookie';
 
 export default function Analytics() {
@@ -11,7 +11,7 @@ export default function Analytics() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-   let trackingCookie = Cookies.get('TRACKING_UUID_NANA');
+    let trackingCookie = Cookies.get('TRACKING_UUID_NANA');
 
     if (!trackingCookie) {
       const id = nanoid();
@@ -19,11 +19,9 @@ export default function Analytics() {
       trackingCookie = id;
     }
 
-    analytics.identify(trackingCookie)
+    analytics.identify(trackingCookie);
     analytics.page();
   }, [pathname, searchParams]);
-
-
 
   return null;
 }
