@@ -29,7 +29,7 @@ useEffect(() => {
 
     return (
         <header
-            className={`w-full p-4 lg:px-9 dark:bg-black bg-white dark:text-white fixed top-0 z-10 transition-shadow duration-300 ${
+            className={`w-full p-4 lg:px-9 dark:bg-black bg-white dark:text-white fixed top-0 z-10 transition-shadow duration-300 z-50 ${
                 !isScrolled &&
                 "bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md dark:backdrop-blur-md drop-shadow-md transition duration-1000"
             }`}

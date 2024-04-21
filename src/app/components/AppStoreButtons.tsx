@@ -18,10 +18,10 @@ export const AppStoreButtons: React.FC<AppStoreButtonsProps> = ({
     showAppStore = true,
 }) => {
     function trackAppClick(): void {
-        analytics.track("App button clicked", { deviceType: "Apple" });
+        analytics.track("Google play button clicked", { deviceType: "Apple" });
     }
     function trackGoogleClick(): void {
-        analytics.track("App button clicked", { deviceType: "Android" });
+        analytics.track("Google play button clicked", { deviceType: "Android" });
     }
 
     return (
@@ -41,7 +41,7 @@ export const AppStoreButtons: React.FC<AppStoreButtonsProps> = ({
                     <div className="hover:transition-transform hover:duration-100 hover:scale-x-105 hover:scale-y-105">
                         <Image
                             priority={true}
-                            className="object-fill w-40 lg:w-36 cursor-pointer"
+                            className="object-fill w-32 md:w-28 lg:w-36 cursor-pointer"
                             src={GooglePlay}
                             alt="Google Play Store"
                             width={120}
@@ -55,7 +55,7 @@ export const AppStoreButtons: React.FC<AppStoreButtonsProps> = ({
                     <div className="hover:transition-transform hover:duration-100 hover:scale-x-105 hover:scale-y-105">
                         <Image
                             priority={true}
-                            className="object-fill  w-40 lg:w-36  cursor-pointer"
+                            className="object-fill  w-32 md:w-28 lg:w-36  cursor-pointer"
                             src={AppStore}
                             alt="App Store"
                             width="120"

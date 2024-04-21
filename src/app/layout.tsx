@@ -3,14 +3,14 @@ import { PageWrapper } from '@/app/components/layout/Wrapper';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Nana | Vendor Partners',
+  title: 'Nana | Food Delivery ',
   description: 'Deliver Experiences while earning money',
   keywords:
     'Food delivery, food delivery driver kano, Food, delivery, order food online',
   appLinks: {
     android: {
-      package: 'com.nanaeats.nana_rider',
-      url: 'https://play.google.com/store/apps/details?id=com.nanaeats.nana_rider',
+      package: 'com.nanaeats.nana_app',
+      url: 'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app',
     },
   },
 };
