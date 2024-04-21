@@ -80,7 +80,7 @@ const DownloadApp = () => {
           <h2
             className={clsx(
               'font-bold  text-gray leading-[3.5rem] mb-10',
-              'text-xl md:text-3xl',
+              'text-xl md:text-3xl lg:text-5xl',
             )}
           >
             Hubby, I can't cook today

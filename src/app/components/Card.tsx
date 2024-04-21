@@ -11,7 +11,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ image, title }) => {
   return (
-    <div className="h-full w-full md:max-w-[640px] md:my-4 md:mx-auto shadow-lg">
+    <div className="h-full w-full md:max-w-[640px] md:my-4 md:mx-auto shadow-lg bg-gray-500">
       <div className="h-[300px] w-full">
         <Image
           src={image}
@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({ image, title }) => {
         <h6 className="text-2xl font-bold">{title}</h6>
         <a
           href="#"
-          className="transition-border border-b-2 border-b-blue-400 pb-2 text-blue-400 duration-100 hover:border-none"
+          className="transition-border border-b-2 border-b-nana-blue pb-2 text-nana-blue duration-1000 hover:border-none"
         >
           Get Started
         </a>

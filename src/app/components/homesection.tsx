@@ -1,14 +1,14 @@
 import clsx from 'clsx';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Input from '@/app/components/input';
 import FilledLocationIcon from '@/assets/filled-location.svg';
 import LocationIcon from '@/assets/location.svg';
 import { CSSTransition } from 'react-transition-group';
 import Image from 'next/image';
-import TextImage from '@/assets/test-card-image.jpg'; // Update with your image path
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import '../../app/globals.css';
 
-export const TextAnimation: React.FC = () => {
+const TextAnimation: React.FC = () => {
   const texts = [
     'Discover and get great food.',
     'You deserve this.',
@@ -18,26 +18,48 @@ export const TextAnimation: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [show, setShow] = useState(true);
   const [letters, setLetters] = useState<string[]>([]);
+  const nodeRef = useRef(null);
 
 
   useEffect(() => {
-    if (texts[index]) {
+    const interval = setInterval(() => {
+      setShow(false);
+      setTimeout(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setShow(true);
+      }, 500);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (texts[index] && letters.length === 0) {
       const words = texts[index].split(' ');
       const newLetters = words.reduce((acc: string[], word: string) => {
         const letters = word.split('');
         acc.push(...letters);
-        acc.push(' '); // Add space between words
+        acc.push(' ');
         return acc;
       }, []);
       setLetters(newLetters);
     }
-  }, [index, texts]);
+  }, [index, texts, letters]);
+
+
+
   return (
     <div>
-      <CSSTransition in={show} timeout={500} classNames="fade" unmountOnExit>
-        <div className="fade text-3xl lg:text-6xl font-bold">
+      <CSSTransition
+        in={show}
+        timeout={500}
+        classNames="fade"
+        unmountOnExit
+        nodeRef={nodeRef}
+      >
+        <div ref={nodeRef}   className="fade text-3xl lg:text-6xl font-bold">
           {letters.map((letter, index) => (
-            <span key={index} style={{ transitionDelay: `${index * 0.01}s` }}>
+            <span key={index} style={{ transitionDelay: `${index * 0.12}s` }}>
               {letter}
             </span>
           ))}

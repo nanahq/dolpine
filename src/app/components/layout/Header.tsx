@@ -53,7 +53,7 @@ useEffect(() => {
                             <Link href="/">For Couriers</Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                            <Link href="/">For Merchants</Link>
+                            <Link href="/">For Vendors</Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
                             <Link href="#">Nana Box</Link>
