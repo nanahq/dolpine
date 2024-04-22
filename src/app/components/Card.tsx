@@ -39,10 +39,15 @@ const Card: React.FC<CardProps> = ({ image, title }) => {
 
 const CardSection: React.FC = () => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full lg:max-w-[90rem] px-4 lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto ">
-      <Card image={TestCardImage} title="Get paid as a partner" />
-      <Card image={TestCardImage} title="Another title" />
-      <Card image={TestCardImage} title="Yet another title" />
+    <section className="w-full lg:max-w-[90rem] px-4 lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto ">
+      <h2 className="font-bold text-3xl lg:text-5xl text-center mb-8 dark:text-white">
+        Hungry for satisfaction?
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card image={TestCardImage} title="Get paid as a partner" />
+        <Card image={TestCardImage} title="Another title" />
+        <Card image={TestCardImage} title="Yet another title" />
+      </div>
     </section>
   );
 };
