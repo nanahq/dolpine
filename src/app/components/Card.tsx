@@ -11,7 +11,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ image, title }) => {
   return (
-    <div className="h-full w-full md:max-w-[640px] md:my-4 md:mx-auto shadow-lg bg-gray-500">
+    <div className="h-full w-full md:max-w-[640px] md:my-4 md:mx-auto shadow-lg bg-gray-100 dark:bg-gray-500">
       <div className="h-[300px] w-full">
         <Image
           src={image}

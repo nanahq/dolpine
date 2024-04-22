@@ -1,23 +1,20 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import Image from 'next/image';
-import Link from 'next/link';
-import TestImage from '@/assets/test.jpg';
 import './globals.css';
-import DownloadApp from './components/download';
+import TestHero from '@/assets/test-hero.avif';
+import TestImage from '@/assets/test.jpg';
+import DownloadApp from './components/DownloadSection';
 import InfoCta from './components/InfoCta';
-
-import HomeBanner from './components/homesection';
+import HeroBanner from './components/Hero';
 import CardSection from './components/Card';
 import VideoBanner from './components/Video';
 
 export default function Home() {
   return (
     <div className="mx-auto">
-      <HomeBanner color="bg-[#cbe1ad]" image={TestImage} />
+      <HeroBanner color="bg-[#D1BC9B]" image={TestHero} />
       <VideoBanner
-        image="https://consumer-static-assets.wolt.com/frontpage-assets/video-cover-image-4.jpg"
+        image="https://images.unsplash.com/photo-1488992783499-418eb1f62d08?q=80&w=989&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         title="What is Nana?"
         subtitle="Delivered."
         content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis vitae iusto ex, eos nemo, dolores cupiditate labore saepe, aspernatur accusamus non adipisci harum molestias unde voluptate tenetur atque optio? Odit."
@@ -27,9 +24,9 @@ export default function Home() {
         title="Did you know?"
         description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae voluptas temporibus mollitia eaque minima repudiandae ipsa necessitatibus quisquam optio maiores perspiciatis deleniti blanditiis, molestias neque porro officia, facere provident adipisci debitis tempora est odit. Temporibus aperiam tempora voluptatum reprehenderit eaque at assumenda nobis alias eius. Sed delectus rerum qui iste?"
       />
-      <CardSection />
 
       <DownloadApp />
+      <CardSection />
     </div>
   );
 }
