@@ -84,24 +84,26 @@ const HeroBanner: React.FC<Props> = ({ color, image }) => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setVal(e.target.value)
               }
-              start={
-                <Image
-                  src={LocationIcon}
-                  width={0}
-                  height={0}
-                  alt="icon"
-                  className="size-5"
-                />
-              }
-              end={
-                <Image
-                  src={FilledLocationIcon}
-                  width={0}
-                  height={0}
-                  alt="icon"
-                  className="size-5"
-                />
-              }
+              start={{
+                before: (
+                  <Image
+                    src={LocationIcon}
+                    width={0}
+                    height={0}
+                    alt="icon"
+                    className="size-5"
+                  />
+                ),
+                after: (
+                  <Image
+                    src={FilledLocationIcon}
+                    width={0}
+                    height={0}
+                    alt="icon"
+                    className="size-5"
+                  />
+                ),
+              }}
             />
           </div>
         </div>
