@@ -1,17 +1,15 @@
 import clsx from 'clsx';
-import Container from './Container';
 import React from 'react';
 import Image from 'next/image';
-import TextImage from '@/assets/front-cells-mobile.jpg';
-import TextImage2 from '@/assets/front-cells.png';
-import TextImage3 from '@/assets/ios-discovery.jpg';
+import AppMockup from '@/assets/download-app.jpg';
 import { AppStoreButtons } from './AppStoreButtons';
+import App from 'next/app';
 
 const DownloadApp = () => {
   return (
     <div
       className={clsx(
-        'flex flex-col w-full bg-gray-100 overflow-hidden',
+        'flex flex-col w-full bg-[#F4F4F4] overflow-hidden',
         'h-auto md:h-[758px]',
         'mt-[100px] mb-[100px] pt-[56px] md:pt-0',
       )}
@@ -27,20 +25,11 @@ const DownloadApp = () => {
           className={clsx(
             'absolute top-0 h-full w-full min-w-[1100px] overflow-hidden',
             'hidden md:flex',
-            'right-[-50rem] lg:right-[-44rem] xl:right-[-32rem]',
+            'right-[-50rem] lg:right-[-44rem] xl:right-[-35rem]',
           )}
         >
-          <div className="absolute h-full w-auto z-1 origin-top-left rotate-[-29.5deg] scale-[.53] skew-x-[13.83deg] skew-y-0 translate-x-[-60px] translate-y-[14px] !important scroll-smooth">
-            <Image
-              src={TextImage3}
-              alt="ok"
-              width={0}
-              height={0}
-              className="z-[4]"
-            />
-          </div>
           <Image
-            src={TextImage2}
+            src={AppMockup}
             alt="ok"
             width={0}
             height={0}
@@ -70,7 +59,7 @@ const DownloadApp = () => {
           <AppStoreButtons />
         </div>
         <div className="flex md:hidden">
-          <Image src={TextImage} alt="ok" width={0} height={0} />
+          <Image src={AppMockup} alt="ok" width={0} height={0} />
         </div>
       </div>
     </div>
