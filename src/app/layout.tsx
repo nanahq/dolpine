@@ -1,10 +1,11 @@
 import './globals.css';
-import { PageWrapper } from '@/app/components/layout/Wrapper';
+import { PageWrapper } from './components/layout/Wrapper';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Nana | Food Delivery ',
-  description: 'Deliver Experiences while earning money',
+  description:
+    'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
   keywords:
     'Food delivery, food delivery driver kano, Food, delivery, order food online',
   appLinks: {
@@ -24,11 +25,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="dark:bg-black dark:text-white">
         <PageWrapper
-          defaultTitle="Become a delivery partner"
+          defaultTitle="Order your food from Nana"
           page={{
             seo: {
-              description: 'Become a partner | Delivery joy and earn money',
-              title: 'Nana for riders',
+              description:
+                'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
+              title: 'Nana Delivery App',
             },
           }}
         >

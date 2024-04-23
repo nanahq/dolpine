@@ -1,7 +1,5 @@
 "use client";
 import React, {PropsWithChildren} from "react";
-import Head from "next/head";
-import Script from "next/script";
 import localFont from 'next/font/local'
 import { Header } from "./Header";
 import { Footer } from "./Footer";

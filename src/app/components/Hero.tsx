@@ -54,13 +54,13 @@ const HeroBanner: React.FC<Props> = ({ color, image }) => {
       className={clsx(
         'flex justify-center items-end overflow-hidden',
         'h-[560px] lg:h-[40rem] w-full',
-        'flex flex-col justify-center items-center w-full lg:max-w-[90rem] lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto min-w-full text-white relative',
+        'flex flex-col justify-center items-center w-full lg:max-w-[90rem] lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto min-w-full text-auto relative',
         color,
       )}
     >
       <div className="relative flex justify-start items-end max-w-[75rem] w-full h-full">
         <Image
-          src={image}
+          src={image as any}
           loading="lazy"
           alt="banner-image"
           className="absolute top-0 left-0 w-full h-full object-cover object-left-top min-w-[62.5rem] start-0 end-[25rem] lg:object-center lg:start-[25rem] xl:end-[-25%]"

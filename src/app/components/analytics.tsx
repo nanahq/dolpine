@@ -1,14 +1,11 @@
-'use client';
-
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { analytics } from '@/lib/segment';
 import { nanoid } from 'nanoid';
 import Cookies from 'js-cookie';
 
 export default function Analytics() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     let trackingCookie = Cookies.get('TRACKING_UUID_NANA');
@@ -21,7 +18,7 @@ export default function Analytics() {
 
     analytics.identify(trackingCookie);
     analytics.page();
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 }
