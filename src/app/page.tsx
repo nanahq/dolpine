@@ -1,8 +1,7 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './globals.css';
 import TestHero from '@/assets/test-hero.avif';
-import TestImage from '@/assets/test.jpg';
 import DownloadApp from './components/DownloadSection';
 import InfoCta from './components/InfoCta';
 import HeroBanner from './components/Hero';

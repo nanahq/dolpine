@@ -1,4 +1,3 @@
-import { PageWrapper } from '@/app/components/layout/Wrapper';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -22,20 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="dark:bg-black dark:text-white">
-        <PageWrapper
-          defaultTitle="Order your food from Nana"
-          page={{
-            seo: {
-              description:
-                'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
-              title: 'About Nana Delivery App',
-            },
-          }}
-        >
-          {children}
-        </PageWrapper>
-      </body>
+      <body className="dark:bg-black dark:text-white">{children}</body>
     </html>
   );
 }
