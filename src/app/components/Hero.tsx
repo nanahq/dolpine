@@ -33,7 +33,7 @@ const TextAnimation: React.FC = () => {
   return (
     <div>
       <CSSTransition in={show} timeout={500} classNames="fade" unmountOnExit>
-        <div className="fade text-black text-4xl md:text-[56px] lg:text-6xl font-bold leading-none">
+        <div className="fade text-white md:text-black text-4xl md:text-[56px] lg:text-6xl font-bold leading-none">
           {texts[index]}
         </div>
       </CSSTransition>

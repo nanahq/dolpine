@@ -33,7 +33,7 @@ const Input: React.FC<Props> = (props: Props) => {
   return (
     <div
       className={clsx(
-        'relative w-full bg-white rounded-lg truncate py-3 overflow-hidden font-light',
+        'relative w-full bg-white rounded-lg truncate overflow-hidden font-light',
         'focus:border-[2px] ',
         'border-2 border-nana-stone/20',
         'hover:border-nana-blue active:border-nana-blue',
