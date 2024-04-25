@@ -14,14 +14,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="dark:bg-black dark:text-white">{children}</body>
-    </html>
+      <div className="dark:bg-black dark:text-white">
+          {children}
+      </div>
   );
 }

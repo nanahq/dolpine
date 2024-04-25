@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = () => {
     <footer className="w-full bg-[#1E1E1E] p-4 md:p-9 text-white text-xs   ">
       <div className="flex flex-col gap-4 max-w-[90rem] mx-auto ">
         <div className="flex flex-col md:flex-row items-start w-full gap-10 md:items-stretch  md:justify-between">
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col">
             <Image
               priority={true}
               className="object-cover"
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = () => {
                 Terms Of Usage
               </p>
             </Link>
-            <Link href="https://trynanaapp.com/terms">
+            <Link href="https://trynanaapp.com">
               <p className="hover:text-nana-blue hover:underline">Main Site</p>
             </Link>
           </ul>

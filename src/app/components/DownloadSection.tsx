@@ -49,11 +49,11 @@ const DownloadApp = () => {
               'text-2xl md:text-3xl lg:text-4xl dark:text-black',
             )}
           >
-            Hubby, I can't cook today
+            Nana = Delivered!
           </h2>
           <p className="text-gray-500 leading-6 mb-10 text-sm lg:text-lg">
-            Get the Nana app and choose from 400+ restaurants and hundreds of
-            stores in the state. Discover and get what you want – our courier
+            Get the Nana app and choose from 1500+ restaurants and hundreds of
+            stores around. Discover and get what you want – our courier
             partners bring it to you.
           </p>
           <AppStoreButtons />

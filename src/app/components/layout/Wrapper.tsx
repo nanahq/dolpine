@@ -18,18 +18,9 @@ const omnes = localFont({
         }
     ],
 })
-interface Page {
-    seo?: {
-        description?: string;
-        title?: string;
-    };
-}
-interface PageWrapperProps {
-    location?: string;
-    defaultTitle?: string;
-    page?: Page;
-}
-export const PageWrapper: React.FC<PropsWithChildren<PageWrapperProps>> = (props) => {
+
+
+export const PageWrapper: React.FC<PropsWithChildren<any>> = (props) => {
     return (
             <div className={omnes.className}>
                 <Header/>

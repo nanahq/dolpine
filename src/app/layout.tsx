@@ -25,14 +25,6 @@ export default function RootLayout({
     <html lang="en">
       <body className="dark:bg-black dark:text-white">
         <PageWrapper
-          defaultTitle="Order your food from Nana"
-          page={{
-            seo: {
-              description:
-                'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
-              title: 'Nana Delivery App',
-            },
-          }}
         >
           {children}
         </PageWrapper>

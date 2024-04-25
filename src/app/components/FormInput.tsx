@@ -33,7 +33,7 @@ const Input: React.FC<Props> = (props: Props) => {
   return (
     <div
       className={clsx(
-        'relative w-full bg-white rounded-lg truncate overflow-hidden font-light',
+        'relative w-full bg-white rounded-lg truncate py-3 overflow-hidden font-light',
         'focus:border-[2px] ',
         'border-2 border-nana-stone/20',
         'hover:border-nana-blue active:border-nana-blue',
@@ -46,7 +46,7 @@ const Input: React.FC<Props> = (props: Props) => {
           className={clsx(
             'absolute top-[0.8rem] px-4 text-nana-stone/50 pointer-events-none',
             'transition duration-100 ease-out truncate',
-            isFocused || value ? 'translate-y-[-0.6rem] text-xs' : 'text-sm',
+            isFocused || value ? 'translate-y-[-0.6rem] my-2 text-xs' : 'text-sm',
             start && 'left-9',
           )}
         >
@@ -57,7 +57,7 @@ const Input: React.FC<Props> = (props: Props) => {
         {hasIcon && <div className="mr-4">{startIcon}</div>}
         <input
           className={clsx(
-            'w-full py-[20px] pb-[6px] text-gray-500 text-xs focus:outline-none',
+            'w-full py-[10px] text-gray-500 text-base focus:outline-none',
             className,
           )}
           type={type}

@@ -18,7 +18,7 @@ const VideoBanner: React.FC<Props> = ({ image, title, subtitle, content }) => {
         <h5 className="z-[2] flex-1 text-2xl font-bold leading-relaxed tracking-normal text-white  antialiased md:text-3xl lg:hidden">
           {title}
         </h5>
-        <h2 className="z-[2] mb-10 text-4xl font-bold leading-snug tracking-normal text-white md:text-5xl lg:hidden font-sans">
+        <h2 className="z-[2] mb-10 text-4xl font-bold leading-snug tracking-normal text-white md:text-5xl lg:hidden">
           {subtitle}
         </h2>
         <div className="absolute top-0 left-0 w-full h-full z-[1] bg-black opacity-50 lg:hidden"></div>
