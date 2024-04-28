@@ -99,8 +99,9 @@ useEffect(() => {
                 </div>
                 <div className="hidden lg:flex text-sm font-normal transition duration-300">
                     <div className="hover:font-bold transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                        <Link href="/" className="hover:text-nana-blue">
+                        <Link href="https://imagyne.notion.site/Open-positions-at-Imagyne-0c9edaa674db40ad8a78c232700a30dd" className="hover:text-nana-blue">
                             Jobs
+                            <span className="text-xs ml-1 bg-nana-lime rounded-xl p-1 text-white">Hiring</span>
                         </Link>
                     </div>
                 </div>

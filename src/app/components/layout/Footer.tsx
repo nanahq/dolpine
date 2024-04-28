@@ -45,8 +45,10 @@ export const Footer: React.FC<FooterProps> = () => {
               <Link href="/about">
                 <p className="hover:text-nana-blue hover:underline">About Us</p>
               </Link>
-              <Link href="https://trynanaapp.com/about?utm_source=courier_site">
-                <p className="hover:text-nana-blue hover:underline">Careers</p>
+              <Link href="https://imagyne.notion.site/Open-positions-at-Imagyne-0c9edaa674db40ad8a78c232700a30dd">
+                <p className="hover:text-nana-blue hover:underline">Careers
+                  <span className="text-xs ml-1 bg-nana-lime rounded-xl p-1 text-white">Hiring</span>
+                </p>
               </Link>
               <Link href="https://trynanaapp.com/about?utm_source=courier_site">
                 <p className="hover:text-nana-blue hover:underline">Team</p>
