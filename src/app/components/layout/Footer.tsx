@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = () => {
                   </span>
                 </p>
               </Link>
-              <Link href="https://trynanaapp.com/about">
+              <Link href="/about">
                 <p className="hover:text-nana-blue hover:underline">Team</p>
               </Link>
             </DropdownLinks>

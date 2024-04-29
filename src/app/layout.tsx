@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: 'trynanaapp.com',
     creator: '@nana_app_hq',
-    images: '/twiter-image.png'
+    images: ['/twitter-image.png']
   },
   appLinks: {
     android: {
