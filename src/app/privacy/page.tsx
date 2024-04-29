@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Page = () => {
     return (
         <section className="mx-auto w-[80%] text-2xl flex flex-col space-y-10 my-20">
@@ -113,6 +115,21 @@ const Page = () => {
                     constitutes acceptance of those changes. If you have any questions
                     about the updates or modifications, please contact us at{' '}
                     <a href="mailto:hello@trynanaapp.com">hello@trynanaapp.com</a>.
+                </p>
+            </div>
+            <div className="flex flex-col">
+                <h2 className="font-bold font-bold text-3xl mb-5 uppercase">
+                   Account Deletion Policy
+                </h2>
+                <p>
+                    If you no longer wish to use Nana, you can request for your
+                    information to be deleted. This is a permanent action and can not be
+                    undone. All your information including order history, payment
+                    history, personal information like email, name etc will be delete.
+                    Please go to{' '}
+                    <span className="underline text-nana-blue font-bold">
+              <Link href='/delete'>this page</Link> to delete your information
+            </span>
                 </p>
             </div>
         </section>

@@ -27,7 +27,7 @@ const DeletePage = () => {
                         {success ? (
                             <>
                                 <h1 className="font-bold text-xl mb-5 text-center">Your Request is sent</h1>
-                                <p className="text-xl">We will reach out to confirm your request before processing.</p>
+                                <p className="text-xl">Your account is currently been deleted. It will take at least 30 minutes to complete.</p>
                             </>
                         ) : (
                             <>
