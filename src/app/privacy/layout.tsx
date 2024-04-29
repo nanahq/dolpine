@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Privacy Statement | Food Delivery ',
+    title: 'Privacy Statement',
     description:
         'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
     keywords:
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <div className="dark:bg-black dark:text-white">
-                {children}
+            {children}
         </div>
     );
 }

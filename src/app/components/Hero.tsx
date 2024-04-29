@@ -11,9 +11,9 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 const TextAnimation: React.FC = () => {
   const texts = [
     'Are you hungry?',
-    'Late night cravings?.',
-    'Groceries from your mobile phone',
-    'Pre-order ahead of time',
+    'Late night cravings?',
+    'Groceries from your mobile phone.',
+    'Pre-order ahead of time.',
   ];
   const [index, setIndex] = useState(0);
   const [show, setShow] = useState(true);
@@ -33,7 +33,7 @@ const TextAnimation: React.FC = () => {
   return (
     <div>
       <CSSTransition in={show} timeout={500} classNames="fade" unmountOnExit>
-        <div className="fade text-white md:text-black text-4xl md:text-[56px] lg:text-6xl font-bold leading-none">
+        <div className="fade text-white lg:text-black text-4xl md:text-[56px] lg:text-6xl font-bold leading-none">
           {texts[index]}
         </div>
       </CSSTransition>
@@ -67,7 +67,7 @@ const HeroBanner: React.FC<Props> = ({ color, image }) => {
             'max-w-[465px] lg:max-w-[33.375rem] z-[2]',
           )}
         >
-          <div className="flex h-[16.75rem] mb-10 items-end lg:text-black">
+          <div className="flex h-[16.75rem] mb-10 items-end ">
             <TextAnimation />
           </div>
           <div className="relative flex flex-col">

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Terms of usage | Nana Food Delivery ',
+    title: 'Terms of usage',
     description:
         'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
     keywords:
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({
-                                   children,
-                               }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
