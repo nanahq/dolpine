@@ -23,10 +23,10 @@ const Page = () => {
                 </h2>
                 <ol>
                     <li>
-                        <strong>Personal Information:</strong> When you use Nana, we may
+                        <strong>Personal Information:</strong> When you use Nana, we
                         collect personal information, such as your name, email address,
                         phone number, and delivery address. This information is necessary
-                        for order processing and delivery.
+                        for account creation, order processing and delivery.
                     </li>
                     <li>
                         <strong>Location Information:</strong> We collect your device's
