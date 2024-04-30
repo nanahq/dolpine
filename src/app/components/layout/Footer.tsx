@@ -25,17 +25,17 @@ export const Footer: React.FC<FooterProps> = () => {
           </div>
           <div className="flex-1 shrink-0 grid md:grid-cols-3 lg:grid-flow-col md:gap-6 gap-4 lg:gap-6">
             <DropdownLinks title="Partner with Nana">
-              <Link href="/">
+              <Link href="https://vendors.trynanaapp.com/">
                 <p className="hover:text-nana-blue hover:underline">
                   For Vendors
                 </p>
               </Link>
-              <Link href="https://courier.trynanaapp.com?utm_source=courier_site">
+              <Link href="https://courier.trynanaapp.com">
                 <p className="hover:text-nana-blue hover:underline">
                   For Courier Partners
                 </p>
               </Link>
-              <Link href="https://courier.trynanaapp.com?utm_source=courier_site">
+              <Link href="https://courier.trynanaapp.com">
                 <p className="hover:text-nana-blue hover:underline">
                   For Logistics Companies
                 </p>
@@ -46,25 +46,28 @@ export const Footer: React.FC<FooterProps> = () => {
                 <p className="hover:text-nana-blue hover:underline">About Us</p>
               </Link>
               <Link href="https://imagyne.notion.site/Open-positions-at-Imagyne-0c9edaa674db40ad8a78c232700a30dd">
-                <p className="hover:text-nana-blue hover:underline">Careers
-                  <span className="text-xs ml-1 bg-nana-lime rounded-xl p-1 text-white">Hiring</span>
+                <p className="hover:text-nana-blue hover:underline">
+                  Careers
+                  <span className="text-xs ml-1 bg-nana-lime rounded-xl p-1 text-white">
+                    Hiring
+                  </span>
                 </p>
               </Link>
-              <Link href="https://trynanaapp.com/about?utm_source=courier_site">
+              <Link href="/about">
                 <p className="hover:text-nana-blue hover:underline">Team</p>
               </Link>
             </DropdownLinks>
 
             <DropdownLinks title="Follow Us">
-              <Link href="https://trynanaapp.com/about?utm_source=courier_site">
+              <Link href="https://trynanaapp.com/about">
                 <p className="hover:text-nana-blue hover:underline">Blog</p>
               </Link>
-              <Link href="https://trynanaapp.com/about?utm_source=courier_site">
+              <Link href="https://www.instagram.com/nanahq_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
                 <p className="hover:text-nana-blue hover:underline">
                   Instagram
                 </p>
               </Link>
-              <Link href="https://twitter.com/nana_app_hq">
+              <Link href="https://www.facebook.com/profile.php?id=61554441647404">
                 <p className="hover:text-nana-blue hover:underline">Facebook</p>
               </Link>
               <Link href="https://ng.linkedin.com/company/nana-ng">
@@ -78,17 +81,17 @@ export const Footer: React.FC<FooterProps> = () => {
         </div>
         <div className="flex flex-col gap-2">
           <ul className="flex text-xs gap-2 md:gap-4">
-            <Link href="https://trynanaapp.com/privacy">
+            <Link href="/privacy">
               <p className="hover:text-nana-blue hover:underline">
                 Privacy Statement
               </p>
             </Link>
-            <Link href="https://trynanaapp.com/terms">
+            <Link href="/terms">
               <p className="hover:text-nana-blue hover:underline">
                 Terms Of Usage
               </p>
             </Link>
-            <Link href="https://trynanaapp.com">
+            <Link href="/">
               <p className="hover:text-nana-blue hover:underline">Main Site</p>
             </Link>
           </ul>

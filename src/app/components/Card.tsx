@@ -49,7 +49,7 @@ const CardSection: React.FC = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card link="https://vendors.trynanaapp.com" image={VendorImage} title="Join Nana as A vendor" />
-        <Card link="https://courier.trynanaaapp.com" image={RiderImage} title="Become a delivery partner" />
+        <Card link="https://courier.trynanaapp.com" image={RiderImage} title="Become a delivery partner" />
         <Card image={BusinessImage} title="Nana for Business" />
       </div>
     </section>

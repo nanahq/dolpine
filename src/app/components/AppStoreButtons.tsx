@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import classNames from "classnames";
-import GooglePlay from "@/assets/google-play.svg";
-import AppStore from "@/assets/app-store.svg";
-import { analytics } from "@/lib/segment";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import classNames from 'classnames';
+import GooglePlay from '@/assets/google-play.svg';
+import AppStore from '@/assets/app-store.svg';
+import { analytics } from '@/lib/segment';
 
 interface AppStoreButtonsProps {
     className?: string;
@@ -18,23 +18,23 @@ export const AppStoreButtons: React.FC<AppStoreButtonsProps> = ({
     showAppStore = true,
 }) => {
     function trackAppClick(): void {
-        analytics.track("Google play button clicked", { deviceType: "Apple" });
+        analytics.track('Google play button clicked', { deviceType: 'Apple' });
     }
     function trackGoogleClick(): void {
-        analytics.track("Google play button clicked", { deviceType: "Android" });
+        analytics.track('Google play button clicked', { deviceType: 'Android' });
     }
 
     return (
         <div
             className={classNames(
-                "flex flex-col gap-2 md:flex-row md:gap-4 md:items-center",
-                className
+                'flex flex-col gap-2 md:flex-row md:gap-4 md:items-center',
+                className,
             )}
         >
             {showGooglePlay && (
                 <Link
                     target="_blank"
-                    href="https://play.google.com/store/apps/details?id=com.nanaeats.nana_vendors"
+                    href="https://play.google.com/store/apps/details?id=com.nanaeats.nana_app&pcampaignid=web_share"
                     className="group"
                     onClick={trackGoogleClick}
                 >

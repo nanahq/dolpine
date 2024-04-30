@@ -1,28 +1,27 @@
 'use client';
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import LogoBlue from "@/assets/logo-blue.png"
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import LogoBlue from '@/assets/logo-blue.png';
 
-interface HeaderProps {}
+interface HeaderProps { }
 
 export const Header: React.FC<HeaderProps> = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-useEffect(() => {
-    const scrollHandler = () => {
-        setIsScrolled(window.scrollY <= 20);
-    };
-    window.addEventListener("scroll", scrollHandler);
+    useEffect(() => {
+        const scrollHandler = () => {
+            setIsScrolled(window.scrollY <= 20);
+        };
+        window.addEventListener('scroll', scrollHandler);
 
-    scrollHandler();
+        scrollHandler();
 
-    return () => {
-        window.removeEventListener("scroll", scrollHandler);
-    };
-}, []);
-
+        return () => {
+            window.removeEventListener('scroll', scrollHandler);
+        };
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -30,10 +29,9 @@ useEffect(() => {
 
     return (
         <header
-            className={`w-full p-4 lg:px-9 dark:bg-black bg-white dark:text-white fixed top-0 transition-shadow duration-300 z-50 ${
-                !isScrolled &&
-                "bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md dark:backdrop-blur-md drop-shadow-md transition duration-1000"
-            }`}
+            className={`w-full p-4 lg:px-9 dark:bg-black bg-white dark:text-white fixed top-0 transition-shadow duration-300 z-50 ${!isScrolled &&
+                'bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md dark:backdrop-blur-md drop-shadow-md transition duration-1000'
+                }`}
         >
             <div className="flex justify-between items-center lg:max-w-[90rem] mx-auto">
                 <div>
@@ -41,7 +39,7 @@ useEffect(() => {
                         <Image
                             priority={true}
                             className="object-contain"
-                            src = {LogoBlue}
+                            src={LogoBlue}
                             alt="Nana logo"
                             width={62}
                             height="34"
@@ -51,10 +49,10 @@ useEffect(() => {
                 <nav className="hidden lg:flex gap-4 text-sm font-normal transition duration-300">
                     <ul className="flex gap-4 ">
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                            <Link href="/">For Couriers</Link>
+                            <Link href="https://courier.trynanaapp.com/">For Couriers</Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                            <Link href="/">For Vendors</Link>
+                            <Link href="https://vendors.trynanaapp.com/">For Vendors</Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
                             <Link href="#">Nana Box</Link>
@@ -67,7 +65,7 @@ useEffect(() => {
                 <div className="lg:hidden flex items-center gap-2">
                     <div className="hidden md:flex text-sm">
                         <div className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                            <Link href="/">Vendors</Link>
+                            <Link href="https://vendors.trynanaapp.com/">Vendors</Link>
                         </div>
                     </div>
                     <button onClick={toggleMenu}>
@@ -99,9 +97,14 @@ useEffect(() => {
                 </div>
                 <div className="hidden lg:flex text-sm font-normal transition duration-300">
                     <div className="hover:font-bold transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                        <Link href="https://imagyne.notion.site/Open-positions-at-Imagyne-0c9edaa674db40ad8a78c232700a30dd" className="hover:text-nana-blue">
+                        <Link
+                            href="https://imagyne.notion.site/Open-positions-at-Imagyne-0c9edaa674db40ad8a78c232700a30dd"
+                            className="hover:text-nana-blue"
+                        >
                             Jobs
-                            <span className="text-xs ml-1 bg-nana-lime rounded-xl p-1 text-white">Hiring</span>
+                            <span className="text-xs ml-1 bg-nana-lime rounded-xl p-1 text-white">
+                                Hiring
+                            </span>
                         </Link>
                     </div>
                 </div>
@@ -119,9 +122,7 @@ useEffect(() => {
                             </Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-150 ease-in hover:translate-y-0.5">
-                            <Link href="/">
-                                For Vendor
-                            </Link>
+                            <Link href="https://vendors.trynanaapp.com">For Vendor</Link>
                         </li>
                     </ul>
                 </nav>
