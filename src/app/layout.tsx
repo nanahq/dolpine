@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: '%s | Nana Food Delivery',
   },
   description:
-    'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
+    'Order food from your mobile Phone and get it delivered in minutes!. Browse our diverse menu featuring African dishes, Jollof rice, and more from your favourite restaurants near you',
   openGraph: {
     url: 'https://trynanaapp.com',
     type: 'website',
@@ -36,6 +36,16 @@ export const metadata: Metadata = {
     android: {
       package: 'com.nanaeats.nana_app',
       url: 'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app',
+    },
+    iphone: {
+      app_name:"Nana | Delivery & More",
+      app_store_id: '6499050428',
+      url: "https://apps.apple.com/us/app/nana-delivery-more/id6499050428"
+    },
+    ios: {
+      app_name:"Nana | Delivery & More",
+      app_store_id: '6499050428',
+      url: "https://apps.apple.com/us/app/nana-delivery-more/id6499050428"
     },
   },
 };

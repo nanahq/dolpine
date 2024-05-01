@@ -51,7 +51,7 @@ export const AppStoreButtons: React.FC<AppStoreButtonsProps> = ({
                 </Link>
             )}
             {showAppStore && (
-                <Link href="#" onClick={trackAppClick}>
+                <Link href="https://apps.apple.com/us/app/nana-delivery-more/id6499050428" onClick={trackAppClick}>
                     <div className="hover:transition-transform hover:duration-100 hover:scale-x-105 hover:scale-y-105">
                         <Image
                             priority={true}
