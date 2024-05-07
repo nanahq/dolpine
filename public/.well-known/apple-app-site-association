@@ -7,5 +7,11 @@
         "paths": ["/"]
       }
     ]
-  }
+  },
+    "activitycontinuation": {
+        "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
+    },
+    "webcredentials": {
+        "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
+    }
 }
