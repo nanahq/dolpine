@@ -32,6 +32,10 @@ export const metadata: Metadata = {
     creator: '@nana_app_hq',
     images: ['/opengraph-image.png']
   },
+  itunes: {
+    appId: '6499050428',
+    appArgument: 'trynanaapp.com'
+  },
   appLinks: {
     android: {
       package: 'com.nanaeats.nana_app',
