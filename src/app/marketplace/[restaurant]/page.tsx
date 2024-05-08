@@ -1,28 +1,32 @@
 import { OrderPreviewCard } from '@/app/components/marketplace/OrderPreviewCard';
 import TestImage from '@/assets/site-hero.jpg';
+import Image from 'next/image';
+import VendorImage from '@/assets/cola.png';
 import React from 'react';
 
 const Restaurant = () => {
   return (
-    <main className="mt-4">
+    <main className="mt-8">
       {/* Vendor/Restaurant Banner */}
       <header className="relative min-h-[320px] max-h-[620px]">
         <div className="absolute inset-0 z-0 min-h-[320px] max-h-[620px] top-0 right-0 left-0">
-          <img
-            src="https://imageproxy.wolt.com/venue/5ee284da99add9ec8cc73ffd/bcb569fa-7893-11ee-a4cd-12e4d2b7b9c2_2c4e9350_0f49_11ed_a052_def929f4b35a_mcdelivery_banner__1_.jpg?w=1920"
+          <Image
+            src={VendorImage}
             alt="testing"
+            width={0}
+            height={0}
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 z-[0] bg-gradient-to-b from-black/50 to-black/500 "></div>
+        <div className="absolute inset-0 z-[0] bg-gradient-to-b from-black/50 to-black/10 "></div>
         <div className="p-4 md:p-8 absolute inset-0 flex flex-col justify-end items-start text-white">
-          <h1 className="text-5xl font-bold max-w-[50rem] text-center mb-4">
+          <h1 className="text-[1.625rem] md:text-[1.75rem] lg:text-[2.5rem] xl:text-[2.875rem] font-bold max-w-[50rem] text-center">
             Ussie Burgers
           </h1>
-          <p className="text-xl font-medium mb-4 max-w-[50rem] text-center">
-            I'm lovin' it. Lorem ipsum.
+          <p className="sm:text-xs text-sm md:text-base lg:text-lg max-w-[50rem] text-center leading-normal">
+            I'm loving it. Lorem ipsum.
           </p>
-          <div className="flex justify-between w-full">
+          <div className="flex justify-between w-full mt-4">
             <div className="flex items-center gap-2 flex-wrap">
               <div className="bg-white rounded-[0.5rem] px-[0.5rem] py-[0.25rem] text-[10px] md:text-sm font-medium text-gray-800 inline-flex">
                 <span>Delivery: N0.00</span>
@@ -214,9 +218,9 @@ const Restaurant = () => {
       {/* Sample Category */}
       <div className="p-4 md:p-8">
         <h3 className="text-xl font-bold py-4">Limited Edition</h3>
-        <div className=" max-w-[90rem]  mx-auto grid md:grid-cols-2 lg:grid-cols-3 grid-cols-[repeat(3, minmax(0px, 1fr))] gap-4">
+        <div className=" max-w-[100rem]  mx-auto grid md:grid-cols-2 lg:grid-cols-3 grid-cols-[repeat(3, minmax(0px, 1fr))] gap-4">
           <OrderPreviewCard
-            description=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam, aliquam rerum nesciunt dolores mollitia vero totam temporibus doloribus ipsam quo!"
+            description=" Lorem ipsum, dolor sit amet consectetur adipisicing elit."
             imageUrl={TestImage}
             price="4000"
             title="Beast Shawarma"

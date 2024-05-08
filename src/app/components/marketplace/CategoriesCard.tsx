@@ -14,7 +14,7 @@ export const CategoriesCard: React.FC<CategoriesCardProps> = ({
   imageUrl, 
 }) => {
   return (
-    <div className="flex flex-col shadow-lg md:min-w-[180px] lg:min-w-[220px] max-w-[220px]  max-h-[280px] min-w-[100px] min-h-[160px]  rounded-lg overflow-hidden dark:bg-gray-500 z-[3] transition duration-300 ease-in-out hover:lg:shadow-lg cursor-pointer hover:scale-[.98] [scroll-snap-align: start] ">
+    <div className="flex flex-col shadow-lg md:min-w-[180px] lg:min-w-[220px] max-w-[220px]  max-h-[280px] min-w-[100px] min-h-[160px]  rounded-md overflow-hidden dark:bg-gray-500 z-[3] transition duration-300 ease-in-out hover:lg:shadow-lg cursor-pointer hover:scale-[.98] [scroll-snap-align: start] ">
       <div className="w-full h-full">
         <Image
           src={imageUrl}
@@ -25,12 +25,12 @@ export const CategoriesCard: React.FC<CategoriesCardProps> = ({
           className="object-cover size-full"
         />
       </div>
-      <div className="flex flex-col px-3 py-2  md:p-4 items-start">
-        <h3 className="text-sm lg:text-base font-bold truncate md:pb-1">
+      <div className="flex flex-col px-3 py-2 md:p-4 items-start">
+        <h3 className="text-sm lg:text-lg truncate">
           {title}
         </h3>
         {description && (
-          <p className="text-gray-500 text-xs truncate md:py-1">
+          <p className="text-gray-500 text-xs lg:text-sm truncate mt-[4px]">
             {description}
           </p>
         )}

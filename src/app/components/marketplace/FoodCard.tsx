@@ -21,7 +21,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
   rating,
 }) => {
   return (
-    <div className="shadow-lg min-w-[150px] md:min-w-[290px] md:max-h-[330px] max-h-[270px] lg:max-h-[300px] md:max-w-[470px] lg:min-w-[310px] lg:max-w-[400px] rounded-xl overflow-hidden flex flex-col gap-4 relative z-0 ">
+    <div className="shadow-lg min-w-[150px] md:min-w-[290px] sm:max-h-[450px] md:max-h-[330px] max-h-[270px] lg:max-h-[340px] md:max-w-[480px] lg:min-w-[310px] lg:max-w-[500px] rounded-xl overflow-hidden flex flex-col gap-4 relative z-0 transition duration-200 ease-in-out hover:lg:shadow-lg cursor-pointer hover:scale-[1.02]">
       {/* Discount tag */}
       <div className="text-xs lg:flex lg:items-center text-white gap-1 absolute z-10 px-2 py-1 hidden top-4 left-4 bg-nana-blue rounded-lg max-w-full min-w-fit">
         <svg
@@ -90,7 +90,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
         <span>₦0.00 for 14days delivery</span>
       </div>
       {/* Card content */}
-      <div className="w-full max-h-[150px] md:max-h-[170px]">
+      <div className="w-full max-h-[150px] sm:max-h-[320px] md:max-h-[180px]">
         <Image
           src={imageUrl}
           loading="lazy"
@@ -103,15 +103,12 @@ const FoodCard: React.FC<FoodCardProps> = ({
       <div className="w-full h-full">
         <div className="mb-4 px-4 flex justify-between gap-2">
           <div className="space-y-1 truncate">
-            <h5 className="font-semibold text-lg lg:text-base">{chefName}</h5>
-            <p className="text-gray-500 text-base lg:text-sm lg:hidden">
-              {description}
-            </p>
-            <p className="text-gray-500 lg:text-sm hidden text-ellipsis lg:block overflow-hidden">
+            <h5 className="text-lg lg:text-base">{chefName}</h5>
+            <p className="text-gray-500 text-sm truncate block overflow-hidden">
               {description}
             </p>
           </div>
-          <div className="lg:flex-col text-sm bg-nana-blue/10  rounded-lg px-2 py-1 min-h-10 min-w-14 justify-center items-center text-nana-blue hidden lg:flex">
+          <div className="flex-col text-sm bg-nana-blue/10  rounded-lg px-2 py-1 min-h-10 min-w-14 justify-center items-center text-nana-blue flex">
             <div>{deliveryTime}</div>
             <div>min</div>
           </div>
@@ -126,14 +123,14 @@ const FoodCard: React.FC<FoodCardProps> = ({
                 height={0}
                 className="size-4"
               />
-              <span className="lg:text-xs text-nana-blue">₦0.00</span>
+              <span className="text-xs text-nana-blue">₦0.00</span>
             </span>
-            <span className="text-xs hidden before:content-['·'] before:relative before:inline-block before:my-0 before:mx-1 lg:flex gap-1 items-center">
+            <span className="text-xs before:content-['·'] before:relative before:inline-block before:my-0 before:mx-1 flex gap-1 items-center">
               <span>
                 ₦<span className="text-gray-500 ">₦₦₦</span>
               </span>
             </span>
-            <span className="text-xs hidden before:content-['·'] before:relative before:inline-block before:my-0 before:mx-1 lg:flex gap-1 items-center">
+            <span className="text-xs before:content-['·'] before:relative before:inline-block before:my-0 before:mx-1 flex gap-1 items-center">
               <svg
                 width="12px"
                 height="12px"
@@ -167,9 +164,6 @@ const FoodCard: React.FC<FoodCardProps> = ({
                 />
               </svg>
               <span className="text-gray-500 ">{rating}</span>
-            </span>
-            <span className="text-xs lg:hidden before:content-['·'] before:relative before:inline-block before:my-0 before:mx-1 flex gap-1 items-center">
-              <span className="text-gray-500 ">{deliveryTime} min</span>
             </span>
           </div>
         </div>

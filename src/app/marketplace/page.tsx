@@ -11,8 +11,10 @@ import FoodCard from '../components/marketplace/FoodCard';
 
 const Marketplace = () => {
   return (
-    <main className="p-4 md:p-8 mx-auto max-w-[90rem] mt-24">
-      <h2 className="text-2xl font-bold py-4">Restaurants Near Me</h2>
+    <main className="p-4 md:p-6 mx-auto max-w-[100rem] mt-24">
+      <h2 className="text-[1.375rem] md:text-[1.5rem] lg:text-[1.75rem] py-4 mb-4 ">
+        Restaurants Near Me
+      </h2>
       <div>
         <h3 className="text-xl font-bold py-4">Categories</h3>
         <div className="flex flex-1 gap-2 snap-x overflow-x-scroll no-scrollbar p-4">
@@ -59,8 +61,10 @@ const Marketplace = () => {
         </div>
       </div>
       <div className="py-4 md:py-6">
-        <h2 className="font-bold text-3xl py-4 mb-4">All Restaurants</h2>
-        <div className="max-w-[90rem]  mx-auto grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <h2 className="text-[1.375rem] md:text-[1.5rem] lg:text-[1.75rem] py-4 mb-4">
+          All Restaurants
+        </h2>
+        <div className="max-w-[90rem] mx-auto grid md:grid-cols-2 lg:grid-cols-3 lg:grid-cols-[repeat(3, minmax(0px, 1fr))] gap-4">
           <FoodCard
             chefName="Chef Uswat"
             deliveryTime="25-30"
@@ -105,7 +109,7 @@ const Marketplace = () => {
           />
         </div>
       </div>
-      <div className="py-4 md:p-6 md:flex md:flex-col md:items-center">
+      <div className="py-4 md:flex md:flex-col md:items-center">
         <h2 className="font-bold text-3xl py-4 mb-4">All Menu</h2>
         <div className=" max-w-[90rem]  mx-auto grid md:grid-cols-2 lg:grid-cols-3 grid-cols-[repeat(3, minmax(0px, 1fr))] gap-4">
           {' '}
