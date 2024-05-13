@@ -1,9 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
 import TestImage from '@/assets/test-card-image.jpg';
-import ThreeDImage from '@/assets/1.png';
-import LogoWhite from '@/assets/logo-white.png';
-import LogoBlue from '@/assets/logo-blue.png';
 import TestBg from '@/assets/About-page.jpg';
 import { OrderPreviewCard } from '../components/marketplace/OrderPreviewCard';
 import { CategoriesCard } from '../components/marketplace/CategoriesCard';

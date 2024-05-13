@@ -1186,6 +1186,11 @@
   dependencies:
     "@lukeed/csprng" "^1.1.0"
 
+"@nanahq/sticky@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@nanahq/sticky/-/sticky-0.3.3.tgz#35dc651deb589a3ff07b299219d2e01dd0960375"
+  integrity sha512-Gk6HMECsM6dQg123YZ0LpNZYdo5D4xsJxtKOGCJ2AQaj+Vva0yrt9LoyxX+qiH060VXGSK8qRZr1H4yGX9YfDA==
+
 "@ndhoule/each@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@ndhoule/each/-/each-2.0.1.tgz#bbed372a603e0713a3193c706a73ddebc5b426a9"
@@ -2732,7 +2737,7 @@ axe-core@=4.7.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.7.0.tgz#34ba5a48a8b564f67e103f0aa5768d76e15bbbbf"
   integrity sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==
 
-axios@^1.6.7:
+axios@^1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
   integrity sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==
