@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.nanaeats.nana_app",
+      "sha256_cert_fingerprints": [
+        "C0:44:69:96:1A:72:95:B3:FD:B3:50:66:2D:6F:22:9E:FF:0C:1A:71:EA:11:BE:7B:D0:CD:C0:60:4D:68:50:5D"
+      ]
+    }
+  }
+]

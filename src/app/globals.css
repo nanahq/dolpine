@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fade-enter {
+  opacity: 0;
+  transform: translateX(-1.25rem);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateX(-1.25rem);
+  transition: opacity 500ms, transform 500ms; 
+}
+
+.fade-exit-active div {
+  transition: opacity 200ms;
+  transition-delay: 300ms; 
+  opacity: 0;
+}
+
+
+@layer utilities {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+     /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+    }
+  }
