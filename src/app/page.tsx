@@ -21,7 +21,7 @@ export default function Home() {
 
       <InfoCta
         title="Not just another food delivery app"
-        description="We have partnered with hundreds of homemade chefs, restaurants and grocery vendors around you to bring to you an wide array of options. We offer real time tracking to allow you track your order from the moment you pay to getting it to your doorstep. "
+        description="We have partnered with hundreds of homemade chefs, restaurants, and grocery vendors near you to bring a wide array of options. We offer real-time tracking, allowing you to monitor your order from the moment you pay until it arrives at your doorstep."
       />
 
       <DownloadApp />

@@ -35,6 +35,7 @@
     "next": "^14.2.2",
     "next-sitemap": "^4.2.3",
     "postcss": "8.4.32",
+    "posthog-js": "^1.160.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-transition-group": "^4.4.5",
