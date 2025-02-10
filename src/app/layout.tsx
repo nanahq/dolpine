@@ -1,6 +1,7 @@
 import './globals.css';
 import { PageWrapper } from './components/layout/Wrapper';
 import { Metadata } from 'next';
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -58,6 +59,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className="dark:bg-black dark:text-white">

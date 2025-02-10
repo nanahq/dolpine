@@ -13,14 +13,14 @@ export const Footer: React.FC<FooterProps> = () => {
       <div className="flex flex-col gap-4 max-w-[90rem] mx-auto ">
         <div className="flex flex-col md:flex-row items-start w-full gap-10 md:items-stretch  md:justify-between">
           <div className="flex flex-col">
-            <Image
-              priority={true}
-              className="object-cover"
-              src={LogoWhite}
-              alt="Nana Food delivery logo"
-              width="62"
-              height="34"
-            />
+          <Image
+                            priority={true}
+                            className="object-contain"
+                            src={require('@/assets/tranaparent-icon.png')}
+                            alt="Nana logo"
+                            width={200}
+                            height={50}
+                        />
             <AppStoreButtons className="!mt-5 !lg:mt-5 items-start md:items-center" />
           </div>
           <div className="flex-1 shrink-0 grid md:grid-cols-3 lg:grid-flow-col md:gap-6 gap-4 lg:gap-6">

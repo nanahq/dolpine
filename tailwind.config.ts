@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'nana-blue': '#00C2E8',
+        'nana-blue': '#469ADC',
         'nana-lime': '#4ADE80',
         'nana-purple': '#C084FC',
         'nana-stone': '#A8A29E',

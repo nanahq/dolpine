@@ -7,7 +7,7 @@ import FilledLocationIcon from '@/assets/filled-location.svg';
 import LocationIcon from '@/assets/location.svg';
 import '../../app/globals.css';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import { AppStoreButtons } from './AppStoreButtons';
+import {ChevronRight, Search} from "lucide-react";
 
 const TextAnimation: React.FC = () => {
   const texts = [
@@ -32,7 +32,7 @@ const TextAnimation: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="text-center">
       <CSSTransition in={show} timeout={500} classNames="fade" unmountOnExit>
         <div className="fade text-white lg:text-black lg:[text-shadow:_0_1px_0_rgb(255_255_255_/_40%)] text-4xl md:text-[56px] lg:text-6xl font-bold leading-none">
           {texts[index]}
@@ -53,28 +53,42 @@ const HeroBanner: React.FC<Props> = ({ color, image }) => {
   return (
     <section
       className={clsx(
-        "bg-[url('/site-hero.jpg')] bg-cover",
-        'flex justify-center items-end overflow-hidden',
+        'flex items-center justify-center overflow-hidden bg-nana-blue',
         'h-[560px] lg:h-[45rem] w-full',
-        'flex flex-col justify-center items-center w-full lg:max-w-[90rem] lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto min-w-full text-auto relative',
+        'lg:max-w-[90rem] lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto min-w-full text-auto relative',
         color,
       )}
     >
-      <div className="relative flex justify-start items-end max-w-[75rem] w-full h-full">
-        <div
-          className={clsx(
-            'relative flex flex-col justify-center h-full w-full z-0',
-            'px-4 md:px-[30px]',
-            'max-w-[465px] lg:max-w-[33.375rem] z-[2]',
-          )}
-        >
-          <div className="flex h-[16.75rem] mb-4 md:mb-6 lg:mb-10 items-end ">
-            <TextAnimation />
+      <div className="relative flex justify-center items-center w-full h-full">
+        <div className="relative flex flex-col items-center justify-center h-full w-full max-w-4xl px-4 z-0">
+          <div className="text-center">
+            <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+              <span className="block">Get anything</span>
+              <span className="block text-primary">delivered to your door</span>
+            </h1>
+            <p className="mt-3 text-base text-white sm:mt-5 sm:text-lg sm:max-w-xl mx-auto md:mt-5 md:text-xl">
+              Order from your favorite local restaurants or groceries. Not just that, you can send or receive a package.
+            </p>
           </div>
-          <AppStoreButtons className="!flex-row items-baseline" />
-          
+          <div className="mt-8 w-full max-w-lg mx-auto">
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400"/>
+              </div>
+              <input
+                type="text"
+                className="focus:ring-primary focus:border-primary block w-full pl-10 pr-32 py-3 sm:text-sm border-gray-300 rounded-md"
+                placeholder="Enter your delivery address"
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center">
+                <button className="bg-primary text-white px-4 py-2 rounded-r-md hover:bg-primary/90 flex items-center">
+                  Find Food
+                  <ChevronRight className="ml-2 w-4 h-4"/>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="absolute top-0 left-0 [z-1] w-full h-full bg-black bg-opacity-50 lg:hidden" />
       </div>
     </section>
   );
