@@ -59,7 +59,6 @@ const Marketplace = async () => {
                   key={vendor._id}
                   chefName={vendor.businessName}
                   deliveryTime="25-30"
-                  description="A nice selection of bread filled with your favourite fillings!"
                   imageUrl={vendor.businessImage}
                   rating={vendor.ratings.totalReviews}
               />
