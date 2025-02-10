@@ -44,9 +44,11 @@ const Input: React.FC<Props> = (props: Props) => {
       {label && (
         <label
           className={clsx(
-            'absolute top-[0.8rem] px-4 text-nana-stone/50 pointer-events-none',
-            'transition duration-100 ease-out truncate',
-            isFocused || value ? 'translate-y-[-0.6rem] my-2 text-xs' : 'text-sm',
+            'absolute top-[.65rem] text-nana-stone/50 pointer-events-none',
+            'transition duration-200 ease-in-out truncate',
+            isFocused || value
+              ? 'translate-y-[-0.6rem] left-[1.75rem] mr-2 text-sm scale-75'
+              : 'text-base top-0 ml-[.7rem]',
             start && 'left-9',
           )}
         >
@@ -57,7 +59,7 @@ const Input: React.FC<Props> = (props: Props) => {
         {hasIcon && <div className="mr-4">{startIcon}</div>}
         <input
           className={clsx(
-            'w-full py-[10px] text-gray-500 text-base focus:outline-none',
+            'w-full py-[10px] mt-1 text-gray-500 text-base focus:outline-none',
             className,
           )}
           type={type}
@@ -73,3 +75,35 @@ const Input: React.FC<Props> = (props: Props) => {
 
 export type { Props };
 export default Input;
+
+
+{/* <div className="relative flex flex-col">
+  <Input
+    label="Choose a delivery address"
+    type="text"
+    value={val}
+    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+      setVal(e.target.value)
+    }
+    start={{
+      before: (
+        <Image
+          src={LocationIcon}
+          width={0}
+          height={0}
+          alt="icon"
+          className="size-5"
+        />
+      ),
+      after: (
+        <Image
+          src={FilledLocationIcon}
+          width={0}
+          height={0}
+          alt="icon"
+          className="size-4"
+        />
+      ),
+    }}
+  />
+</div>; */}
