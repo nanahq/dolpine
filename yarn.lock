@@ -1186,10 +1186,10 @@
   dependencies:
     "@lukeed/csprng" "^1.1.0"
 
-"@nanahq/sticky@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@nanahq/sticky/-/sticky-0.3.3.tgz#35dc651deb589a3ff07b299219d2e01dd0960375"
-  integrity sha512-Gk6HMECsM6dQg123YZ0LpNZYdo5D4xsJxtKOGCJ2AQaj+Vva0yrt9LoyxX+qiH060VXGSK8qRZr1H4yGX9YfDA==
+"@nanahq/sticky@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@nanahq/sticky/-/sticky-0.3.4.tgz#3dfc955ce06d56f938767aca40d30c91d57bb78c"
+  integrity sha512-ruODJQXllefOeAx34ShFJiAPHdHiMuQ4io2VqNmXHudM2XLcFB+5fBeuMsMsgDQswsHcRGIkQGSkM5k7X8j/Qg==
 
 "@ndhoule/each@^2.0.1":
   version "2.0.1"
@@ -4340,6 +4340,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lucide-react@^0.471.1:
+  version "0.471.1"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.471.1.tgz#16f29cd65c7c847eceab0bbf8592443104423249"
+  integrity sha512-syOxwPhf62gg2YOsz72HRn+CIpeudFy67AeKnSR8Hn/fIIF4ubhNbRF+pQ2CaJrl+X9Os4PL87z2DXQi3DVeDA==
 
 mdn-data@2.0.28:
   version "2.0.28"

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import LogoBlue from '@/assets/logo-blue.png';
+import LogoBlue from '@/assets/new-log.jpg';
 
 interface HeaderProps { }
 
@@ -39,10 +39,10 @@ export const Header: React.FC<HeaderProps> = () => {
                         <Image
                             priority={true}
                             className="object-contain"
-                            src={LogoBlue}
+                            src={require('@/assets/tranaparent-icon.png')}
                             alt="Nana logo"
-                            width={62}
-                            height="34"
+                            width={200}
+                            height={50}
                         />
                     </Link>
                 </div>
