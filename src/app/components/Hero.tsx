@@ -1,46 +1,10 @@
 import clsx from 'clsx';
-import React, { useState, useEffect } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import Image from 'next/image';
-import Input from '@/app/components/FormInput';
-import FilledLocationIcon from '@/assets/filled-location.svg';
-import LocationIcon from '@/assets/location.svg';
+import React, { useState } from 'react';
 import '../../app/globals.css';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import {ChevronRight, Search} from "lucide-react";
+import { AppStoreButtons } from './AppStoreButtons';
 
-const TextAnimation: React.FC = () => {
-  const texts = [
-    'Are you hungry?',
-    'Late night cravings?',
-    'Groceries from your mobile phone.',
-    'Pre-order ahead of time.',
-  ];
-  const [index, setIndex] = useState(0);
-  const [show, setShow] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShow(false);
-      setTimeout(() => {
-        setIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        setShow(true);
-      }, 800);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="text-center">
-      <CSSTransition in={show} timeout={500} classNames="fade" unmountOnExit>
-        <div className="fade text-white lg:text-black lg:[text-shadow:_0_1px_0_rgb(255_255_255_/_40%)] text-4xl md:text-[56px] lg:text-6xl font-bold leading-none">
-          {texts[index]}
-        </div>
-      </CSSTransition>
-    </div>
-  );
-};
 
 interface Props {
   color?: string;
@@ -48,12 +12,10 @@ interface Props {
 }
 
 const HeroBanner: React.FC<Props> = ({ color, image }) => {
-  const [val, setVal] = useState('');
-
   return (
     <section
       className={clsx(
-        'flex items-center justify-center overflow-hidden bg-nana-blue',
+        'flex items-center mt-10 lg:mt-0 justify-center overflow-hidden bg-nana-blue',
         'h-[560px] lg:h-[45rem] w-full',
         'lg:max-w-[90rem] lg:px-12 mb-[7.5rem] lg:mb-[10rem] mx-auto min-w-full text-auto relative',
         color,
@@ -88,6 +50,7 @@ const HeroBanner: React.FC<Props> = ({ color, image }) => {
               </div>
             </div>
           </div>
+          <AppStoreButtons className="!flex-row mt-10 items-baseline" />
         </div>
       </div>
     </section>

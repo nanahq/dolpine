@@ -18,8 +18,8 @@ export const Footer: React.FC<FooterProps> = () => {
                             className="object-contain"
                             src={require('@/assets/tranaparent-icon.png')}
                             alt="Nana logo"
-                            width={200}
-                            height={50}
+                            width={100}
+                            height={25}
                         />
             <AppStoreButtons className="!mt-5 !lg:mt-5 items-start md:items-center" />
           </div>
