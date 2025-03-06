@@ -10,7 +10,7 @@ const DeletePage = () => {
     const handleSubmit = async () => {
         try {
             setLoading(true)
-            await axios(`https://api.trynanaapp.com/api-gateway/v1/user/delete-request/${phone}`, {headers: {"Access-Control-Allow-Origin": "*"}})
+            await axios(`https://prod-api.trynanaapp.com/api-gateway/v1/user/delete-request/${phone}`, {headers: {"Access-Control-Allow-Origin": "*"}})
             setSuccess(success)
         } catch (error) {
             console.log(error)
