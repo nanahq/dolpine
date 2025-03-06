@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React from 'react';
 import '../../app/globals.css';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import {ChevronRight, Search} from "lucide-react";
@@ -11,7 +11,7 @@ interface Props {
   image?: string | StaticImport;
 }
 
-const HeroBanner: React.FC<Props> = ({ color, image }) => {
+const HeroBanner: React.FC<Props> = ({ color }) => {
   return (
     <section
       className={clsx(

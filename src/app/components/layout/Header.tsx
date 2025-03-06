@@ -55,7 +55,7 @@ export const Header: React.FC<HeaderProps> = () => {
                             <Link href="https://vendors.trynanaapp.com/">For Vendors</Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
-                            <Link href="/marketplace">Nana Marketplace</Link>
+                            <Link href="/">Nana Marketplace</Link>
                         </li>
                         <li className="hover:font-bold hover:text-nana-blue transition-transform delay-0 duration-500 ease-in hover:translate-y-0.5">
                             <Link href="#">Nana Businesses</Link>
