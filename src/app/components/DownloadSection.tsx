@@ -1,68 +1,90 @@
-import clsx from 'clsx';
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import AppMockup from '@/assets/download-app.jpg';
 import { AppStoreButtons } from './AppStoreButtons';
-import App from 'next/app';
+import { Smartphone, Download } from 'lucide-react';
 
 const DownloadApp = () => {
   return (
-    <div
-      className={clsx(
-        'flex flex-col w-full bg-[#F4F4F4] overflow-hidden',
-        'h-auto md:h-[758px]',
-        'mt-[100px] mb-[100px] pt-[56px] md:pt-0',
-      )}
-    >
-      <div
-        className={clsx(
-          'relative items-center w-full h-full m-auto',
-          'md:py-[30px]',
-          'flex flex-col md:flex-row lg:max-w-[1200px]',
-        )}
-      >
-        <div
-          className={clsx(
-            'absolute top-0 h-full w-full min-w-[1100px] overflow-hidden',
-            'hidden md:flex',
-            'right-[-50rem] lg:right-[-44rem] xl:right-[-35rem]',
-          )}
-        >
-          <Image
-            src={AppMockup}
-            alt="ok"
-            width={0}
-            height={0}
-            className="z-[5]"
-          />
-        </div>
-        <div
-          className={clsx(
-            'flex flex-col z-20',
-            'max-w-full md:max-w-[60%] lg:max-w-[45%]',
-            'px-4 pt-4 pb-[21px] md:pl-16 xl:p-0',
-          )}
-        >
-          <h2
-            className={clsx(
-              'font-bold  text-gray leading-normal mb-4 lg:mb-10',
-              'text-2xl md:text-3xl lg:text-4xl dark:text-black',
-            )}
-          >
-            Nana = Delivered!
-          </h2>
-          <p className="text-gray-500 leading-6 mb-10 text-sm lg:text-lg">
-            Get the Nana app and choose from 1500+ restaurants and hundreds of
-            stores around. Discover and get what you want – our courier
-            partners bring it to you.
-          </p>
-          <AppStoreButtons />
-        </div>
-        <div className="flex md:hidden">
-          <Image src={AppMockup} alt="ok" width={0} height={0} />
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-white via-background-secondary to-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, #469ADC 1px, transparent 0)',
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Content */}
+          <div className="text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-nana-blue/10 text-nana-blue px-4 py-2 rounded-md mb-6 border border-nana-blue/20">
+              <Smartphone className="h-4 w-4" />
+              <span className="text-sm font-semibold">Download Now</span>
+            </div>
+            
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
+              Get the Nana App
+            </h2>
+            
+            <p className="text-xl text-text-secondary mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Get the Nana app and choose from 1500+ restaurants and hundreds of stores around. 
+              Discover and get what you want – our courier partners bring it to you.
+            </p>
+
+            {/* Features List */}
+            <div className="space-y-5 mb-10 text-left max-w-md mx-auto lg:mx-0">
+              <div className="flex items-start gap-4 group">
+                <div className="w-8 h-8 bg-gradient-to-br from-nana-blue to-[#3a7bc8] rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform shadow-md">
+                  <div className="w-2.5 h-2.5 bg-white rounded-sm"></div>
+                </div>
+                <span className="text-text-secondary text-base pt-1">Order from your favorite restaurants</span>
+              </div>
+              <div className="flex items-start gap-4 group">
+                <div className="w-8 h-8 bg-gradient-to-br from-nana-blue to-[#3a7bc8] rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform shadow-md">
+                  <div className="w-2.5 h-2.5 bg-white rounded-sm"></div>
+                </div>
+                <span className="text-text-secondary text-base pt-1">Shop groceries and daily essentials</span>
+              </div>
+              <div className="flex items-start gap-4 group">
+                <div className="w-8 h-8 bg-gradient-to-br from-nana-blue to-[#3a7bc8] rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform shadow-md">
+                  <div className="w-2.5 h-2.5 bg-white rounded-sm"></div>
+                </div>
+                <span className="text-text-secondary text-base pt-1">Track orders in real-time</span>
+              </div>
+            </div>
+
+            <div className="flex justify-center lg:justify-start">
+              <AppStoreButtons className="!flex-row items-center gap-4" />
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md">
+              {/* Decorative Elements */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-nana-blue/10 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-nana-blue/10 rounded-full blur-2xl"></div>
+              
+              <div className="relative">
+                <Image
+                  src={AppMockup}
+                  alt="Nana Mobile App"
+                  width={400}
+                  height={800}
+                  className="rounded-md border-4 border-white shadow-2xl"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
+
 export default DownloadApp;

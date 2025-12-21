@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --nana-blue: #469ADC;
+    --nana-green: #469ADC;
+    --nana-lime: #4ADE80;
+    --nana-purple: #C084FC;
+    --nana-stone: #A8A29E;
+  }
+}
+
 .fade-enter {
   opacity: 0;
   transform: translateX(-1.25rem);
@@ -21,24 +31,51 @@
 .fade-exit-active {
   opacity: 0;
   transform: translateX(-1.25rem);
-  transition: opacity 500ms, transform 500ms; 
+  transition: opacity 500ms, transform 500ms;
 }
 
 .fade-exit-active div {
   transition: opacity 200ms;
-  transition-delay: 300ms; 
+  transition-delay: 300ms;
   opacity: 0;
 }
 
-
 @layer utilities {
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-     /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-    }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
