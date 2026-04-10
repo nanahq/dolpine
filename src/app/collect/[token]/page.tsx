@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 
@@ -14,6 +16,7 @@ type PageState =
   | 'submitting'
   | 'success'
   | 'already_used'
+  | 'permission_denied'
   | 'error';
 
 interface CollectionRequest {
@@ -345,6 +348,74 @@ function ErrorState({
   );
 }
 
+function PermissionDeniedState({ onRetry }: { onRetry: () => void }) {
+  const isIOS = typeof navigator !== 'undefined' && /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isAndroid = typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent);
+  const isChrome = typeof navigator !== 'undefined' && /chrome/i.test(navigator.userAgent);
+  const isSafari = typeof navigator !== 'undefined' && /safari/i.test(navigator.userAgent) && !isChrome;
+
+  let steps: string[];
+  if (isIOS && isSafari) {
+    steps = [
+      'Open Settings on your iPhone',
+      'Scroll down and tap Safari',
+      'Tap "Location" and select "Allow"',
+      'Come back here and try again',
+    ];
+  } else if (isAndroid && isChrome) {
+    steps = [
+      'Tap the lock icon in the address bar',
+      'Tap "Permissions" → "Location"',
+      'Select "Allow"',
+      'Refresh and try again',
+    ];
+  } else {
+    steps = [
+      'Open your browser settings',
+      'Find "Site settings" or "Permissions"',
+      'Allow location access for this site',
+      'Come back here and try again',
+    ];
+  }
+
+  return (
+    <Page footer={<BottomButton onClick={onRetry}>Try again</BottomButton>}>
+      {/* Modal card */}
+      <div className="space-y-6">
+        {/* Icon */}
+        <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center">
+          <svg className="w-7 h-7 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+        </div>
+
+        <div>
+          <p className="text-xs font-semibold tracking-widest text-black/30 uppercase mb-3">Permission required</p>
+          <h1 className="text-[2rem] font-black leading-tight text-black tracking-tight">
+            Location access blocked
+          </h1>
+        </div>
+
+        <p className="text-base text-black/50 leading-relaxed">
+          Your browser blocked location access. Follow these steps to enable it:
+        </p>
+
+        {/* Steps */}
+        <ol className="space-y-3">
+          {steps.map((step, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                {i + 1}
+              </span>
+              <span className="text-sm text-black/70 leading-snug">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </Page>
+  );
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 export default function CollectPage() {
@@ -446,11 +517,11 @@ export default function CollectPage() {
       },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) {
-          setErrorMessage('Location access was denied. Please allow location access in your browser settings and try again.');
+          setState('permission_denied');
         } else {
           setErrorMessage('Could not get your location. Please try again.');
+          setState('error');
         }
-        setState('error');
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
     );
@@ -478,6 +549,7 @@ export default function CollectPage() {
       copied={copied}
     />
   );
+  if (state === 'permission_denied') return <PermissionDeniedState onRetry={handleShareLocation} />;
   if (state === 'error') return <ErrorState message={errorMessage} onRetry={() => setState('ready')} />;
 
   return null;
