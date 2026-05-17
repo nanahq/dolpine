@@ -17,6 +17,7 @@ type PageState =
   | 'success'
   | 'already_used'
   | 'permission_denied'
+  | 'manual_input'
   | 'error';
 
 interface CollectionRequest {
