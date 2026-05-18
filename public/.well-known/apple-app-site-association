@@ -1,17 +1,21 @@
 {
   "applinks": {
-    "apps": [],
     "details": [
       {
-        "appID": "H63XLRDH38.com.nanaeats.nana.app",
-        "paths": ["/"]
+        "appIDs": ["H63XLRDH38.com.nanaeats.nana.app"],
+        "components": [
+          {
+            "/": "/*",
+            "comment": "Match all paths"
+          }
+        ]
       }
     ]
   },
-    "activitycontinuation": {
-        "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
-    },
-    "webcredentials": {
-        "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
-    }
+  "activitycontinuation": {
+    "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
+  },
+  "webcredentials": {
+    "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
+  }
 }
