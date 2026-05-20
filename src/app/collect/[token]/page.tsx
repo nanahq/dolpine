@@ -26,7 +26,6 @@ interface CollectionRequest {
 }
 
 interface SuccessData {
-  pin: string;
   city: string;
   state: string;
 }
@@ -256,67 +255,38 @@ function SubmittingState() {
 function SuccessState({
   successData,
   requesterName,
-  onCopy,
-  copied,
 }: {
   successData: SuccessData;
   requesterName: string;
-  onCopy: () => void;
-  copied: boolean;
 }) {
   return (
-    <Page
-      bg="bg-white"
-      footer={
-        <>
-          <BottomButton onClick={onCopy} variant={copied ? 'ghost' : 'primary'}>
-            {copied ? '✓ Copied' : 'Copy PIN'}
-          </BottomButton>
-          <p className="text-center text-xs text-black/35 leading-relaxed px-2">
-            {requesterName} enters this PIN in Nana to confirm your address
-          </p>
-        </>
-      }
-    >
-      <div className="space-y-8">
-        {/* Status */}
-        <div className="space-y-3">
-          <div className="w-14 h-14 bg-[#DCFCE7] rounded-2xl flex items-center justify-center">
-            <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold tracking-widest text-black/30 uppercase mb-3">
-              Location shared
-            </p>
-            <h1 className="text-[2rem] font-black leading-tight text-black tracking-tight">
-              Share this PIN with{' '}
-              <span className="text-nana-blue">{requesterName}</span>
-            </h1>
-          </div>
-
-          {(successData.city || successData.state) && (
-            <p className="text-sm text-black/40">
-              {[successData.city, successData.state].filter(Boolean).join(', ')}
-            </p>
-          )}
+    <Page bg="bg-[#F0FDF4]">
+      <div className="space-y-4">
+        <div className="w-14 h-14 bg-[#DCFCE7] rounded-2xl flex items-center justify-center mb-2">
+          <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
         </div>
 
-        {/* PIN */}
-        <button
-          onClick={onCopy}
-          className="w-full text-left group"
-          aria-label="Tap to copy PIN"
-        >
-          <p className="text-[4.5rem] font-black tracking-[0.15em] text-black leading-none tabular-nums select-all">
-            {successData.pin}
+        <div>
+          <p className="text-xs font-semibold tracking-widest text-green-700/60 uppercase mb-3">
+            All done
           </p>
-          <p className="text-sm text-black/30 mt-2 group-active:text-black/50 transition-colors">
-            {copied ? '✓ Copied to clipboard' : 'Tap to copy'}
+          <h1 className="text-[2rem] font-black leading-tight text-black tracking-tight">
+            Address sent to{' '}
+            <span className="text-nana-blue">{requesterName}</span>
+          </h1>
+        </div>
+
+        {(successData.city || successData.state) && (
+          <p className="text-sm text-black/40">
+            {[successData.city, successData.state].filter(Boolean).join(', ')}
           </p>
-        </button>
+        )}
+
+        <p className="text-base text-black/50 leading-relaxed">
+          They&apos;ll receive your address shortly in the Nana app. You can close this page.
+        </p>
       </div>
     </Page>
   );
@@ -350,13 +320,22 @@ function ErrorState({
 }
 
 function PermissionDeniedState({ onRetry }: { onRetry: () => void }) {
-  const isIOS = typeof navigator !== 'undefined' && /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isAndroid = typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent);
-  const isChrome = typeof navigator !== 'undefined' && /chrome/i.test(navigator.userAgent);
-  const isSafari = typeof navigator !== 'undefined' && /safari/i.test(navigator.userAgent) && !isChrome;
+  const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+  const isIOS = /iphone|ipad|ipod/i.test(ua);
+  const isAndroid = /android/i.test(ua);
+  const isIOSChrome = /CriOS/i.test(ua);
+  const isChrome = /chrome/i.test(ua) && !isIOSChrome;
+  const isSafari = /safari/i.test(ua) && !isChrome && !isIOSChrome;
 
   let steps: string[];
-  if (isIOS && isSafari) {
+  if (isIOS && isIOSChrome) {
+    steps = [
+      'Open Settings on your iPhone',
+      'Scroll down and tap Chrome',
+      'Tap "Location" and select "While Using"',
+      'Come back here and try again',
+    ];
+  } else if (isIOS && isSafari) {
     steps = [
       'Open Settings on your iPhone',
       'Scroll down and tap Safari',
@@ -425,7 +404,6 @@ export default function CollectPage() {
   const [requestData, setRequestData] = useState<CollectionRequest | null>(null);
   const [successData, setSuccessData] = useState<SuccessData | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!token) return;
@@ -506,7 +484,6 @@ export default function CollectPage() {
           }
 
           setSuccessData({
-            pin: submitData.data.pin,
             city: submitData.data.address?.city || '',
             state: submitData.data.address?.state || '',
           });
@@ -528,14 +505,6 @@ export default function CollectPage() {
     );
   }, [token]);
 
-  const copyPin = useCallback(() => {
-    if (!successData?.pin) return;
-    navigator.clipboard.writeText(successData.pin).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [successData]);
-
   if (state === 'loading') return <LoadingState />;
   if (state === 'invalid') return <InvalidState />;
   if (state === 'already_used') return <AlreadyUsedState />;
@@ -546,8 +515,6 @@ export default function CollectPage() {
     <SuccessState
       successData={successData}
       requesterName={requestData?.requester_name || 'them'}
-      onCopy={copyPin}
-      copied={copied}
     />
   );
   if (state === 'permission_denied') return <PermissionDeniedState onRetry={handleShareLocation} />;
