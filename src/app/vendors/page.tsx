@@ -136,7 +136,7 @@ export default function VendorsPage() {
                     placeholder="Amina Ibrahim"
                     value={form.name}
                     onChange={set('name')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
               </div>
@@ -152,7 +152,7 @@ export default function VendorsPage() {
                     placeholder="Mama's Kitchen"
                     value={form.business_name}
                     onChange={set('business_name')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function VendorsPage() {
                     placeholder="+234 800 000 0000"
                     value={form.phone}
                     onChange={set('phone')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
               </div>
@@ -184,7 +184,7 @@ export default function VendorsPage() {
                     placeholder="@mamaskitchen"
                     value={form.instagram}
                     onChange={set('instagram')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
               </div>
