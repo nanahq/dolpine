@@ -459,7 +459,6 @@ export default function TrackOrderPage() {
           </div>
         </div>
 
-        {/* Order summary */}
         <div style={card}>
           <p style={label}>Order details</p>
           <Row l="Type" r={order.type.charAt(0).toUpperCase() + order.type.slice(1)} />
@@ -467,7 +466,6 @@ export default function TrackOrderPage() {
           <Row l="Placed" r={fmt(order.created_at, 'datetime')} last />
         </div>
 
-        {/* Download banner */}
         {!isCancelled && <DownloadBanner />}
 
         {/* Auto-refresh */}
