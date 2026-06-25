@@ -86,7 +86,12 @@ function fmt(iso: string | null | undefined, mode: 'time' | 'datetime' = 'time')
 
 function addrLine(addr: any): string {
   if (!addr) return '—';
-  return [addr.address_line_1, addr.city, addr.state].filter(Boolean).join(', ');
+  let a = addr;
+  if (typeof a === 'string') {
+    try { a = JSON.parse(a); } catch { return addr; }
+  }
+  const parts = [a.address_line_1, a.city, a.state].filter(Boolean);
+  return parts.length ? parts.join(', ') : '—';
 }
 
 function initials(name: string | null | undefined): string {
@@ -94,11 +99,68 @@ function initials(name: string | null | undefined): string {
   return name.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 }
 
+// ─── Download banner ─────────────────────────────────────────────────────────────
+
+function DownloadBanner() {
+  return (
+    <div style={{
+      background: '#111',
+      borderRadius: 14,
+      padding: '20px 20px 22px',
+      marginBottom: 12,
+      color: '#fff',
+    }}>
+      <p style={{ margin: '0 0 2px', fontSize: 15, fontWeight: 700, letterSpacing: -0.2 }}>
+        Order on Nana
+      </p>
+      <p style={{ margin: '0 0 18px', fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>
+        Free delivery on your first order. Food, groceries &amp; parcels — fast.
+      </p>
+      <div style={{ display: 'flex', gap: 10 }}>
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+            background: 'rgba(255,255,255,0.1)', color: '#fff',
+            padding: '10px 0', borderRadius: 8,
+            textDecoration: 'none', fontSize: 13, fontWeight: 600,
+            border: '1px solid rgba(255,255,255,0.12)',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.2 1.29-2.18 3.85.03 3.06 2.68 4.08 2.71 4.09l-.08.18zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+          </svg>
+          App Store
+        </a>
+        <a
+          href={PLAY_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+            background: 'rgba(255,255,255,0.1)', color: '#fff',
+            padding: '10px 0', borderRadius: 8,
+            textDecoration: 'none', fontSize: 13, fontWeight: 600,
+            border: '1px solid rgba(255,255,255,0.12)',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z" />
+          </svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+  );
+}
+
 // ─── Shell components ────────────────────────────────────────────────────────────
 
 function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ minHeight: '100vh', background: '#fff', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: '#fff' }}>
       <div style={{ maxWidth: 480, margin: '0 auto' }}>{children}</div>
     </div>
   );
@@ -290,19 +352,8 @@ export default function TrackOrderPage() {
             <p style={{ margin: '4px 0 0', fontSize: 13, color: '#9ca3af' }}>from {order.merchant.business_name}</p>
           )}
 
-          <div style={{ marginTop: 48, paddingTop: 32, borderTop: '1px solid #f1f1f1' }}>
-            <p style={{ margin: '0 0 6px', fontSize: 14, fontWeight: 600, color: '#111' }}>Order again on the app</p>
-            <p style={{ margin: '0 0 20px', fontSize: 13, color: '#9ca3af' }}>Food, groceries & parcels delivered fast.</p>
-            <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" style={dl.btn}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.2 1.29-2.18 3.85.03 3.06 2.68 4.08 2.71 4.09l-.08.18zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" /></svg>
-                App Store
-              </a>
-              <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={dl.btn}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z" /></svg>
-                Google Play
-              </a>
-            </div>
+          <div style={{ marginTop: 48 }}>
+            <DownloadBanner />
           </div>
         </div>
       </PageShell>
@@ -416,6 +467,9 @@ export default function TrackOrderPage() {
           <Row l="Placed" r={fmt(order.created_at, 'datetime')} last />
         </div>
 
+        {/* Download banner */}
+        {!isCancelled && <DownloadBanner />}
+
         {/* Auto-refresh */}
         {isActive && (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '4px 0 8px', marginTop: -4 }}>
@@ -472,11 +526,3 @@ const label: React.CSSProperties = {
   letterSpacing: 1,
 };
 
-const dl = {
-  btn: {
-    display: 'flex', alignItems: 'center', gap: 6,
-    background: '#111', color: '#fff',
-    padding: '10px 18px', borderRadius: 8,
-    textDecoration: 'none', fontSize: 13, fontWeight: 600,
-  } as React.CSSProperties,
-};
