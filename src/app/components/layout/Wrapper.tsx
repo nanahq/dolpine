@@ -1,32 +1,26 @@
-"use client";
-import React, {PropsWithChildren} from "react";
-import localFont from 'next/font/local'
-import { Header } from "./Header";
-import { Footer } from "./Footer";
-import Analytics from "../analytics";
-const omnes = localFont({
-    src: [
-        {
-            path: '../../../assets/fonts/nana-font.otf',
-            weight: '400',
-            style: 'normal',
-        },
-        {
-            path: '../../../assets/fonts/nana-font-bold.otf',
-            weight: '700',
-            style: 'normal',
-        }
-    ],
-})
-
+import React, { PropsWithChildren } from 'react';
+import { SiteHeader } from '../site/SiteHeader';
+import { SiteFooter } from '../site/SiteFooter';
+import { ScrollReveal } from '../site/ScrollReveal';
+import Analytics from '../analytics';
 
 export const PageWrapper: React.FC<PropsWithChildren<any>> = (props) => {
-    return (
-            <div className={omnes.className}>
-                <Header/>
-                {props.children}
-                <Footer/>
-                <Analytics/>
-            </div>
-    )
-}
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        fontFamily: 'var(--font-sans)',
+        background: 'var(--surface-page)',
+        color: 'var(--text-body)',
+      }}
+    >
+      <SiteHeader />
+      <main style={{ flex: 1 }}>{props.children}</main>
+      <SiteFooter />
+      <ScrollReveal />
+      <Analytics />
+    </div>
+  );
+};

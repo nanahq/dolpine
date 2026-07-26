@@ -1,88 +1,123 @@
 import React from 'react';
-import Hero from '../components/About/Hero';
-import AboutCard from '../components/About/AboutCard';
-import Timeline from '../components/About/Timeline';
-import Paragraph from '../components/About/Paragraph';
-import ImageBanner from '../components/About/ImageBanner';
-import AboutPageHero from '@/assets/About-page.jpg';
-import AboutImage1 from '@/assets/About-Image-1.jpg';
-import AboutImage2 from '@/assets/About-Image-2.jpg';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { Container, Section, Eyebrow, Dot } from '../components/site/primitives';
+import { Placeholder } from '../components/site/Placeholder';
 
-import TestImage2 from '@/assets/hero.jpg';
-import ListParagraph from '../components/About/ListParagraph';
-
-const timelineData = [
-  {
-    title: '2018: Nana was founded in Kano, Nigeria',
-    items: [
-      'Team of six with five focused on product development',
-      'Our first office was a 10-square-meter space in central Helsinki where we all worked together in one room for the first 9 months of our existence.',
-      'We decided the name of the company and filed all the paperwork. Wolt was the final name we were all able to agree on. One of our founders, Suraj, was browsing through a list of imaginary names and “Eat Later” ultimately turned into Nana. (Name contenders included amazing options like Blueberry Pie, Skyliner, Zaplane and Sergei).',
-      'This was also the year of the Sochi Olympics.',
-    ],
-  },
-  {
-    title: '2018: Nana was founded in Kano, Nigeria',
-    items: [
-      'Team of six with five focused on product development',
-      'Our first office was a 10-square-meter space in central Helsinki where we all worked together in one room for the first 9 months of our existence.',
-      'We decided the name of the company and filed all the paperwork. Wolt was the final name we were all able to agree on. One of our founders, Suraj, was browsing through a list of imaginary names and “Eat Later” ultimately turned into Nana. (Name contenders included amazing options like Blueberry Pie, Skyliner, Zaplane and Sergei).',
-      'This was also the year of the Sochi Olympics.',
-    ],
-  },
+const VALUES = [
+  { title: 'Speed is a promise, not a slogan', copy: "If we can't get to you fast, we don't show you the store." },
+  { title: 'Local before large', copy: 'A single-stall trader gets the same tools as a chain.' },
+  { title: 'Riders are colleagues', copy: 'Fair pay, insurance cover, and a hub with somewhere to sit.' },
+  { title: 'Build for the real street', copy: 'Landmarks, cash, patchy data. We design for all three.' },
 ];
 
-export default function About() {
-  return (
-    <main className="mx-auto mt-24 flex flex-col items-center w-full">
-      <Hero
-        image={AboutPageHero}
-        altText="Nana Food deliver | Kano"
-        description="Nana makes it incredibly easy for you to discover and get what you want. Delivered to you – quickly, reliably and affordably. Our mission is to bring reliability of delivery to underrepresented cities in Africa"
-      />
-      <AboutCard
-        title="So, What is Nana?"
-        description="Founded in Kano, Nigeria, Nana is a leading food and grocery delivery platform revolutionizing how consumers in underrepresented cities in Africa experience delivery. With a seamless mobile app, we connect users to their favorite local restaurants, stores and malls, bringing convenience straight to their doorstep. As a child company of Imagyne Ventures, we benefit from the support and expertise of a seasoned high tech infrastructure, propelling us to new heights in the delivery industry."
-        image={AboutImage1}
-      />
-      <AboutCard
-        title="Our mission"
-        description="Nana is on a transformative mission to revolutionize the food delivery landscape in Africa. Our platform aims to change the status quo by offering swift and reliable delivery from a diverse array of local homemade vendors and restaurants, bringing delightful flavors and convenience to our users' doorsteps. With a strong focus on user satisfaction, technological innovation, and fostering local partnerships, Nana is poised to create a seamless, customer-centric experience that empowers local businesses while meeting the growing demand for efficient, on-demand food delivery in the region. As we continue to leverage emerging technologies and scale our operations, Nana is committed to becoming the leading food delivery platform in Africa, driving economic growth, and bringing smiles to millions of hungry customers across the continent."
-        image={AboutImage2}
-      />
-      <ImageBanner src={AboutPageHero} alt="team image" />
-      {/*<Timeline timelineCards={timelineData} />*/}
-      {/*<ImageBanner src={AboutPageHero} alt="team image" />*/}
-      {/*<Paragraph />*/}
+const TEAM = [
+  { id: 'tm-1', role: 'Chief executive' },
+  { id: 'tm-2', role: 'Head of operations' },
+  { id: 'tm-3', role: 'Head of engineering' },
+  { id: 'tm-4', role: 'Vendor partnerships' },
+  { id: 'tm-5', role: 'Rider community' },
+];
 
-      {/*<AboutCard*/}
-      {/*  title="What operating sustainably and finding the right balance means for us?"*/}
-      {/*  image={AboutPageHero}*/}
-      {/*  description={*/}
-      {/*    <ListParagraph*/}
-      {/*      lists={[*/}
-      {/*        'Employees – We’re committed to being a great company to work for. We treat each other fairly, we promote equal opportunities and encourage diversity. We take pride in what people of Wolt do not just during their time with the company, but also the impact they will create in their future endeavours after Wolt.',*/}
-      {/*        'Couriers – We’re committed to being a fair and sustainable platform. We treat our courier partners with respect. We always listen to feedback and regularly survey how our couriers are doing. We take pride in trying to increase earnings, introduce safety nets and remove hindrances as we continue growing and investing into making our products and technologies better.',*/}
-      {/*        "Merchants – We’re committed to being a long-term partner. Through our service,  we bring restaurants more orders, and we’re always helpful and responsive. We strive to find a long-term sustainable balance between our and the merchant's business in each of the cities we operate in.",*/}
-      {/*      ]}*/}
-      {/*      paragraph="We are committed to make the cities we operate in better places to live. We are also committed to do the right thing towards our teammates, partners, customers, and the general public. More concretely what that means:"*/}
-      {/*      className="lg:text-2xl"*/}
-      {/*    />*/}
-      {/*  }*/}
-      {/*/>*/}
-      {/*<AboutCard*/}
-      {/*  image={AboutPageHero}*/}
-      {/*  description={*/}
-      {/*    <ListParagraph*/}
-      {/*      lists={[*/}
-      {/*        'Customers – We’re committed to being a great service and we will do our best to keep our customers happy. We’re available and respond to customers as quickly as possible. We own our mistakes, are committed to improving over time and pushing for the best real-time customer support in the world.',*/}
-      {/*        'Society –  We’re committed to being a climate-conscious company, and we will continue to take more action to fight climate change. We push for platform work that is a complementary and long-term sustainable model of work that makes our societies better and have higher opportunity because of what we do.',*/}
-      {/*        "Investors - Wolt joined forces with DoorDash in 2022. Please see more about the company on DoorDash's investor relations website.",*/}
-      {/*      ]}*/}
-      {/*      className="p-0 [&>li]:pl-0"*/}
-      {/*    />*/}
-      {/*  }*/}
-      {/*/>*/}
-    </main>
+const h2: React.CSSProperties = {
+  margin: 0,
+  fontSize: 'clamp(24px,4vw,34px)',
+  lineHeight: 1.08,
+  letterSpacing: '-0.032em',
+  fontWeight: 700,
+  color: 'var(--text-strong)',
+};
+
+export default function AboutPage() {
+  return (
+    <>
+      <Section noReveal style={{ padding: 'clamp(36px,6vw,64px) 0 0' }}>
+        <Container>
+          <Eyebrow>About Nana</Eyebrow>
+          <h1 style={{ margin: 0, maxWidth: '22em', fontSize: 'clamp(34px,6.4vw,56px)', lineHeight: 1.03, letterSpacing: '-0.045em', fontWeight: 900, color: 'var(--text-strong)' }}>
+            Delivery that works in the cities everyone else skipped
+            <Dot />
+          </h1>
+          <p style={{ margin: '20px 0 0', maxWidth: '34em', fontSize: 'clamp(16px,2.2vw,19px)', lineHeight: 1.5, color: 'var(--text-muted)' }}>
+            Nana makes it simple to find what you want and get it brought to you — quickly, reliably and at a price that makes sense. We started in Kano, and we build for cities like it.
+          </p>
+          <div style={{ marginTop: 36, borderRadius: 24, overflow: 'hidden', background: 'var(--stone-100)', aspectRatio: '21 / 9' }}>
+            <Placeholder label="Nana team / city photo (21:9)" />
+          </div>
+        </Container>
+      </Section>
+
+      <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
+        <Container style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(30px,5vw,56px)', alignItems: 'start' }}>
+          <div>
+            <h2 style={h2}>So, what is Nana?</h2>
+            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+              Founded in Kano, Nigeria, Nana is a food and grocery delivery platform connecting people to the restaurants, stores and markets closest to them. One app, a fleet of riders, and a small team obsessed with arrival times.
+            </p>
+            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+              We&apos;re a company of Imagyne Ventures, which gives us the engineering muscle of a much larger platform while we stay close to the streets we serve.
+            </p>
+          </div>
+          <div>
+            <h2 style={h2}>
+              Our mission
+              <Dot />
+            </h2>
+            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+              To bring reliable delivery to underrepresented cities across Africa. Not the capitals that already have five apps — the places where a dependable rider network changes what a small kitchen can become.
+            </p>
+            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+              Every city we open adds local vendors, local riders and local support staff. That&apos;s the whole point.
+            </p>
+          </div>
+        </Container>
+      </Section>
+
+      <Section style={{ padding: 'clamp(46px,7vw,84px) 0', background: '#fff', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <Container>
+          <h2 style={{ ...h2, marginBottom: 28 }}>
+            How we work
+            <Dot />
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 18 }}>
+            {VALUES.map((v) => (
+              <div key={v.title} style={{ padding: 24, borderRadius: 18, background: 'var(--surface-page)' }}>
+                <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-strong)' }}>{v.title}</div>
+                <p style={{ margin: '8px 0 0', fontSize: 14.5, lineHeight: 1.5, color: 'var(--text-muted)' }}>{v.copy}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
+        <Container>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, marginBottom: 26 }}>
+            <h2 style={h2}>
+              The team
+              <Dot />
+            </h2>
+            <Link href="/careers" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 600, color: 'var(--nana-blue-600)' }}>
+              We&apos;re hiring
+              <ArrowRight style={{ width: 16, height: 16 }} />
+            </Link>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(170px,1fr))', gap: 18 }}>
+            {TEAM.map((t) => (
+              <div key={t.id}>
+                <div style={{ aspectRatio: '1', borderRadius: 18, overflow: 'hidden', background: 'var(--stone-100)' }}>
+                  <Placeholder label="Portrait" />
+                </div>
+                <div style={{ marginTop: 11, fontSize: 15.5, fontWeight: 700, color: 'var(--text-strong)' }}>Name here</div>
+                <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t.role}</div>
+              </div>
+            ))}
+          </div>
+          <p style={{ margin: '22px 0 0', fontSize: 13.5, color: 'var(--text-subtle)' }}>
+            Send us the real names, titles and portraits and we&apos;ll drop them straight in.
+          </p>
+        </Container>
+      </Section>
+    </>
   );
 }

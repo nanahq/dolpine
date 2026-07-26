@@ -114,7 +114,7 @@ const Page = () => {
                     Your continued use of the Apps after the posting of any changes
                     constitutes acceptance of those changes. If you have any questions
                     about the updates or modifications, please contact us at{' '}
-                    <a href="mailto:hello@trynanaapp.com">hello@trynanaapp.com</a>.
+                    <a href="mailto:suraj@trynanaapp.com">suraj@trynanaapp.com</a>.
                 </p>
             </div>
             <div className="flex flex-col">

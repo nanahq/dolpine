@@ -243,7 +243,7 @@ const Page = () => {
                 <p>
                     If you have any questions or concerns about these terms, please
                     contact us at{' '}
-                    <a href="mailto:contact@trynanaapp.com">hello@trynanaapp.com</a>
+                    <a href="mailto:suraj@trynanaapp.com">suraj@trynanaapp.com</a>
                 </p>
             </div>
         </section>

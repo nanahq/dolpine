@@ -62,11 +62,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="dark:bg-black dark:text-white">
-        <PageWrapper
-        >
-          {children}
-        </PageWrapper>
+      <body>
+        <PageWrapper>{children}</PageWrapper>
       </body>
     </html>
   );

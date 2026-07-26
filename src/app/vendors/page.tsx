@@ -1,222 +1,219 @@
 'use client';
-
 import React, { useState } from 'react';
-import { Store, Phone, Instagram, User, CheckCircle, ArrowRight, ChefHat, TrendingUp, Zap, Users } from 'lucide-react';
+import { Users, Bike, LineChart, Banknote } from 'lucide-react';
+import { Container, Section, Eyebrow, Dot, FormSuccess } from '../components/site/primitives';
+import { Placeholder } from '../components/site/Placeholder';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.trynanaapp.com';
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL ?? 'https://api.trynanaapp.com/api/v1';
 
-const PERKS = [
-  { icon: TrendingUp, title: 'Grow your revenue', body: 'Reach thousands of hungry customers in your city who are ready to order right now.' },
-  { icon: Zap,        title: 'Fast onboarding',  body: 'Get your store live in days, not weeks. Our team handles the setup end to end.' },
-  { icon: Users,      title: 'Dedicated support', body: 'A partner success manager assigned to your account from day one.' },
+const STATS = [
+  { value: '₦0', label: 'To join' },
+  { value: '48 hrs', label: 'Typical go-live' },
+  { value: 'Weekly', label: 'Payouts' },
 ];
 
-type Status = 'idle' | 'loading' | 'success' | 'error';
+const BENEFITS = [
+  { icon: Users, title: 'Demand from day one', copy: 'You appear in search and category feeds the moment you go live.' },
+  { icon: Bike, title: 'Riders included', copy: 'Our fleet handles pickup and delivery. You just cook or pack.' },
+  { icon: LineChart, title: "A dashboard that's honest", copy: 'Live orders, best sellers, prep times and what you’re owed.' },
+  { icon: Banknote, title: 'Money every week', copy: 'Paid to your bank every Tuesday, with a statement you can read.' },
+];
+
+const STEPS = [
+  { n: '01', title: 'Apply', copy: 'Four fields below. No paperwork yet.' },
+  { n: '02', title: 'We visit', copy: 'A partner manager checks your kitchen and photographs the menu.' },
+  { n: '03', title: 'Go live', copy: 'Your store opens in the app with a tablet or your own phone.' },
+];
+
+interface FieldProps {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+  required?: boolean;
+}
+
+/** Controlled input matching the DS Input styling. */
+function ControlledField({ label, value, onChange, placeholder, type = 'text', required }: FieldProps) {
+  return (
+    <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-strong)' }}>{label}</span>
+      <input
+        className="n-input"
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        required={required}
+      />
+    </label>
+  );
+}
 
 export default function VendorsPage() {
-  const [form, setForm] = useState({ name: '', business_name: '', phone: '', instagram: '' });
-  const [status, setStatus] = useState<Status>('idle');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [businessName, setBusinessName] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [instagram, setInstagram] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [sent, setSent] = useState(false);
 
-  const set = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm(f => ({ ...f, [field]: e.target.value }));
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMsg('');
-
+    setError(null);
+    setSubmitting(true);
     try {
-      const res = await fetch(`${API_URL}/api/v1/vendor-interest`, {
+      const res = await fetch(`${API_BASE}/vendor-interest`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        // Exactly the fields the backend's SubmitVendorInterestDto accepts.
+        body: JSON.stringify({
+          name: name.trim(),
+          business_name: businessName.trim(),
+          phone: phone.trim(),
+          instagram: instagram.trim(),
+        }),
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMsg(data?.message ?? 'Something went wrong. Please try again.');
-        setStatus('error');
+      if (res.ok) {
+        setSent(true);
         return;
       }
-
-      setStatus('success');
+      if (res.status === 409) {
+        setError('That phone number is already registered — we have your application. A partner manager will be in touch.');
+      } else {
+        setError('Something went wrong submitting your application. Please try again, or WhatsApp us on 0812 222 9693.');
+      }
     } catch {
-      setErrorMsg('Network error. Please check your connection and try again.');
-      setStatus('error');
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setSubmitting(false);
     }
-  };
-
-  const isValid = Object.values(form).every(v => v.trim().length > 0);
-
-  if (status === 'success') {
-    return (
-      <main className="min-h-screen bg-gradient-to-br from-nana-blue via-[#3a7bc8] to-nana-blue flex items-center justify-center px-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-md w-full text-center">
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
-              <CheckCircle className="w-10 h-10 text-green-500" />
-            </div>
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">You're on the list!</h2>
-          <p className="text-gray-500 leading-relaxed">
-            Thanks for your interest. Our team will reach out to <span className="font-semibold text-gray-700">{form.phone}</span> within 48 hours to get your store live.
-          </p>
-          <div className="mt-8 pt-6 border-t border-gray-100">
-            <a href="/" className="text-nana-blue font-semibold text-sm hover:underline">
-              ← Back to Nana
-            </a>
-          </div>
-        </div>
-      </main>
-    );
   }
 
   return (
-    <main className="min-h-screen">
+    <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-nana-blue via-[#3a7bc8] to-nana-blue overflow-hidden py-24 px-4">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
-        <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white px-5 py-2.5 rounded-md mb-8 border border-white/25">
-            <ChefHat className="w-4 h-4" />
-            <span className="text-sm font-bold">Partner with Nana</span>
-          </div>
-          <h1 className="text-5xl sm:text-6xl font-black text-white mb-6 leading-tight tracking-tight">
-            Sell more.<br />
-            <span className="text-white/80">Reach more customers.</span>
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Join hundreds of restaurants and stores already growing their business on Nana. Fill in the form below and we'll get you started.
-          </p>
-        </div>
-      </section>
-
-      {/* Perks + Form */}
-      <section className="bg-background-secondary py-20 px-4">
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left — perks */}
+      <Section
+        noReveal
+        style={{ background: '#fff', borderBottom: '1px solid var(--border-subtle)', padding: 'clamp(40px,7vw,80px) 0' }}
+      >
+        <Container style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(32px,5vw,56px)', alignItems: 'center' }}>
           <div>
-            <h2 className="text-3xl font-black text-gray-900 mb-10">
-              Why partner with Nana?
-            </h2>
-            <div className="flex flex-col gap-8">
-              {PERKS.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="flex gap-5">
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-nana-blue/10 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-nana-blue" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">{title}</h3>
-                    <p className="text-gray-500 leading-relaxed text-sm">{body}</p>
-                  </div>
+            <Eyebrow>For vendors</Eyebrow>
+            <h1 style={{ margin: 0, fontSize: 'clamp(34px,6.4vw,54px)', lineHeight: 1.04, letterSpacing: '-0.045em', fontWeight: 900, color: 'var(--text-strong)' }}>
+              Your kitchen, in every phone nearby
+              <Dot />
+            </h1>
+            <p style={{ margin: '18px 0 0', fontSize: 'clamp(16px,2.2vw,18px)', lineHeight: 1.5, color: 'var(--text-muted)', maxWidth: '30em' }}>
+              No storefront to build, no riders to hire. Send us your menu and start taking orders this week.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(22px,4vw,40px)', marginTop: 32 }}>
+              {STATS.map((s) => (
+                <div key={s.label}>
+                  <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: '-0.04em', color: 'var(--text-strong)' }}>{s.value}</div>
+                  <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 2 }}>{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
+          <div style={{ borderRadius: 24, overflow: 'hidden', background: 'var(--stone-100)', aspectRatio: '4 / 3', boxShadow: 'var(--shadow-lg)' }}>
+            <Placeholder label="Vendor at work" />
+          </div>
+        </Container>
+      </Section>
 
-          {/* Right — form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-border-light">
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Show your interest</h2>
-            <p className="text-sm text-gray-500 mb-8">All fields are required. We'll contact you within 48 hours.</p>
-
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              {/* Name */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Your name</label>
-                <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  <input
-                    type="text"
-                    required
-                    placeholder="Amina Ibrahim"
-                    value={form.name}
-                    onChange={set('name')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
-                  />
+      {/* What you get */}
+      <Section style={{ padding: 'clamp(46px,7vw,84px) 0', background: '#fff', borderTop: '1px solid var(--border-subtle)' }}>
+        <Container>
+          <h2 style={{ margin: '0 0 30px', fontSize: 'clamp(25px,4.2vw,36px)', lineHeight: 1.08, letterSpacing: '-0.032em', fontWeight: 700, color: 'var(--text-strong)', maxWidth: '20em' }}>
+            What you get
+            <Dot />
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(244px,1fr))', gap: 18 }}>
+            {BENEFITS.map((b) => {
+              const Icon = b.icon;
+              return (
+                <div key={b.title} style={{ background: 'var(--surface-page)', borderRadius: 18, padding: 24 }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, color: 'var(--color-primary)' }}>
+                    <Icon style={{ width: 19, height: 19 }} />
+                  </span>
+                  <div style={{ marginTop: 16, fontSize: 17, fontWeight: 700, color: 'var(--text-strong)' }}>{b.title}</div>
+                  <p style={{ margin: '7px 0 0', fontSize: 14, lineHeight: 1.45, color: 'var(--text-muted)' }}>{b.copy}</p>
                 </div>
+              );
+            })}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(210px,1fr))', gap: 16, marginTop: 30 }}>
+            {STEPS.map((s) => (
+              <div key={s.n} style={{ padding: 22, borderRadius: 16, border: '1px solid var(--border-subtle)' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--nana-blue-300)' }}>{s.n}</div>
+                <div style={{ marginTop: 10, fontSize: 16, fontWeight: 700, color: 'var(--text-strong)' }}>{s.title}</div>
+                <p style={{ margin: '6px 0 0', fontSize: 14, lineHeight: 1.45, color: 'var(--text-muted)' }}>{s.copy}</p>
               </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-              {/* Business name */}
+      {/* Application form */}
+      <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ background: '#fff', borderRadius: 24, boxShadow: 'var(--shadow-md)', padding: 'clamp(24px,4vw,40px)' }}>
+            {sent ? (
+              <FormSuccess
+                title={<>Application received<Dot /></>}
+                body="A partner manager will reach out on the phone number or Instagram you gave us within two working days."
+              />
+            ) : (
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Business name</label>
-                <div className="relative">
-                  <Store className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  <input
-                    type="text"
-                    required
-                    placeholder="Mama's Kitchen"
-                    value={form.business_name}
-                    onChange={set('business_name')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
-                  />
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Phone number</label>
-                <div className="relative">
-                  <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+234 800 000 0000"
-                    value={form.phone}
-                    onChange={set('phone')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
-                  />
-                </div>
-              </div>
-
-              {/* Instagram */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Instagram handle</label>
-                <div className="relative">
-                  <Instagram className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  <input
-                    type="text"
-                    required
-                    placeholder="@mamaskitchen"
-                    value={form.instagram}
-                    onChange={set('instagram')}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border-light focus:border-nana-blue focus:ring-2 focus:ring-nana-blue/20 outline-none transition text-sm text-gray-900 placeholder:text-gray-400 bg-white"
-                  />
-                </div>
-              </div>
-
-              {errorMsg && (
-                <p className="text-sm text-red-500 bg-red-50 border border-red-100 rounded-lg px-4 py-3">
-                  {errorMsg}
+                <h2 style={{ margin: 0, fontSize: 'clamp(24px,3.8vw,32px)', lineHeight: 1.1, letterSpacing: '-0.032em', fontWeight: 700, color: 'var(--text-strong)' }}>
+                  Apply to sell on Nana
+                  <Dot />
+                </h2>
+                <p style={{ margin: '10px 0 26px', fontSize: 15.5, lineHeight: 1.5, color: 'var(--text-muted)' }}>
+                  We reply within two working days. Kano only for now — other cities join the waitlist.
                 </p>
-              )}
+                <form onSubmit={onSubmit} style={{ display: 'grid', gap: 16 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16 }}>
+                    <ControlledField label="Business name" value={businessName} onChange={setBusinessName} placeholder="Mama Rukky's Kitchen" required />
+                    <ControlledField label="Your name" value={name} onChange={setName} placeholder="First and last name" required />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16 }}>
+                    <ControlledField label="Phone" value={phone} onChange={setPhone} type="tel" placeholder="080 0000 0000" required />
+                    <ControlledField label="Instagram handle" value={instagram} onChange={setInstagram} placeholder="@yourbusiness" required />
+                  </div>
 
-              <button
-                type="submit"
-                disabled={!isValid || status === 'loading'}
-                className="mt-2 w-full flex items-center justify-center gap-2 bg-nana-blue text-white font-bold py-4 rounded-xl hover:bg-[#3a87c9] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {status === 'loading' ? (
-                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                ) : (
-                  <>
-                    Submit interest
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-              </button>
+                  {error ? (
+                    <div
+                      role="alert"
+                      style={{ padding: '12px 16px', borderRadius: 12, background: 'var(--nana-coral-50)', color: 'var(--nana-coral-600)', fontSize: 14, lineHeight: 1.45 }}
+                    >
+                      {error}
+                    </div>
+                  ) : null}
 
-              <p className="text-xs text-center text-gray-400">
-                By submitting you agree to be contacted by Nana's partner team.
-              </p>
-            </form>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 16, marginTop: 4 }}>
+                    <button
+                      type="submit"
+                      className="n-btn n-btn--primary"
+                      disabled={submitting}
+                      style={{ height: 56, padding: '0 28px', fontSize: 16, opacity: submitting ? 0.7 : 1, cursor: submitting ? 'default' : 'pointer' }}
+                    >
+                      {submitting ? 'Sending…' : 'Send application'}
+                    </button>
+                    <span style={{ fontSize: 13, color: 'var(--text-muted)', maxWidth: '22em' }}>
+                      By applying you agree to Nana&apos;s partner terms.
+                    </span>
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
         </div>
-      </section>
-    </main>
+      </Section>
+    </>
   );
 }

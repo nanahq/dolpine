@@ -2,80 +2,428 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --nana-blue: #469ADC;
-    --nana-green: #469ADC;
-    --nana-lime: #4ADE80;
-    --nana-purple: #C084FC;
-    --nana-stone: #A8A29E;
+/* ============================================================
+   NANA brand typeface — Omnes (geometric rounded humanist sans)
+   Only two cuts ship locally; weights are mapped to the nearest.
+   Swap in the full 6-weight Omnes family (regular/medium/semibold/
+   bold/black + italic) to match the design 1:1.
+   ============================================================ */
+@font-face {
+  font-family: "Omnes";
+  src: url("/fonts/nana-font.otf") format("opentype");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Omnes";
+  src: url("/fonts/nana-font-bold.otf") format("opentype");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   NANA DESIGN SYSTEM — ported from Claude Design tokens
+   colors.css · typography.css · radius.css · spacing.css
+   ============================================================ */
+
+:root {
+  /* ---- Brand: Nana Blue (primary) ---- */
+  --nana-blue-50: #eef6fc;
+  --nana-blue-100: #d6eaf7;
+  --nana-blue-200: #aed5ef;
+  --nana-blue-300: #84bfe7;
+  --nana-blue-400: #469adc;
+  --nana-blue-500: #469adc;
+  --nana-blue-600: #2f82c4;
+  --nana-blue-700: #2568a0;
+  --nana-blue-800: #1e527e;
+  --nana-blue-900: #163c5c;
+  --nana-blue: var(--nana-blue-400);
+
+  /* ---- Lime ---- */
+  --nana-lime-50: #ecfdf3;
+  --nana-lime-100: #d1fadf;
+  --nana-lime-300: #86efac;
+  --nana-lime-400: #4ade80;
+  --nana-lime-600: #16a34a;
+  --nana-lime-700: #15803d;
+  --nana-lime: var(--nana-lime-400);
+
+  /* ---- Purple ---- */
+  --nana-purple-50: #faf5ff;
+  --nana-purple-100: #f3e8ff;
+  --nana-purple-300: #d8b4fe;
+  --nana-purple-400: #c084fc;
+  --nana-purple-600: #9333ea;
+  --nana-purple-700: #7e22ce;
+  --nana-purple: var(--nana-purple-400);
+
+  /* ---- Amber ---- */
+  --nana-amber-50: #fffbeb;
+  --nana-amber-100: #fef3c7;
+  --nana-amber-400: #fbbf24;
+  --nana-amber-600: #d97706;
+  --nana-amber: var(--nana-amber-400);
+
+  /* ---- Coral ---- */
+  --nana-coral-50: #fef2f2;
+  --nana-coral-100: #fee2e2;
+  --nana-coral-400: #f87171;
+  --nana-coral-500: #ef4444;
+  --nana-coral-600: #dc2626;
+  --nana-coral: var(--nana-coral-500);
+
+  /* ---- Neutrals: warm stone ---- */
+  --stone-0: #ffffff;
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-600: #57534e;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-900: #1c1917;
+  --nana-stone: var(--stone-400);
+
+  /* ---- Semantic aliases ---- */
+  --color-primary: var(--nana-blue-400);
+  --color-primary-hover: var(--nana-blue-600);
+  --color-primary-press: var(--nana-blue-700);
+  --color-primary-subtle: var(--nana-blue-50);
+  --color-on-primary: var(--stone-0);
+
+  --surface-page: var(--stone-50);
+  --surface-card: var(--stone-0);
+  --surface-sunken: var(--stone-100);
+  --surface-inverse: var(--stone-900);
+  --surface-overlay: rgba(28, 25, 23, 0.45);
+
+  --text-strong: var(--stone-900);
+  --text-body: var(--stone-700);
+  --text-muted: var(--stone-500);
+  --text-subtle: var(--stone-400);
+  --text-on-inverse: var(--stone-0);
+  --text-link: var(--nana-blue-600);
+
+  --border-subtle: var(--stone-200);
+  --border-default: var(--stone-300);
+  --border-strong: var(--stone-400);
+  --border-focus: var(--nana-blue-400);
+
+  --color-success: var(--nana-lime-600);
+  --color-success-subtle: var(--nana-lime-50);
+  --color-warning: var(--nana-amber-600);
+  --color-warning-subtle: var(--nana-amber-50);
+  --color-danger: var(--nana-coral-600);
+  --color-danger-subtle: var(--nana-coral-50);
+  --color-info: var(--nana-blue-600);
+  --color-info-subtle: var(--nana-blue-50);
+
+  /* ---- Typography ---- */
+  --font-sans: "Omnes", ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Omnes", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+
+  /* ---- Radius & shadow ---- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.06);
+  --shadow-sm: 0 2px 6px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-md: 0 6px 16px rgba(28, 25, 23, 0.08), 0 2px 4px rgba(28, 25, 23, 0.04);
+  --shadow-lg: 0 14px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.05);
+  --shadow-xl: 0 24px 56px rgba(28, 25, 23, 0.14), 0 8px 16px rgba(28, 25, 23, 0.06);
+  --shadow-primary: 0 8px 20px rgba(70, 154, 220, 0.32);
+  --ring-focus: 0 0 0 3px rgba(70, 154, 220, 0.35);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+@keyframes nana-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
-
-.fade-enter {
-  opacity: 0;
-  transform: translateX(-1.25rem);
-}
-
-.fade-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 500ms, transform 500ms;
-}
-
-.fade-exit {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.fade-exit-active {
-  opacity: 0;
-  transform: translateX(-1.25rem);
-  transition: opacity 500ms, transform 500ms;
-}
-
-.fade-exit-active div {
-  transition: opacity 200ms;
-  transition-delay: 300ms;
-  opacity: 0;
-}
-
-@layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+@keyframes nana-marquee {
+  from {
+    transform: translateX(0);
   }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  to {
+    transform: translateX(-50%);
   }
 }
-
-/* Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+@keyframes nana-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-10px);
+    opacity: 0.12;
+    transform: scale(1.35);
   }
 }
 
-@keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+/* ============================================================
+   Reusable design-system classes (hover/pseudo — not doable inline)
+   ============================================================ */
+
+/* eyebrow label with leading dot */
+.n-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-body);
+  display: inline-flex;
+  align-items: center;
+}
+.n-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  margin-right: 10px;
+}
+.n-eyebrow--upper {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nana-blue-300);
+}
+.n-eyebrow--upper::before {
+  display: none;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+/* buttons */
+.n-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  transition: transform var(--duration-fast) var(--ease-standard),
+    filter var(--duration-base) var(--ease-standard),
+    background var(--duration-base) var(--ease-standard);
+}
+.n-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+.n-btn:active {
+  transform: translateY(0);
+}
+.n-btn--dark {
+  background: var(--stone-900);
+  color: #fff;
+}
+.n-btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+.n-btn--ghost-dark {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 1.5px var(--stone-700);
+}
+.n-btn--outline {
+  background: transparent;
+  color: var(--text-strong);
+  box-shadow: inset 0 0 0 1.5px var(--border-default);
 }
 
-.animate-float-delayed {
-  animation: float-delayed 3s ease-in-out infinite;
-  animation-delay: 1s;
+/* hover lifts */
+.n-lift {
+  transition: transform var(--duration-slow) var(--ease-standard),
+    box-shadow var(--duration-slow) var(--ease-standard);
+}
+.n-lift:hover {
+  transform: translateY(-4px);
+}
+.n-liftx {
+  transition: transform 240ms var(--ease-standard),
+    box-shadow 240ms var(--ease-standard);
+}
+.n-liftx:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+.n-lift-shadow {
+  transition: transform 240ms var(--ease-standard),
+    box-shadow 240ms var(--ease-standard);
+}
+.n-lift-shadow:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* category card: top border colours in, image zooms */
+.n-cat {
+  border-top: 2px solid var(--text-strong);
+  transition: border-color 260ms var(--ease-standard);
+}
+.n-cat:hover {
+  border-top-color: var(--color-primary);
+}
+.n-cat__img {
+  transition: transform 420ms var(--ease-standard);
+}
+.n-cat:hover .n-cat__img {
+  transform: scale(1.012);
+}
+
+/* grow-with-nana tiles */
+.n-tile {
+  transition: background 200ms var(--ease-standard),
+    transform 320ms var(--ease-standard);
+}
+.n-tile:hover {
+  background: var(--stone-100);
+  transform: translateY(-4px);
+}
+
+/* link underline accent */
+.n-underline {
+  border-bottom: 1.5px solid var(--nana-blue-200);
+  padding-bottom: 2px;
+}
+a.n-plainlink:hover {
+  color: var(--nana-blue-700);
+}
+
+/* marquee */
+.n-marquee-track {
+  display: flex;
+  gap: 26px;
+  width: max-content;
+  animation: nana-marquee 46s linear infinite;
+}
+.n-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* scroll reveal */
+.n-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 460ms var(--ease-standard),
+    transform 460ms var(--ease-standard);
+}
+.n-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* forms */
+.n-input,
+.n-select,
+.n-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: #fff;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-strong);
+  transition: border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+.n-input,
+.n-select {
+  height: 52px;
+  padding: 0 14px;
+}
+.n-textarea {
+  padding: 14px;
+  line-height: 1.45;
+  resize: vertical;
+}
+.n-input:focus,
+.n-select:focus,
+.n-textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: var(--ring-focus);
+}
+.n-input::placeholder,
+.n-textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+/* details marker */
+summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .n-faq-plus {
+  transform: rotate(45deg);
+}
+.n-faq-plus {
+  transition: transform 200ms var(--ease-standard);
+  display: inline-block;
+}
+
+/* hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .n-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .n-marquee-track {
+    animation: none;
+  }
 }
