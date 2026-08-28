@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AppStoreLink } from './AppStoreLink';
 
 const PLAY_STORE =
   'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app';
@@ -89,8 +90,10 @@ export const SiteFooter: React.FC = () => {
               Kano, Nigeria.
             </p>
             <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
-              <a
+              <AppStoreLink
                 href={PLAY_STORE}
+                platform="android"
+                placement="footer"
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -109,9 +112,11 @@ export const SiteFooter: React.FC = () => {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/google-icon.svg" alt="" style={{ width: 15, height: 15 }} />
                 Google Play
-              </a>
-              <a
+              </AppStoreLink>
+              <AppStoreLink
                 href={APP_STORE}
+                platform="ios"
+                placement="footer"
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -131,7 +136,7 @@ export const SiteFooter: React.FC = () => {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/app-store.svg" alt="" style={{ width: 15, height: 15, filter: 'brightness(0)' }} />
                 App Store
-              </a>
+              </AppStoreLink>
             </div>
           </div>
           {COLUMNS.map((col) => (

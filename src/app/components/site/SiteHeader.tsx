@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AppStoreLink } from './AppStoreLink';
 
 const PLAY_STORE =
   'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app';
@@ -89,15 +90,17 @@ export const SiteHeader: React.FC = () => {
             </Link>
           ))}
         </nav>
-        <a
+        <AppStoreLink
           href={PLAY_STORE}
+          platform="android"
+          placement="header"
           target="_blank"
           rel="noreferrer"
           className="n-btn n-btn--dark"
           style={{ flex: 'none', height: 42, padding: '0 20px', fontSize: 15 }}
         >
           Get the app
-        </a>
+        </AppStoreLink>
       </div>
     </header>
   );

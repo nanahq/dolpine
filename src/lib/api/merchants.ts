@@ -19,6 +19,17 @@ export async function getFeaturedRestaurant(): Promise<ApiMerchant | null> {
   return list[0] ?? null;
 }
 
+/**
+ * Every active merchant, whatever the type — restaurants, groceries and
+ * convenience stores. Used to enumerate `/merchant/[id]` for the sitemap.
+ */
+export async function getAllMerchants(limit = 500): Promise<ApiMerchant[]> {
+  const data = await apiGet<ApiMerchant[]>('merchant/customers', {
+    query: { limit },
+  });
+  return data ?? [];
+}
+
 /** Full restaurant detail including the menu (categories → products). */
 export async function getMerchant(id: string): Promise<ApiMerchantDetail | null> {
   return apiGet<ApiMerchantDetail>(`merchant/customers/${id}`);

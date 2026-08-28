@@ -34,11 +34,11 @@ export default function AboutPage() {
       <Section noReveal style={{ padding: 'clamp(36px,6vw,64px) 0 0' }}>
         <Container>
           <Eyebrow>About Nana</Eyebrow>
-          <h1 style={{ margin: 0, maxWidth: '22em', fontSize: 'clamp(34px,6.4vw,56px)', lineHeight: 1.03, letterSpacing: '-0.045em', fontWeight: 900, color: 'var(--text-strong)' }}>
+          <h1 style={{ margin: 0, maxWidth: '22em', fontSize: 'clamp(34px,6.4vw,56px)', lineHeight: 1.03, letterSpacing: '-0.045em', fontWeight: 900, color: '#fff' }}>
             Delivery that works in the cities everyone else skipped
             <Dot />
           </h1>
-          <p style={{ margin: '20px 0 0', maxWidth: '34em', fontSize: 'clamp(16px,2.2vw,19px)', lineHeight: 1.5, color: 'var(--text-muted)' }}>
+          <p style={{ margin: '20px 0 0', maxWidth: '34em', fontSize: 'clamp(16px,2.2vw,19px)', lineHeight: 1.5, color: '#fff' }}>
             Nana makes it simple to find what you want and get it brought to you — quickly, reliably and at a price that makes sense. We started in Kano, and we build for cities like it.
           </p>
           <div style={{ marginTop: 36, borderRadius: 24, overflow: 'hidden', background: 'var(--stone-100)', aspectRatio: '21 / 9' }}>
@@ -50,23 +50,23 @@ export default function AboutPage() {
       <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
         <Container style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(30px,5vw,56px)', alignItems: 'start' }}>
           <div>
-            <h2 style={h2}>So, what is Nana?</h2>
-            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+            <h2 style={{ ...h2, color: '#fff' }}>So, what is Nana?</h2>
+            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
               Founded in Kano, Nigeria, Nana is a food and grocery delivery platform connecting people to the restaurants, stores and markets closest to them. One app, a fleet of riders, and a small team obsessed with arrival times.
             </p>
-            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
               We&apos;re a company of Imagyne Ventures, which gives us the engineering muscle of a much larger platform while we stay close to the streets we serve.
             </p>
           </div>
           <div>
-            <h2 style={h2}>
+            <h2 style={{ ...h2, color: '#fff' }}>
               Our mission
               <Dot />
             </h2>
-            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
               To bring reliable delivery to underrepresented cities across Africa. Not the capitals that already have five apps — the places where a dependable rider network changes what a small kitchen can become.
             </p>
-            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
+            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
               Every city we open adds local vendors, local riders and local support staff. That&apos;s the whole point.
             </p>
           </div>

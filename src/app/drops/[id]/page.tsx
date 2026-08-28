@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import { track } from '@/lib/analytics';
 
 function isInstagramWebView(ua: string) {
   return /Instagram/i.test(ua);
@@ -35,6 +36,10 @@ export default function DropsRedirectPage() {
 
     const timer = setTimeout(() => {
       setRedirectAttempted(true);
+      track('app_store_clicked', {
+        platform: isIOS(ua) ? 'ios' : 'android',
+        placement: 'drop_auto_fallback',
+      });
       window.location.href = fallback;
     }, 1500);
 
@@ -68,12 +73,14 @@ export default function DropsRedirectPage() {
               <a
                 href="https://apps.apple.com/app/nana-food-delivery/id6499050428"
                 style={styles.storeBtn}
+                onClick={() => track('app_store_clicked', { platform: 'ios', placement: 'drop' })}
               >
                 App Store
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.nanaeats.nana_app"
                 style={styles.storeBtn}
+                onClick={() => track('app_store_clicked', { platform: 'android', placement: 'drop' })}
               >
                 Google Play
               </a>
@@ -97,6 +104,7 @@ export default function DropsRedirectPage() {
             <a
               href="https://apps.apple.com/app/nana-food-delivery/id6499050428"
               style={styles.primaryBtn}
+              onClick={() => track('app_store_clicked', { platform: 'ios', placement: 'drop_instagram' })}
             >
               Download on App Store
             </a>
@@ -119,6 +127,7 @@ export default function DropsRedirectPage() {
             <a
               href="https://play.google.com/store/apps/details?id=com.nanaeats.nana_app"
               style={styles.primaryBtn}
+              onClick={() => track('app_store_clicked', { platform: 'android', placement: 'drop_instagram' })}
             >
               Download on Google Play
             </a>

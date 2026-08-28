@@ -1,8 +1,9 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, CreditCard, Store } from 'lucide-react';
 import { Container, Section, Dot } from '../components/site/primitives';
+import { track } from '@/lib/analytics';
 
 type Article = { href: string; title: string; blurb: string };
 type Group = { icon: React.ComponentType<{ style?: React.CSSProperties }>; title: string; items: Article[] };
@@ -57,6 +58,20 @@ export default function HelpPage() {
       ),
     })).filter((g) => g.items.length > 0);
   }, [query]);
+
+  // Debounced so a search reports once the visitor stops typing, rather than
+  // once per keystroke — otherwise every prefix lands as its own event.
+  useEffect(() => {
+    const q = query.trim();
+    if (q.length < 2) return;
+    const timer = setTimeout(() => {
+      track('help_searched', {
+        query: q.toLowerCase(),
+        results: filtered.reduce((n, g) => n + g.items.length, 0),
+      });
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [query, filtered]);
 
   return (
     <>

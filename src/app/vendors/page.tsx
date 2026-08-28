@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Users, Bike, LineChart, Banknote } from 'lucide-react';
 import { Container, Section, Eyebrow, Dot, FormSuccess } from '../components/site/primitives';
 import { Placeholder } from '../components/site/Placeholder';
+import { track } from '@/lib/analytics';
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL ?? 'https://api.trynanaapp.com/api/v1';
@@ -78,15 +79,19 @@ export default function VendorsPage() {
         }),
       });
       if (res.ok) {
+        track('vendor_application_submitted', { has_instagram: instagram.trim() !== '' });
         setSent(true);
         return;
       }
       if (res.status === 409) {
+        track('vendor_application_failed', { reason: 'duplicate' });
         setError('That phone number is already registered — we have your application. A partner manager will be in touch.');
       } else {
+        track('vendor_application_failed', { reason: 'server' });
         setError('Something went wrong submitting your application. Please try again, or WhatsApp us on 0812 222 9693.');
       }
     } catch {
+      track('vendor_application_failed', { reason: 'network' });
       setError('Network error. Please check your connection and try again.');
     } finally {
       setSubmitting(false);

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
 import { Container, Section, Eyebrow, Dot, Field, SelectField, TextareaField, FormSuccess } from '../components/site/primitives';
+import { track } from '@/lib/analytics';
 
 const CHANNELS = [
   { icon: MessageCircle, title: 'In-app chat', copy: '7:00 am – midnight, every day. Under two minutes to a human.' },
@@ -58,12 +59,23 @@ export default function ContactPage() {
                 <p style={{ margin: '10px 0 26px', fontSize: 15.5, lineHeight: 1.5, color: 'var(--text-muted)' }}>
                   We answer within one working day.
                 </p>
-                <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} style={{ display: 'grid', gap: 16 }}>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    // Topic only — the name, contact detail and message stay out of analytics.
+                    const form = new FormData(e.currentTarget);
+                    track('contact_message_sent', {
+                      topic: String(form.get('topic') ?? ''),
+                    });
+                    setSent(true);
+                  }}
+                  style={{ display: 'grid', gap: 16 }}
+                >
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16 }}>
                     <Field label="Your name" placeholder="First and last name" required />
                     <Field label="Email or phone" placeholder="So we can reply" required />
                   </div>
-                  <SelectField label="What's this about?" required>
+                  <SelectField label="What's this about?" name="topic" required>
                     <option value="" disabled>Choose a topic</option>
                     <option>A problem with an order</option>
                     <option>Becoming a vendor</option>

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Container, Section, Dot, Field, SelectField, FormSuccess } from '../components/site/primitives';
+import { track } from '@/lib/analytics';
 import { Placeholder } from '../components/site/Placeholder';
 
 const EARNINGS = [
@@ -123,20 +124,32 @@ export default function RidersPage() {
                 <p style={{ margin: '10px 0 26px', fontSize: 15.5, lineHeight: 1.5, color: 'var(--text-muted)' }}>
                   Onboarding sessions run every Wednesday at our Kano hub.
                 </p>
-                <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} style={{ display: 'grid', gap: 16 }}>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    // Only the two dropdowns are read — never the name or phone.
+                    const form = new FormData(e.currentTarget);
+                    track('rider_application_submitted', {
+                      vehicle: String(form.get('vehicle') ?? ''),
+                      area: String(form.get('area') ?? ''),
+                    });
+                    setSent(true);
+                  }}
+                  style={{ display: 'grid', gap: 16 }}
+                >
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16 }}>
                     <Field label="Full name" placeholder="First and last name" required />
                     <Field label="Phone" type="tel" placeholder="080 0000 0000" required />
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 16 }}>
-                    <SelectField label="What do you ride?" required>
+                    <SelectField label="What do you ride?" name="vehicle" required>
                       <option value="" disabled>Choose one</option>
                       <option>Motorcycle (mine)</option>
                       <option>Motorcycle (rented)</option>
                       <option>Bicycle</option>
                       <option>I need help getting one</option>
                     </SelectField>
-                    <SelectField label="Which area do you know best?" required>
+                    <SelectField label="Which area do you know best?" name="area" required>
                       <option value="" disabled>Choose one</option>
                       <option>Nassarawa</option>
                       <option>Tarauni</option>

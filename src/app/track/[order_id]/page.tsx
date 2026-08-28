@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { CheckCircle, Phone, RotateCw, X } from 'lucide-react';
+import { track } from '@/lib/analytics';
 
 const API_BASE = 'https://api.trynanaapp.com/api/v1';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app';
@@ -121,6 +122,7 @@ function DownloadBanner() {
           href={APP_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track('app_store_clicked', { platform: 'ios', placement: 'track_order' })}
           style={{
             flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
             background: 'rgba(255,255,255,0.1)', color: '#fff',
@@ -138,6 +140,7 @@ function DownloadBanner() {
           href={PLAY_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track('app_store_clicked', { platform: 'android', placement: 'track_order' })}
           style={{
             flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
             background: 'rgba(255,255,255,0.1)', color: '#fff',
@@ -260,11 +263,23 @@ export default function TrackOrderPage() {
     else setRefreshing(true);
     try {
       const res = await window.fetch(`${API_BASE}/orders/track/${orderId}`);
-      if (res.status === 404) { setPageState('not_found'); return; }
-      if (!res.ok) { setPageState('error'); return; }
+      // Reported on the first lookup only — this runs again every 10s while the
+      // order is active, and each poll is not a new tracking attempt.
+      if (res.status === 404) {
+        if (!silent) track('order_tracked', { outcome: 'not_found' });
+        setPageState('not_found');
+        return;
+      }
+      if (!res.ok) {
+        if (!silent) track('order_tracked', { outcome: 'error' });
+        setPageState('error');
+        return;
+      }
       setOrder(await res.json());
+      if (!silent) track('order_tracked', { outcome: 'found' });
       setPageState('ready');
     } catch {
+      if (!silent) track('order_tracked', { outcome: 'error' });
       setPageState('error');
     } finally {
       setRefreshing(false);

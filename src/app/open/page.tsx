@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import GooglePlay from '@/assets/google-play.svg';
+import { track } from '@/lib/analytics';
 import AppStore from '@/assets/app-store.svg';
 
 const ANDROID_PACKAGE = 'com.nanaeats.nana_app';
@@ -90,10 +91,10 @@ function OpenPageContent() {
         <p className="text-lg font-semibold text-gray-900">Open this link on your phone</p>
         <p className="text-sm text-gray-500">Download the Nana app to continue.</p>
         <div className="flex flex-col gap-3 items-center">
-          <Link href={APP_STORE_URL} target="_blank">
+          <Link href={APP_STORE_URL} target="_blank" onClick={() => track('app_store_clicked', { platform: 'ios', placement: 'open_unsupported' })}>
             <Image src={AppStore} alt="App Store" width={140} height={42} />
           </Link>
-          <Link href={PLAY_STORE_URL} target="_blank">
+          <Link href={PLAY_STORE_URL} target="_blank" onClick={() => track('app_store_clicked', { platform: 'android', placement: 'open_unsupported' })}>
             <Image src={GooglePlay} alt="Google Play" width={140} height={42} />
           </Link>
         </div>
@@ -118,7 +119,16 @@ function OpenPageContent() {
           Download the app to view this and order from your favourite restaurants.
         </p>
       </div>
-      <Link href={storeUrl} target="_blank">
+      <Link
+        href={storeUrl}
+        target="_blank"
+        onClick={() =>
+          track('app_store_clicked', {
+            platform: platform === 'ios' ? 'ios' : 'android',
+            placement: 'open_not_installed',
+          })
+        }
+      >
         <Image src={storeImage} alt={storeLabel} width={160} height={48} priority />
       </Link>
     </div>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GooglePlay from '@/assets/google-play.svg';
 import AppStore from '@/assets/app-store.svg';
+import { track } from '@/lib/analytics';
 
 const PLAY_STORE_URL =
   'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app&pcampaignid=web_share';
@@ -32,6 +33,10 @@ export default function DownloadPage() {
     if (detected === 'android' || detected === 'ios') {
       const timer = setTimeout(() => {
         setRedirected(true);
+        track('app_store_clicked', {
+          platform: detected,
+          placement: 'download_auto_redirect',
+        });
         window.location.href =
           detected === 'android' ? PLAY_STORE_URL : APP_STORE_URL;
       }, 1800);
@@ -95,7 +100,7 @@ export default function DownloadPage() {
 
           {/* Primary button — Play Store (always first, except iOS) */}
           {!isIos && (
-            <Link href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full">
+            <Link href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => track('app_store_clicked', { platform: 'android', placement: 'download_page' })}>
               <div className="flex justify-center hover:transition-transform hover:duration-100 hover:scale-x-105 hover:scale-y-105">
                 <Image
                   src={GooglePlay}
@@ -111,7 +116,7 @@ export default function DownloadPage() {
 
           {/* App Store button */}
           {!isAndroid && (
-            <Link href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full">
+            <Link href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => track('app_store_clicked', { platform: 'ios', placement: 'download_page' })}>
               <div className="flex justify-center hover:transition-transform hover:duration-100 hover:scale-x-105 hover:scale-y-105">
                 <Image
                   src={AppStore}
@@ -127,7 +132,7 @@ export default function DownloadPage() {
 
           {/* Secondary link for Android → App Store */}
           {isAndroid && (
-            <Link href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full">
+            <Link href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => track('app_store_clicked', { platform: 'ios', placement: 'download_page' })}>
               <div className="flex justify-center hover:transition-transform hover:duration-100 hover:scale-x-105 hover:scale-y-105">
                 <Image
                   src={AppStore}
@@ -148,6 +153,7 @@ export default function DownloadPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-400 underline underline-offset-2 mt-1"
+              onClick={() => track('app_store_clicked', { platform: 'android', placement: 'download_page' })}
             >
               Also on Google Play
             </Link>

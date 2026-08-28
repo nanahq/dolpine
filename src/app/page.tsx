@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   Star,
@@ -9,6 +10,9 @@ import {
 } from 'lucide-react';
 import { Container, Section, Eyebrow, Dot } from './components/site/primitives';
 import { Placeholder } from './components/site/Placeholder';
+import NanaHome from '@/assets/nana-home.png';
+import QrCode from '@/assets/qr-code.jpg';
+import { AppStoreLink } from './components/site/AppStoreLink';
 import { getRestaurants } from '../lib/api/merchants';
 import { getHomeReviews } from '../lib/api/reviews';
 import { formatRating, formatPrepWindow, formatDeliveryFee, displayName, cleanImageUrl } from '../lib/format';
@@ -193,8 +197,10 @@ export default async function HomePage() {
                   marginTop: 28,
                 }}
               >
-                <a
+                <AppStoreLink
                   href={PLAY_STORE}
+                  platform="android"
+                  placement="home_hero"
                   target="_blank"
                   rel="noreferrer"
                   className="n-btn n-btn--dark"
@@ -202,7 +208,7 @@ export default async function HomePage() {
                 >
                   Get the app
                   <ArrowRight style={{ width: 17, height: 17 }} />
-                </a>
+                </AppStoreLink>
                 <Link
                   href="/merchant"
                   className="n-underline"
@@ -234,7 +240,14 @@ export default async function HomePage() {
                     background: 'var(--stone-100)',
                   }}
                 >
-                  <Placeholder label="App home screenshot (9:19)" />
+                  <Image
+                    src={NanaHome}
+                    alt="The Nana app home screen"
+                    fill
+                    priority
+                    sizes="286px"
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
               </div>
               <FloatCard
@@ -562,22 +575,28 @@ export default async function HomePage() {
               picks up.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 28 }}>
-              <a href={PLAY_STORE} target="_blank" rel="noreferrer" className="n-btn n-btn--primary" style={{ height: 56, padding: '0 26px', fontSize: 16 }}>
+              <AppStoreLink href={PLAY_STORE} platform="android" placement="home_app_cta" target="_blank" rel="noreferrer" className="n-btn n-btn--primary" style={{ height: 56, padding: '0 26px', fontSize: 16 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/google-icon.svg" alt="" style={{ width: 18, height: 18 }} />
                 Google Play
-              </a>
-              <a href={APP_STORE} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost-dark" style={{ height: 56, padding: '0 26px', fontSize: 16 }}>
+              </AppStoreLink>
+              <AppStoreLink href={APP_STORE} platform="ios" placement="home_app_cta" target="_blank" rel="noreferrer" className="n-btn n-btn--ghost-dark" style={{ height: 56, padding: '0 26px', fontSize: 16 }}>
                 {/* app-store.svg is white — sits on the dark section as-is */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/app-store.svg" alt="" style={{ width: 18, height: 18 }} />
                 App Store
-              </a>
+              </AppStoreLink>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 22, flexWrap: 'wrap' }}>
             <div style={{ width: 150, height: 150, borderRadius: 20, background: '#fff', padding: 12 }}>
-              <Placeholder label="QR code" radius={10} />
+              <Image
+                src={QrCode}
+                alt="QR code linking to the Nana app download"
+                width={126}
+                height={126}
+                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </div>
             <div style={{ maxWidth: '15em' }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>Scan to install</div>
