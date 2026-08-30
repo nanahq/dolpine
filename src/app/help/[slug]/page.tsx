@@ -1,88 +1,50 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { Section, Eyebrow } from '../../components/site/primitives';
-import { ARTICLES, ARTICLE_SLUGS, type Block } from '../articles';
+import { getHelpArticle, getHelpArticles } from '@/lib/api/help';
+import { ArticleMarkdown } from '../article-markdown';
 
-export function generateStaticParams() {
-  return ARTICLE_SLUGS.map((slug) => ({ slug }));
+/** Articles change rarely; five minutes is enough for a publish to land. */
+export const revalidate = 300;
+
+/**
+ * Prerender the articles that exist at build time. New ones are rendered on
+ * first request and then cached — an unreachable API returns [] here, which
+ * degrades to fully on-demand rendering rather than failing the build.
+ */
+export async function generateStaticParams() {
+  const articles = await getHelpArticles();
+  return articles.map((a) => ({ slug: a.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const article = ARTICLES[params.slug];
-  return { title: article ? article.title : 'Help' };
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const article = await getHelpArticle(params.slug);
+  if (!article) return { title: 'Help' };
+  return {
+    title: article.title,
+    description: article.summary,
+    openGraph: { title: article.title, description: article.summary, type: 'article' },
+  };
 }
 
-/** Minimal **bold** renderer — the seam markdown will replace later. */
-function renderInline(text: string): React.ReactNode {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-    part.startsWith('**') && part.endsWith('**') ? (
-      <strong key={i}>{part.slice(2, -2)}</strong>
-    ) : (
-      <React.Fragment key={i}>{part}</React.Fragment>
-    ),
-  );
+const dateFmt = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' });
+
+/** "Updated March 2026 · 2 min read", derived rather than authored. */
+function metaLine(updatedAt: string, body: string): string {
+  const words = body.trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(words / 200));
+  return `Updated ${dateFmt.format(new Date(updatedAt))} · ${minutes} min read`;
 }
 
-const calloutTone: Record<'blue' | 'amber', { bg: string; color: string }> = {
-  blue: { bg: 'var(--nana-blue-50)', color: 'var(--nana-blue-800)' },
-  amber: { bg: 'var(--nana-amber-50)', color: 'var(--nana-amber-600)' },
-};
-
-function BlockView({ block }: { block: Block }) {
-  switch (block.type) {
-    case 'p':
-      return (
-        <p style={{ margin: '22px 0 0', fontSize: 17, lineHeight: 1.6, color: 'var(--text-body)' }}>
-          {renderInline(block.text)}
-        </p>
-      );
-    case 'ol':
-      return (
-        <ol style={{ margin: '22px 0 0', paddingLeft: 22, display: 'grid', gap: 12, fontSize: 16.5, lineHeight: 1.55, color: 'var(--text-body)' }}>
-          {block.items.map((it, i) => (
-            <li key={i}>{renderInline(it)}</li>
-          ))}
-        </ol>
-      );
-    case 'callout': {
-      const tone = calloutTone[block.tone];
-      return (
-        <div style={{ marginTop: 26, padding: 20, borderRadius: 16, background: tone.bg, fontSize: 15, lineHeight: 1.55, color: tone.color }}>
-          {renderInline(block.text)}
-        </div>
-      );
-    }
-    case 'cards':
-      return (
-        <div style={{ display: 'grid', gap: 12, marginTop: 24 }}>
-          {block.items.map((c) => (
-            <div key={c.title} style={{ padding: '18px 20px', borderRadius: 16, background: '#fff', boxShadow: 'var(--shadow-sm)' }}>
-              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-strong)' }}>{c.title}</div>
-              <p style={{ margin: '5px 0 0', fontSize: 15, lineHeight: 1.5, color: 'var(--text-muted)' }}>{c.copy}</p>
-            </div>
-          ))}
-        </div>
-      );
-    case 'rows':
-      return (
-        <div style={{ display: 'grid', gap: 12, marginTop: 24 }}>
-          {block.items.map((r) => (
-            <div key={r.label} style={{ display: 'flex', justifyContent: 'space-between', gap: 14, padding: '18px 20px', borderRadius: 16, background: '#fff', boxShadow: 'var(--shadow-sm)' }}>
-              <span style={{ fontSize: 15.5, color: 'var(--text-body)' }}>{r.label}</span>
-              <span style={{ fontSize: 15.5, fontWeight: 700, color: 'var(--text-strong)' }}>{r.value}</span>
-            </div>
-          ))}
-        </div>
-      );
-    default:
-      return null;
-  }
-}
-
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = ARTICLES[params.slug];
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
+  const article = await getHelpArticle(params.slug);
   if (!article) notFound();
 
   return (
@@ -98,18 +60,18 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           <h1 style={{ margin: 0, fontSize: 'clamp(28px,4.8vw,40px)', lineHeight: 1.08, letterSpacing: '-0.032em', fontWeight: 700, color: 'var(--text-strong)' }}>
             {article.title}
           </h1>
-          <p style={{ margin: '14px 0 0', fontSize: 13.5, color: 'var(--text-subtle)' }}>{article.meta}</p>
+          <p style={{ margin: '14px 0 0', fontSize: 13.5, color: 'var(--text-subtle)' }}>
+            {metaLine(article.updated_at, article.body_md)}
+          </p>
 
-          {article.blocks.map((b, i) => (
-            <BlockView key={i} block={b} />
-          ))}
+          <ArticleMarkdown>{article.body_md}</ArticleMarkdown>
 
           {article.related.length > 0 && (
             <div style={{ marginTop: 34, paddingTop: 24, borderTop: '1px solid var(--border-subtle)', display: 'grid', gap: 10 }}>
               <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text-strong)' }}>Related</div>
               {article.related.map((r) => (
-                <Link key={r.href} href={r.href} style={{ fontSize: 15.5, fontWeight: 600 }}>
-                  {r.label}
+                <Link key={r.slug} href={`/help/${r.slug}`} style={{ fontSize: 15.5, fontWeight: 600 }}>
+                  {r.title}
                 </Link>
               ))}
             </div>

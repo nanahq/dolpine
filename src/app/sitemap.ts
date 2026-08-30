@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllMerchants } from '@/lib/api/merchants';
-import { ARTICLE_SLUGS } from './help/articles';
+import { getHelpArticles } from '@/lib/api/help';
 
 const SITE_URL = 'https://trynanaapp.com';
 
@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // If the API is unreachable this returns [], leaving the static routes
   // intact — a thin sitemap beats a build failure or a 500 on /sitemap.xml.
-  const merchants = await getAllMerchants();
+  const [merchants, articles] = await Promise.all([getAllMerchants(), getHelpArticles()]);
 
   return [
     ...ROUTES.map((route) => ({
@@ -49,9 +49,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
-    ...ARTICLE_SLUGS.map((slug) => ({
-      url: `${SITE_URL}/help/${slug}`,
-      lastModified,
+    ...articles.map((article) => ({
+      url: `${SITE_URL}/help/${article.slug}`,
+      lastModified: new Date(article.updated_at),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
