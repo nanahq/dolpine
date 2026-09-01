@@ -114,10 +114,57 @@ const Page = () => {
                         control.
                     </li>
                     <li>You are responsible for providing a valid delivery address.</li>
-                    <li>You must be available to receive the order upon delivery.</li>
+                    <li>
+                        You must be available to receive the order upon delivery, on the
+                        phone number attached to your account.
+                    </li>
                     <li>
                         We may refuse to deliver to certain areas or under certain
                         conditions.
+                    </li>
+                </ul>
+
+                <h3 className="font-bold text-xl mt-8 mb-4">
+                    7.1 Failed delivery attempts
+                </h3>
+                <ul>
+                    <li>
+                        Our rider will wait up to <strong>20 minutes</strong> at your
+                        drop-off address, counted from the time they arrive and first
+                        attempt to contact you.
+                    </li>
+                    <li>
+                        During that period we will try to reach you at least 5 times on the
+                        phone number attached to your account. A delivery attempt is
+                        treated as failed if you cannot be reached, if you are not at the
+                        drop-off address, or if you are unable to receive the order.
+                    </li>
+                    <li>
+                        After 20 minutes the rider may leave and return your order to our
+                        office. We will notify you when this happens.
+                    </li>
+                    <li>
+                        You may then either collect the order from our office during
+                        opening hours at no extra charge, or ask us to attempt delivery
+                        again. Re-delivery is charged at our standard delivery rate for
+                        the distance from our office to your address, and is payable
+                        before the second attempt.
+                    </li>
+                    <li>
+                        <strong>Perishable items</strong> — including prepared food, fresh
+                        produce, and chilled or frozen goods — cannot be stored or
+                        re-delivered safely. Where a failed attempt involves perishable
+                        items, those items may be disposed of and are not refunded.
+                    </li>
+                    <li>
+                        Non-perishable items are held at our office for 7 days. Items not
+                        collected within that period may be disposed of and are not
+                        refunded.
+                    </li>
+        
+                    <li>
+                        Delivery fees and service fees already paid are not refunded for a
+                        failed attempt, as the service was performed.
                     </li>
                 </ul>
             </div>
