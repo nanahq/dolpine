@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Privacy Statement',
+    title: 'Privacy Policy',
     description:
-        'Order food from your mobile phone and get it delivered in Minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
+        'How Nana Logistics collects, uses and protects personal information in the Nana, Nana Vendor and Nana Rider apps.',
     keywords:
         'Food delivery, food delivery driver kano, Food, delivery, order food online',
     appLinks: {
