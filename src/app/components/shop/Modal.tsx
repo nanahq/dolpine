@@ -32,7 +32,12 @@ export function Modal({ onClose, label, variant = 'dialog', width = 520, childre
       aria-label={label}
       style={{
         position: 'fixed',
-        inset: 0,
+        // The visible viewport, not the layout one — on phones `inset: 0` reaches under the
+        // browser toolbar and hid the sheet's and drawer's bottom buttons.
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '100dvh',
         zIndex: 60,
         display: 'flex',
         justifyContent: drawer ? 'flex-end' : 'center',
@@ -51,7 +56,7 @@ export function Modal({ onClose, label, variant = 'dialog', width = 520, childre
         style={{
           position: 'relative',
           width: `min(${width}px, 100%)`,
-          maxHeight: drawer ? '100%' : variant === 'sheet' ? '92vh' : 'calc(100vh - 32px)',
+          maxHeight: drawer ? '100%' : variant === 'sheet' ? '92dvh' : 'calc(100dvh - 32px)',
           height: drawer ? '100%' : undefined,
           background: '#fff',
           borderRadius: drawer ? 0 : variant === 'sheet' ? '28px 28px 0 0' : 28,

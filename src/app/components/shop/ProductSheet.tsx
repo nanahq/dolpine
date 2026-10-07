@@ -110,16 +110,17 @@ export function ProductSheet({ merchant, product, onClose, onAdd }: Props) {
           );
         })}
       </div>
-      <div style={{ padding: '14px 24px 22px', boxShadow: 'inset 0 1px 0 var(--line)', display: 'flex', gap: 12, alignItems: 'center' }}>
-        <div className="v-qty v-qty--outline">
+      <div style={{ padding: '14px clamp(16px,4vw,24px) max(22px, env(safe-area-inset-bottom))', boxShadow: 'inset 0 1px 0 var(--line)', display: 'flex', gap: 10, alignItems: 'center' }}>
+        <div className="v-qty v-qty--outline" style={{ flexShrink: 0 }}>
           <button type="button" aria-label="Fewer" onClick={() => setQty((n) => Math.max(1, n - 1))}>−</button>
           <span>{qty}</span>
           <button type="button" aria-label="More" onClick={() => setQty((n) => n + 1)}>+</button>
         </div>
         <button
           type="button"
-          className="v-btn v-btn--blue v-btn--block"
-          style={{ justifyContent: 'space-between', padding: '0 10px 0 22px' }}
+          className="v-btn v-btn--blue"
+          // Fills what the stepper leaves; .v-btn alone won't shrink, which pushed it off narrow screens.
+          style={{ flex: '1 1 0', minWidth: 0, flexShrink: 1, justifyContent: 'space-between', gap: 8, padding: '0 8px 0 18px' }}
           disabled={!merchant.isOpen}
           onClick={() => {
             if (missing.length) return setTried(true);
@@ -127,7 +128,7 @@ export function ProductSheet({ merchant, product, onClose, onAdd }: Props) {
           }}
         >
           <span>{merchant.isOpen ? 'Add to cart' : 'Store closed'}</span>
-          <span className="v-num" style={{ height: 36, borderRadius: 999, background: 'rgba(255,255,255,.2)', padding: '0 14px', display: 'flex', alignItems: 'center' }}>
+          <span className="v-num" style={{ height: 36, borderRadius: 999, background: 'rgba(255,255,255,.2)', padding: '0 12px', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             {formatNaira(unit * qty)}
           </span>
         </button>
