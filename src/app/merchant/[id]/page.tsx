@@ -1,7 +1,9 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { StoreDetail } from '../../components/site/StoreDetail';
-import { getMerchant, getMerchantReviews } from '../../../lib/api/merchants';
+import { getMerchant } from '../../../lib/api/merchants';
+import { toStoreMenu } from '../../../lib/shop/catalog';
+import { hoursSummary, openStatusLabel } from '../../../lib/format';
+import { StoreView } from '../../components/store/StoreView';
 
 export const revalidate = 300;
 
@@ -10,19 +12,21 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   return {
     title: detail ? detail.business_name : 'Store',
     description: detail
-      ? `${detail.business_name} on Nana — menu, prices and ratings. Ordering happens in the app.`
+      ? `Order from ${detail.business_name} on Nana — see the menu and prices, pay by card or bank transfer, and track your rider live.`
       : undefined,
   };
 }
 
-/** Live restaurant detail, fetched server-side from nana-v2 by id. */
+/** A live store: menu fetched server-side from nana-v2, ordering handled client-side. */
 export default async function MerchantDetailPage({ params }: { params: { id: string } }) {
-  const [detail, reviews] = await Promise.all([
-    getMerchant(params.id),
-    getMerchantReviews(params.id),
-  ]);
-
+  const detail = await getMerchant(params.id);
   if (!detail) notFound();
 
-  return <StoreDetail detail={detail} reviews={reviews} />;
+  return (
+    <StoreView
+      store={toStoreMenu(detail)}
+      hours={hoursSummary(detail.operating_hours)}
+      openLabel={openStatusLabel(detail.is_open, detail.operating_hours)}
+    />
+  );
 }

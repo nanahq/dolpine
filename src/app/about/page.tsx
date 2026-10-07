@@ -1,123 +1,69 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Container, Section, Eyebrow, Dot } from '../components/site/primitives';
-import { Placeholder } from '../components/site/Placeholder';
+import { PageHero } from '../components/pages/PageParts';
 
 const VALUES = [
-  { title: 'Speed is a promise, not a slogan', copy: "If we can't get to you fast, we don't show you the store." },
-  { title: 'Local before large', copy: 'A single-stall trader gets the same tools as a chain.' },
-  { title: 'Riders are colleagues', copy: 'Fair pay, insurance cover, and a hub with somewhere to sit.' },
-  { title: 'Build for the real street', copy: 'Landmarks, cash, patchy data. We design for all three.' },
+  { title: ['Respect', 'the minute'], copy: 'Time is the product. We plan every route like it matters, because it does.', bg: 'var(--blue)', fg: 'var(--ink)' },
+  { title: ['Fair to', 'everyone'], copy: 'Clear prices for customers. Honest pay for riders. Fair terms for stores.', bg: 'var(--yellow)', fg: 'var(--ink)' },
+  { title: ['Local', 'first'], copy: 'We grow with the kitchens, markets and corner shops that make each city.', bg: 'var(--green)', fg: '#fff' },
 ];
 
-const TEAM = [
-  { id: 'tm-1', role: 'Chief executive' },
-  { id: 'tm-2', role: 'Head of operations' },
-  { id: 'tm-3', role: 'Head of engineering' },
-  { id: 'tm-4', role: 'Vendor partnerships' },
-  { id: 'tm-5', role: 'Rider community' },
-];
-
-const h2: React.CSSProperties = {
-  margin: 0,
-  fontSize: 'clamp(24px,4vw,34px)',
-  lineHeight: 1.08,
-  letterSpacing: '-0.032em',
-  fontWeight: 700,
-  color: 'var(--text-strong)',
-};
+/** Cities we deliver in today. The design's list named three; only Kano is live. */
+const CITIES = ['Kano'];
 
 export default function AboutPage() {
   return (
     <>
-      <Section noReveal style={{ padding: 'clamp(36px,6vw,64px) 0 0' }}>
-        <Container>
-          <Eyebrow>About Nana</Eyebrow>
-          <h1 style={{ margin: 0, maxWidth: '22em', fontSize: 'clamp(34px,6.4vw,56px)', lineHeight: 1.03, letterSpacing: '-0.045em', fontWeight: 900, color: '#fff' }}>
-            Delivery that works in the cities everyone else skipped
-            <Dot />
-          </h1>
-          <p style={{ margin: '20px 0 0', maxWidth: '34em', fontSize: 'clamp(16px,2.2vw,19px)', lineHeight: 1.5, color: '#fff' }}>
-            Nana makes it simple to find what you want and get it brought to you — quickly, reliably and at a price that makes sense. We started in Kano, and we build for cities like it.
-          </p>
-          <div style={{ marginTop: 36, borderRadius: 24, overflow: 'hidden', background: 'var(--stone-100)', aspectRatio: '21 / 9' }}>
-            <Placeholder label="Nana team / city photo (21:9)" />
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        bg="var(--ink)"
+        fg="#fff"
+        eyebrow="About Nana"
+        eyebrowFg="var(--blue)"
+        ledeFg="var(--faint)"
+        size="clamp(64px,10vw,168px)"
+        title={
+          <>
+            We get things
+            <br />
+            to <span style={{ color: 'var(--blue)' }}>people.</span>
+          </>
+        }
+        lede="Nana is a delivery company built for African cities — food, groceries, errands and parcels, run by local riders and local stores."
+      />
 
-      <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
-        <Container style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 'clamp(30px,5vw,56px)', alignItems: 'start' }}>
-          <div>
-            <h2 style={{ ...h2, color: '#fff' }}>So, what is Nana?</h2>
-            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
-              Founded in Kano, Nigeria, Nana is a food and grocery delivery platform connecting people to the restaurants, stores and markets closest to them. One app, a fleet of riders, and a small team obsessed with arrival times.
-            </p>
-            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
-              We&apos;re a company of Imagyne Ventures, which gives us the engineering muscle of a much larger platform while we stay close to the streets we serve.
-            </p>
-          </div>
-          <div>
-            <h2 style={{ ...h2, color: '#fff' }}>
-              Our mission
-              <Dot />
-            </h2>
-            <p style={{ margin: '16px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
-              To bring reliable delivery to underrepresented cities across Africa. Not the capitals that already have five apps — the places where a dependable rider network changes what a small kitchen can become.
-            </p>
-            <p style={{ margin: '14px 0 0', fontSize: 16.5, lineHeight: 1.55, color: '#fff' }}>
-              Every city we open adds local vendors, local riders and local support staff. That&apos;s the whole point.
-            </p>
-          </div>
-        </Container>
-      </Section>
+      <section className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,130px)', paddingBottom: 'clamp(80px,9vw,130px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,320px),1fr))', gap: 40 }}>
+        <span className="v-eyebrow" style={{ color: 'var(--blue-ink)' }}>Our story</span>
+        <p className="v-reveal" style={{ margin: 0, fontSize: 'clamp(24px,2.6vw,34px)', lineHeight: 1.35, letterSpacing: '-.01em', color: 'var(--text)', gridColumn: 'span 2', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>
+          It started with a simple question: why is it so hard to get a bag of rice, a hot plate of jollof or a forgotten phone charger across town? We built Nana so
+          the answer is one tap — and so the stores and riders doing the work earn fairly for it.
+        </p>
+      </section>
 
-      <Section style={{ padding: 'clamp(46px,7vw,84px) 0', background: '#fff', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
-        <Container>
-          <h2 style={{ ...h2, marginBottom: 28 }}>
-            How we work
-            <Dot />
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 18 }}>
-            {VALUES.map((v) => (
-              <div key={v.title} style={{ padding: 24, borderRadius: 18, background: 'var(--surface-page)' }}>
-                <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-strong)' }}>{v.title}</div>
-                <p style={{ margin: '8px 0 0', fontSize: 14.5, lineHeight: 1.5, color: 'var(--text-muted)' }}>{v.copy}</p>
-              </div>
-            ))}
+      <section className="v-wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,300px),1fr))', gap: 16 }}>
+        {VALUES.map((v) => (
+          <div key={v.copy} className="v-reveal" style={{ minHeight: 320, borderRadius: 28, background: v.bg, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 12 }}>
+            <span className="v-h3" style={{ fontSize: 34, color: v.fg }}>
+              {v.title[0]}
+              <br />
+              {v.title[1]}
+            </span>
+            <span style={{ fontSize: 16, lineHeight: 1.5, color: v.fg }}>{v.copy}</span>
           </div>
-        </Container>
-      </Section>
+        ))}
+      </section>
 
-      <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
-        <Container>
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, marginBottom: 26 }}>
-            <h2 style={h2}>
-              The team
-              <Dot />
-            </h2>
-            <Link href="/careers" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 600, color: 'var(--nana-blue-600)' }}>
-              We&apos;re hiring
-              <ArrowRight style={{ width: 16, height: 16 }} />
-            </Link>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(170px,1fr))', gap: 18 }}>
-            {TEAM.map((t) => (
-              <div key={t.id}>
-                <div style={{ aspectRatio: '1', borderRadius: 18, overflow: 'hidden', background: 'var(--stone-100)' }}>
-                  <Placeholder label="Portrait" />
-                </div>
-                <div style={{ marginTop: 11, fontSize: 15.5, fontWeight: 700, color: 'var(--text-strong)' }}>Name here</div>
-                <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{t.role}</div>
-              </div>
-            ))}
-          </div>
-          <p style={{ margin: '22px 0 0', fontSize: 13.5, color: 'var(--text-subtle)' }}>
-            Send us the real names, titles and portraits and we&apos;ll drop them straight in.
-          </p>
-        </Container>
-      </Section>
+      <section className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,130px)', paddingBottom: 'clamp(80px,9vw,130px)', display: 'flex', flexDirection: 'column', gap: 28 }}>
+        <span className="v-eyebrow" style={{ color: 'var(--blue-ink)' }}>Where we deliver</span>
+        <div className="v-display v-display--black" style={{ fontSize: 'clamp(72px,12vw,200px)', display: 'flex', flexDirection: 'column' }}>
+          {CITIES.map((c) => (
+            <span key={c} className="v-reveal" style={{ color: 'var(--ink)' }}>{c}</span>
+          ))}
+          <span className="v-reveal" style={{ color: 'transparent', WebkitTextStroke: '3px var(--blue)' }}>Yours next</span>
+        </div>
+        <Link href="/careers" className="v-btn v-btn--ink v-btn--lg" style={{ alignSelf: 'flex-start', marginTop: 20 }}>
+          Build it with us →
+        </Link>
+      </section>
     </>
   );
 }

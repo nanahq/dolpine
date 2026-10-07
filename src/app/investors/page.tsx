@@ -1,134 +1,151 @@
 import React from 'react';
-import Link from 'next/link';
-import { ArrowRight, Mail, FileText } from 'lucide-react';
-import { Container, Section, Eyebrow, Dot } from '../components/site/primitives';
+import { INVESTORS_EMAIL } from '@/lib/site';
+import { PageHero } from '../components/pages/PageParts';
+import { InvestorForm } from '../components/pages/InvestorForm';
 
 export const metadata = { title: 'Investors' };
 
-const STATS = [
+/** Figures carried over from the previous investors page — the design's were placeholders. */
+const TRACTION = [
   { value: '14', label: 'Vendors on platform' },
   { value: '1,960', label: 'Registered customers' },
   { value: '15 min', label: 'Median delivery time' },
   { value: '4.9★', label: 'Average rating' },
 ];
 
-const TIMELINE = [
-  { year: '2026', title: 'Nana launches in Kano', copy: 'One hub, a fleet of riders, and the restaurants, markets and stores of Kano — food, groceries and errands in a single app.', dashed: false },
-  { year: 'Next', title: 'Expanding into two more cities', copy: 'The Kano playbook — the hub model, rider training and vendor tooling — reused to open two more cities.', dashed: true },
-];
-
 const WHY = [
-  { title: 'Under-served by design', copy: 'Global platforms concentrate on Lagos and Nairobi. Cities of three million go unaddressed.' },
-  { title: 'Cheaper to run, denser to serve', copy: 'Short trips and tight neighbourhoods mean more drops per rider hour.' },
-  { title: 'One network, many verticals', copy: 'Food funds the fleet; groceries and parcels fill the gaps between meal peaks.' },
+  { title: 'Cities are growing fast', copy: 'More people, more traffic, less time. Getting across town is the problem we solve.', bg: 'var(--blue)', fg: 'var(--ink)' },
+  { title: 'Mobile-first customers', copy: 'Payments by transfer and card are now normal. Ordering by app is the next step.', bg: 'var(--yellow)', fg: 'var(--ink)' },
+  { title: 'Fragmented retail', copy: 'Thousands of kitchens, pharmacies and corner shops with no delivery of their own.', bg: 'var(--green)', fg: '#fff' },
 ];
 
-const h2: React.CSSProperties = {
-  margin: 0,
-  fontSize: 'clamp(24px,4vw,34px)',
-  lineHeight: 1.08,
-  letterSpacing: '-0.032em',
-  fontWeight: 700,
-  color: 'var(--text-strong)',
-};
+const MODEL = [
+  { title: 'Delivery and service fees', copy: 'Paid by customers on every order, priced by distance and demand.' },
+  { title: 'Merchant commission', copy: 'A share of each restaurant and store order, settled weekly.' },
+  { title: 'Promoted placement', copy: 'Merchants pay to feature in search, banners and campaigns.' },
+  { title: 'Errands and parcels', copy: 'Higher-margin trips that reuse the same riders between meal peaks.' },
+];
+
+const FLYWHEEL = [
+  { title: 'More customers', copy: 'Bring more orders to every store', arrow: '→' },
+  { title: 'More merchants', copy: 'Give customers more reasons to open the app', arrow: '→' },
+  { title: 'More riders', copy: 'Earn more per hour as orders pile up', arrow: '→' },
+  { title: 'Faster delivery', copy: 'Which brings more customers', arrow: '↺' },
+];
 
 export default function InvestorsPage() {
   return (
     <>
-      <Section noReveal style={{ padding: 'clamp(36px,6vw,68px) 0 clamp(40px,6vw,72px)', background: '#fff', borderBottom: '1px solid var(--border-subtle)' }}>
-        <Container>
-          <Eyebrow>Investors</Eyebrow>
-          <h1 style={{ margin: 0, maxWidth: '22em', fontSize: 'clamp(34px,6.4vw,54px)', lineHeight: 1.04, letterSpacing: '-0.045em', fontWeight: 900, color: 'var(--text-strong)' }}>
-            A delivery network for the next 200 million customers
-            <Dot />
-          </h1>
-          <p style={{ margin: '18px 0 0', maxWidth: '32em', fontSize: 'clamp(16px,2.2vw,18px)', lineHeight: 1.5, color: 'var(--text-muted)' }}>
-            Africa&apos;s secondary cities are where the demand is growing and where nobody has built the logistics layer. We&apos;re starting there on purpose.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: 16, marginTop: 38 }}>
-            {STATS.map((s) => (
-              <div key={s.label} style={{ background: '#fff', borderRadius: 18, padding: 24, boxShadow: 'var(--shadow-sm)' }}>
-                <div style={{ fontSize: 'clamp(32px,5vw,44px)', fontWeight: 900, letterSpacing: '-0.045em', color: 'var(--text-strong)' }}>{s.value}</div>
-                <div style={{ fontSize: 13.5, color: 'var(--text-muted)', marginTop: 5 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        bg="var(--ink)"
+        fg="#fff"
+        eyebrow="Investors"
+        eyebrowFg="var(--blue)"
+        ledeFg="var(--faint)"
+        size="clamp(60px,9.4vw,156px)"
+        title={
+          <>
+            The everyday
+            <br />
+            delivery network
+            <br />
+            for <span style={{ color: 'var(--blue)' }}>African cities</span>
+          </>
+        }
+        lede="Nana moves food, groceries, medicine and parcels across the city on one rider network — and earns on every leg."
+      >
+        <div className="v-rise" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', animationDelay: '.3s' }}>
+          <a href="#inv-form" className="v-btn v-btn--sky v-btn--lg">Request the deck</a>
+          <a href={`mailto:${INVESTORS_EMAIL}`} className="v-btn v-btn--ghost-light v-btn--lg">{INVESTORS_EMAIL}</a>
+        </div>
+      </PageHero>
 
-      <Section style={{ padding: 'clamp(46px,7vw,84px) 0', background: '#fff', borderTop: '1px solid var(--border-subtle)' }}>
-        <Container>
-          <h2 style={{ ...h2, marginBottom: 34, fontSize: 'clamp(25px,4.2vw,36px)' }}>
-            How we got here
-            <Dot />
+      <section className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,130px)', display: 'flex', flexDirection: 'column', gap: 40 }}>
+        <div className="v-reveal" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
+          <h2 className="v-h2">Why now</h2>
+          <p className="v-lede" style={{ maxWidth: 420 }}>Fast-growing cities, phones in every pocket, and shopping that still happens street by street.</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,300px),1fr))', gap: 16 }}>
+          {WHY.map((w, i) => (
+            <div key={w.title} className="v-reveal" style={{ minHeight: 300, borderRadius: 28, background: w.bg, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24 }}>
+              <span style={{ fontSize: 14, fontWeight: 600, color: w.fg }}>{String(i + 1).padStart(2, '0')}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <span className="v-h3" style={{ fontSize: 30, lineHeight: 1.05, color: w.fg }}>{w.title}</span>
+                <span style={{ fontSize: 16, lineHeight: 1.5, color: w.fg }}>{w.copy}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,130px)', paddingBottom: 'clamp(80px,9vw,130px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,380px),1fr))', gap: 56, alignItems: 'start' }}>
+        <div style={{ position: 'sticky', top: 120, display: 'flex', flexDirection: 'column', gap: 18 }}>
+          <span className="v-eyebrow" style={{ color: 'var(--blue-ink)' }}>Business model</span>
+          <h2 className="v-h2">
+            One network,
+            <br />
+            four ways to earn
           </h2>
-          <div style={{ display: 'grid', gap: 0, maxWidth: 760 }}>
-            {TIMELINE.map((t) => (
-              <div key={t.year} style={{ display: 'grid', gridTemplateColumns: '84px 1fr', gap: 20 }}>
-                <div style={{ fontSize: 17, fontWeight: 700, color: t.dashed ? 'var(--text-subtle)' : 'var(--color-primary)', paddingTop: 2 }}>{t.year}</div>
-                <div style={{ borderLeft: t.dashed ? '2px dashed var(--border-subtle)' : '2px solid var(--border-subtle)', padding: t.dashed ? '0 0 0 24px' : '0 0 30px 24px', position: 'relative' }}>
-                  <span
-                    style={{
-                      position: 'absolute',
-                      left: -7,
-                      top: 6,
-                      width: 12,
-                      height: 12,
-                      borderRadius: '50%',
-                      background: t.dashed ? '#fff' : 'var(--color-primary)',
-                      boxShadow: t.dashed ? '0 0 0 2px var(--border-default),0 0 0 4px #fff' : '0 0 0 4px #fff',
-                    }}
-                  />
-                  <div style={{ fontSize: 17.5, fontWeight: 700, color: 'var(--text-strong)' }}>{t.title}</div>
-                  <p style={{ margin: '7px 0 0', fontSize: 15, lineHeight: 1.5, color: 'var(--text-muted)' }}>{t.copy}</p>
-                </div>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 var(--line)' }}>
+          {MODEL.map((m) => (
+            <div key={m.title} style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '24px 0', boxShadow: 'inset 0 -1px 0 var(--line)' }}>
+              <span style={{ fontSize: 20, fontWeight: 600, letterSpacing: '-.015em' }}>{m.title}</span>
+              <span style={{ fontSize: 16, lineHeight: 1.5, color: 'var(--muted)' }}>{m.copy}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--ink)' }}>
+        <div className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,120px)', paddingBottom: 'clamp(80px,9vw,120px)', display: 'flex', flexDirection: 'column', gap: 36 }}>
+          <h2 className="v-h2" style={{ color: '#fff' }}>Traction</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,240px),1fr))', columnGap: 32 }}>
+            {TRACTION.map((t) => (
+              <div key={t.label} style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '28px 0', boxShadow: 'inset 0 1px 0 rgba(255,255,255,.18)' }}>
+                <span className="v-display v-display--black v-num" style={{ fontSize: 'clamp(64px,7vw,104px)', lineHeight: 0.85, color: '#fff' }}>{t.value}</span>
+                <span style={{ fontSize: 16, color: 'var(--faint)' }}>{t.label}</span>
               </div>
             ))}
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
 
-      <Section style={{ padding: 'clamp(46px,7vw,84px) 0' }}>
-        <Container style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(290px,1fr))', gap: 'clamp(28px,5vw,48px)', alignItems: 'start' }}>
-          <div>
-            <h2 style={h2}>
-              Why this market
-              <Dot />
-            </h2>
-            <div style={{ display: 'grid', gap: 14, marginTop: 22 }}>
-              {WHY.map((w) => (
-                <div key={w.title} style={{ padding: 20, borderRadius: 16, background: '#fff', boxShadow: 'var(--shadow-sm)' }}>
-                  <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-strong)' }}>{w.title}</div>
-                  <p style={{ margin: '6px 0 0', fontSize: 14.5, lineHeight: 1.5, color: 'var(--text-muted)' }}>{w.copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ background: 'var(--stone-900)', borderRadius: 24, padding: 'clamp(26px,4vw,36px)' }}>
-            <h2 style={{ margin: 0, fontSize: 'clamp(22px,3.6vw,30px)', lineHeight: 1.1, letterSpacing: '-0.025em', fontWeight: 700, color: '#fff' }}>
-              Talk to us
-              <Dot />
-            </h2>
-            <p style={{ margin: '12px 0 24px', fontSize: 15.5, lineHeight: 1.5, color: 'var(--stone-400)' }}>
-              We share a quarterly update with prospective and existing investors: unit economics, cohort retention and city-level margins.
-            </p>
-            <div style={{ display: 'grid', gap: 10, fontSize: 15, color: 'var(--stone-300)' }}>
-              <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                <Mail style={{ width: 17, height: 17, color: 'var(--nana-blue-300)' }} />
-                <span>suraj@trynanaapp.com</span>
+      <section className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,130px)', display: 'flex', flexDirection: 'column', gap: 40 }}>
+        <h2 className="v-h2 v-reveal">The flywheel</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,220px),1fr))', gap: 12 }}>
+          {FLYWHEEL.map((f, i) => (
+            <div key={f.title} className="v-reveal" style={{ borderRadius: 24, background: 'var(--fill)', padding: 28, display: 'flex', flexDirection: 'column', gap: 28 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span className="v-display v-display--black" style={{ fontSize: 56, lineHeight: 0.8, color: 'var(--blue)' }}>{String(i + 1).padStart(2, '0')}</span>
+                <span style={{ fontSize: 22 }}>{f.arrow}</span>
               </div>
-              <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                <FileText style={{ width: 17, height: 17, color: 'var(--nana-blue-300)' }} />
-                <span>Data room access on request</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <span style={{ fontSize: 20, fontWeight: 600, letterSpacing: '-.015em' }}>{f.title}</span>
+                <span style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--muted)' }}>{f.copy}</span>
               </div>
             </div>
-            <Link href="/contact" className="n-btn n-btn--primary" style={{ height: 52, padding: '0 26px', fontSize: 16, marginTop: 26 }}>
-              Request the deck
-              <ArrowRight style={{ width: 17, height: 17 }} />
-            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section id="inv-form" className="v-wrap" style={{ paddingTop: 'clamp(80px,9vw,130px)', paddingBottom: 140, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: 48, alignItems: 'start', scrollMarginTop: 90 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <h2 className="v-h2">Talk to us</h2>
+          <p className="v-lede" style={{ maxWidth: 440 }}>Request the deck and data room access. We reply within two working days.</p>
+          <div style={{ display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 var(--line)' }}>
+            {['Press kit', 'Annual letter'].map((s) => (
+              <a key={s} href={`mailto:${INVESTORS_EMAIL}?subject=${encodeURIComponent(s)}`} className="v-inv-link">
+                {s}
+                <span>→</span>
+              </a>
+            ))}
           </div>
-        </Container>
-      </Section>
+        </div>
+        <div className="v-form-card">
+          <InvestorForm />
+        </div>
+      </section>
     </>
   );
 }

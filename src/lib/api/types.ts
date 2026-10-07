@@ -70,6 +70,11 @@ export interface ApiMerchant {
   preparation_time: number; // minutes
   is_open: boolean;
   cuisine_types: string[];
+  /** Not a Nana partner: a rider buys the order at the counter, for a flat errand fee. */
+  is_errand?: boolean;
+  /** Extra charges the merchant levies on the subtotal, e.g. `{ "VAT": 7.5 }` (percent). */
+  charge_config?: Record<string, number> | null;
+  created_at?: string;
   address?: ApiAddress | null;
   operating_hours?: ApiOperatingHour[];
   /** Present only when the request supplied coordinates. */
@@ -93,4 +98,17 @@ export interface ApiReview {
   comment?: string | null;
   created_at: string;
   author?: ApiReviewAuthor | null;
+}
+
+/** `GET /app-constants` — only the fields the website reads. */
+export interface ApiAppConstants {
+  service_fee_percentage: number;
+  service_fee_cap: number;
+  errand_fee: number;
+  delivery_fee_multiplier: number;
+  max_delivery_distance_km: number;
+  delivery_min_fee: number;
+  /** "10:30" in Lagos time. */
+  platform_open_time?: string;
+  platform_close_time?: string;
 }

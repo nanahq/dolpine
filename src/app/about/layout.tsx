@@ -19,9 +19,5 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-      <div className="dark:bg-black dark:text-white">
-          {children}
-      </div>
-  );
+  return <>{children}</>;
 }

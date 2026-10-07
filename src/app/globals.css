@@ -3,27 +3,6 @@
 @tailwind utilities;
 
 /* ============================================================
-   NANA brand typeface — Omnes (geometric rounded humanist sans)
-   Only two cuts ship locally; weights are mapped to the nearest.
-   Swap in the full 6-weight Omnes family (regular/medium/semibold/
-   bold/black + italic) to match the design 1:1.
-   ============================================================ */
-@font-face {
-  font-family: "Omnes";
-  src: url("/fonts/nana-font.otf") format("opentype");
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Omnes";
-  src: url("/fonts/nana-font-bold.otf") format("opentype");
-  font-weight: 600 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ============================================================
    NANA DESIGN SYSTEM — ported from Claude Design tokens
    colors.css · typography.css · radius.css · spacing.css
    ============================================================ */
@@ -96,14 +75,14 @@
   --color-primary-subtle: var(--nana-blue-50);
   --color-on-primary: var(--stone-0);
 
-  --surface-page: var(--stone-50);
+  --surface-page: #ffffff;
   --surface-card: var(--stone-0);
   --surface-sunken: var(--stone-100);
   --surface-inverse: var(--stone-900);
   --surface-overlay: rgba(28, 25, 23, 0.45);
 
-  --text-strong: var(--stone-900);
-  --text-body: var(--stone-700);
+  --text-strong: #0c1216;
+  --text-body: #14181b;
   --text-muted: var(--stone-500);
   --text-subtle: var(--stone-400);
   --text-on-inverse: var(--stone-0);
@@ -124,8 +103,9 @@
   --color-info-subtle: var(--nana-blue-50);
 
   /* ---- Typography ---- */
-  --font-sans: "Omnes", ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
-  --font-display: "Omnes", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  /* Website v2: Instrument Sans for text, Archivo (condensed) for display — loaded via next/font in layout.tsx. */
+  --font-sans: var(--font-instrument), system-ui, sans-serif;
+  --font-display: var(--font-archivo), system-ui, sans-serif;
 
   /* ---- Radius & shadow ---- */
   --radius-xs: 6px;

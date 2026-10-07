@@ -56,8 +56,7 @@ const config: Config = {
         xl: '1440px',
       },
       fontFamily: {
-        Omnes: ['Omnes', 'sans-serif'],
-        primary: ['Omnes', 'sans-serif'],
+        primary: ['var(--font-sans)'],
       },
       boxShadow: {
         'nana-sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',

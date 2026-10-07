@@ -1,199 +1,47 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AppStoreLink } from './AppStoreLink';
+import { INSTAGRAM_URL } from '@/lib/site';
 
-const PLAY_STORE =
-  'https://play.google.com/store/apps/details?id=com.nanaeats.nana_app';
-const APP_STORE =
-  'https://apps.apple.com/us/app/nana-delivery-more/id6499050428';
-
-const COLUMNS: { title: string; links: { href: string; label: string }[] }[] = [
-  {
-    title: 'Partner with Nana',
-    links: [
-      { href: '/vendors', label: 'For vendors' },
-      { href: '/riders', label: 'For riders' },
-      { href: '/contact', label: 'For businesses' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { href: '/about', label: 'About us' },
-      { href: '/careers', label: 'Careers' },
-      { href: '/investors', label: 'Investors' },
-    ],
-  },
-  {
-    title: 'Support',
-    links: [
-      { href: '/help', label: 'Help centre' },
-      { href: '/contact', label: 'Contact us' },
-      { href: '/merchant', label: 'Browse stores' },
-    ],
-  },
+const COLUMNS = [
+  { title: 'Shop', links: [['/marketplace', 'Marketplace'], ['/#get-app', 'Get the app'], ['/help', 'Help centre']] },
+  { title: 'Partners', links: [['/vendors', 'Sell on Nana'], ['/riders', 'Ride with Nana']] },
+  { title: 'Company', links: [['/about', 'About'], ['/careers', 'Careers'], ['/investors', 'Investors'], ['/contact', 'Contact']] },
 ];
 
-const linkStyle: React.CSSProperties = {
-  fontSize: 14,
-  color: 'var(--text-body)',
-};
-
-export const SiteFooter: React.FC = () => {
+export function SiteFooter() {
   return (
-    <footer
-      style={{
-        background: '#fff',
-        borderTop: '1px solid var(--border-subtle)',
-        padding: 'clamp(38px,5vw,56px) 0 30px',
-      }}
-    >
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 20px' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 7,
-            marginBottom: 'clamp(28px,4vw,40px)',
-          }}
-        >
-          <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'var(--color-primary)' }} />
-          <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'var(--nana-blue-300)' }} />
-          <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'var(--nana-blue-100)' }} />
-        </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))',
-            gap: 32,
-          }}
-        >
-          <div>
-            <Image
-              src="/nana.png"
-              alt="Nana"
-              width={459}
-              height={114}
-              style={{ height: 26, width: 'auto', display: 'block' }}
-            />
-            <p
-              style={{
-                margin: '14px 0 0',
-                fontSize: 14,
-                lineHeight: 1.5,
-                color: 'var(--text-muted)',
-                maxWidth: '20em',
-              }}
-            >
-              Reliable delivery for the cities everyone else skipped. Founded in
-              Kano, Nigeria.
-            </p>
-            <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
-              <AppStoreLink
-                href={PLAY_STORE}
-                platform="android"
-                placement="footer"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 7,
-                  height: 40,
-                  padding: '0 16px',
-                  borderRadius: 999,
-                  background: 'var(--stone-900)',
-                  color: '#fff',
-                  fontSize: 13,
-                  fontWeight: 600,
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/google-icon.svg" alt="" style={{ width: 15, height: 15 }} />
-                Google Play
-              </AppStoreLink>
-              <AppStoreLink
-                href={APP_STORE}
-                platform="ios"
-                placement="footer"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 7,
-                  height: 40,
-                  padding: '0 16px',
-                  borderRadius: 999,
-                  color: 'var(--text-strong)',
-                  fontSize: 13,
-                  fontWeight: 600,
-                  boxShadow: 'inset 0 0 0 1.5px var(--border-default)',
-                }}
-              >
-                {/* app-store.svg ships white; darken it for this light button */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/app-store.svg" alt="" style={{ width: 15, height: 15, filter: 'brightness(0)' }} />
-                App Store
-              </AppStoreLink>
-            </div>
+    <footer style={{ background: 'var(--ink)', color: '#fff' }}>
+      <div className="v-wrap" style={{ padding: 'clamp(64px,8vw,100px) var(--gutter) 40px', display: 'flex', flexDirection: 'column', gap: 56 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,200px),1fr))', gap: 40 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 18, gridColumn: 'span 2', minWidth: 0 }}>
+            <Image src="/nana.png" alt="Nana" width={139} height={34} style={{ height: 34, width: 'auto', alignSelf: 'flex-start', filter: 'brightness(0) invert(1)' }} />
+            <span className="v-h3" style={{ fontSize: 'clamp(24px,2.5vw,32px)', color: 'var(--blue)' }}>
+              Food. Groceries.
+              <br />
+              Errands.
+            </span>
           </div>
-          {COLUMNS.map((col) => (
-            <div
-              key={col.title}
-              style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
-            >
-              <div
-                style={{
-                  fontSize: 13.5,
-                  fontWeight: 600,
-                  color: 'var(--text-strong)',
-                }}
-              >
-                {col.title}
-              </div>
-              {col.links.map((l) => (
-                <Link key={l.label} href={l.href} style={linkStyle}>
-                  {l.label}
+          {COLUMNS.map((c) => (
+            <div key={c.title} style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--subtle)' }}>{c.title}</span>
+              {c.links.map(([href, label]) => (
+                <Link key={href} href={href} className="v-footer-link">
+                  {label}
                 </Link>
               ))}
             </div>
           ))}
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 16,
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 38,
-            paddingTop: 22,
-            borderTop: '1px solid var(--border-subtle)',
-          }}
-        >
-          <div style={{ fontSize: 13, color: 'var(--text-subtle)' }}>
-            © Nana 2026 · An Imagyne Ventures company
-          </div>
-          <div style={{ display: 'flex', gap: 18 }}>
-            <Link href="/privacy" style={{ fontSize: 13, color: 'var(--text-subtle)' }}>
-              Privacy
-            </Link>
-            <Link href="/terms" style={{ fontSize: 13, color: 'var(--text-subtle)' }}>
-              Terms
-            </Link>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              style={{ fontSize: 13, color: 'var(--text-subtle)' }}
-            >
-              Instagram
-            </a>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', paddingTop: 24, boxShadow: 'inset 0 1px 0 rgba(255,255,255,.14)' }}>
+          <span style={{ fontSize: 14, color: 'var(--subtle)' }}>© {new Date().getFullYear()} Nana Technologies</span>
+          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+            <Link href="/privacy" className="v-footer-link v-footer-link--sm">Privacy</Link>
+            <Link href="/terms" className="v-footer-link v-footer-link--sm">Terms</Link>
+            <a href={INSTAGRAM_URL} className="v-footer-link v-footer-link--sm" target="_blank" rel="noreferrer">@nanahq_</a>
           </div>
         </div>
       </div>
     </footer>
   );
-};
+}

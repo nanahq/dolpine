@@ -1,7 +1,12 @@
 import './globals.css';
+import './site-v2.css';
 import { PageWrapper } from './components/layout/Wrapper';
 import { Metadata } from 'next';
-import Script from "next/script";
+import { Archivo, Instrument_Sans } from 'next/font/google';
+
+// Website v2 type: Instrument Sans for text, Archivo's condensed width axis for display.
+const instrument = Instrument_Sans({ subsets: ['latin'], variable: '--font-instrument', display: 'swap' });
+const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
 
 export const metadata: Metadata = {
   title: {
@@ -61,7 +66,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${instrument.variable} ${archivo.variable}`}>
       <body>
         <PageWrapper>{children}</PageWrapper>
       </body>

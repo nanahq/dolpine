@@ -18,6 +18,9 @@ type EventProperties = {
   contact_message_sent: { topic: string };
   help_searched: { query: string; results: number };
   order_tracked: { outcome: 'found' | 'not_found' | 'error' };
+  web_order_placed: { payment_method: 'bank_transfer' | 'card'; order_type: string; item_count: number };
+  web_payment_confirmed: { payment_method: 'bank_transfer' | 'card' };
+  web_checkout_failed: { status: number };
 };
 
 export function track<K extends keyof EventProperties>(

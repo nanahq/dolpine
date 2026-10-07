@@ -1,0 +1,499 @@
+/* ============================================================
+   Nana Website v2 — ported from the Claude Design file
+   "Nana Website v2.dc.html". Inline styles carry layout; these
+   classes carry everything inline styles can't (hover, focus,
+   pseudo-elements, keyframes) plus the patterns repeated on
+   every page.
+   ============================================================ */
+
+:root {
+  --ink: #0c1216;
+  --text: #14181b;
+  --muted: #5f6b74;
+  --subtle: #8b959d;
+  --faint: #c9d0d5;
+  --blue: #469adc;
+  --blue-ink: #1c6ca8;
+  --blue-deep: #14559a;
+  --blue-tint: #eaf3fb;
+  --blue-tint-2: #dcebf8;
+  --yellow: #ffd400;
+  --green: #17703c;
+  --danger: #b42318;
+  --fill: #f4f5f6;
+  --line: #e6e9eb;
+  --line-strong: #d4d9dd;
+  --gutter: clamp(20px, 4vw, 48px);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --pop-shadow: 0 20px 50px rgba(12, 18, 22, 0.18), inset 0 0 0 1px var(--line);
+  --chip-shadow: 0 4px 12px rgba(12, 18, 22, 0.14);
+}
+
+body {
+  background: #fff;
+  color: var(--text);
+}
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---- Keyframes ---- */
+@keyframes nRise {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nSwapUp {
+  from { opacity: 0; transform: translateY(80%); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes nFloat {
+  from { transform: translateY(-12px); }
+  to { transform: translateY(14px); }
+}
+@keyframes nMarq {
+  to { transform: translateX(-50%); }
+}
+@keyframes nSlide {
+  from { transform: translateX(8%); }
+  to { transform: translateX(-38%); }
+}
+@keyframes nPop {
+  0% { transform: scale(0.5) rotate(-12deg); opacity: 0; }
+  70% { transform: scale(1.08) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(4deg); opacity: 1; }
+}
+@keyframes nDrawer {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+@keyframes nFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes nSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes nPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.v-rise { animation: nRise 0.9s var(--ease-out) both; }
+.v-fade { animation: nFade 0.3s both; }
+.v-pop { animation: nPop 0.8s both; }
+
+/* Scroll-driven reveal where supported; elsewhere the content simply shows. */
+@supports (animation-timeline: view()) {
+  .v-reveal {
+    animation: nRise 0.9s var(--ease-out) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  .v-reveal-pop {
+    animation: nPop 0.8s both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 60%;
+  }
+  .v-slide {
+    animation: nSlide linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+/* ---- Layout ---- */
+.v-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Horizontal rail that bleeds to the viewport edge but snaps to the gutter. */
+.v-rail {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  margin-left: calc(-1 * var(--gutter));
+  margin-right: calc(-1 * var(--gutter));
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  scroll-padding-left: var(--gutter);
+}
+.v-rail::-webkit-scrollbar { display: none; }
+.v-rail > * { scroll-snap-align: start; flex-shrink: 0; }
+.v-rail--mandatory { scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+
+/* ---- Type ---- */
+.v-display {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 72, 'wght' 850;
+  font-weight: 850;
+  font-stretch: 72%;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.86;
+  margin: 0;
+}
+.v-display--black {
+  font-variation-settings: 'wdth' 72, 'wght' 900;
+  font-weight: 900;
+}
+.v-h2 {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin: 0;
+  font-size: clamp(38px, 4.6vw, 64px);
+  color: var(--ink);
+}
+.v-h3 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin: 0;
+}
+.v-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.v-lede {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.v-num { font-variant-numeric: tabular-nums; }
+.v-sticker {
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 72, 'wght' 850;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ---- Buttons ---- */
+.v-btn {
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+.v-btn:disabled { cursor: not-allowed; opacity: 0.55; }
+.v-btn--sm { height: 44px; padding: 0 20px; font-size: 15px; }
+.v-btn--md { height: 48px; padding: 0 22px; font-size: 15px; }
+.v-btn--lg { height: 56px; padding: 0 28px; }
+.v-btn--xl { height: 58px; font-size: 17px; }
+.v-btn--block { width: 100%; }
+
+.v-btn--ink { background: var(--ink); color: #fff; }
+.v-btn--ink:hover:not(:disabled) { background: var(--blue); color: #fff; }
+.v-btn--blue { background: var(--blue); color: #fff; }
+.v-btn--blue:hover:not(:disabled) { background: var(--blue-deep); color: #fff; }
+.v-btn--sky { background: var(--blue); color: var(--ink); }
+.v-btn--sky:hover:not(:disabled) { background: var(--yellow); color: var(--ink); }
+.v-btn--yellow { background: var(--yellow); color: var(--ink); }
+.v-btn--yellow:hover:not(:disabled) { background: #fff; color: var(--ink); }
+.v-btn--yellow-outline:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--ink); }
+.v-btn--soft { background: var(--fill); color: var(--text); }
+.v-btn--soft:hover:not(:disabled) { background: var(--line); }
+.v-btn--white { background: #fff; color: var(--ink); }
+.v-btn--white:hover:not(:disabled) { background: var(--yellow); }
+.v-btn--ghost-light { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.35); }
+.v-btn--ghost-light:hover { color: #fff; box-shadow: inset 0 0 0 1.5px #fff; }
+
+.v-link-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--blue-ink);
+  text-decoration: none;
+}
+.v-link-btn:hover { color: var(--blue); }
+
+.v-icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--fill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text);
+}
+.v-icon-btn:hover { background: var(--line); }
+
+/* Pill chips used for filters and single-choice fields. */
+.v-chip {
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  padding: 0 16px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.v-chip:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.v-chip.is-on { background: var(--ink); color: #fff; font-weight: 600; box-shadow: none; }
+
+/* ---- Menu rows (header dropdowns) ---- */
+.v-menu-item {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  width: 100%;
+}
+.v-menu-item:hover { background: var(--fill); color: var(--text); }
+
+.v-nav-link {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+}
+.v-nav-link:hover, .v-nav-link.is-on { color: var(--blue); }
+
+/* ---- Forms ---- */
+.v-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.v-label { font-size: 14px; font-weight: 600; color: var(--text); }
+.v-label small { font-size: 14px; font-weight: 400; color: var(--subtle); }
+.v-input {
+  height: 52px;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  padding: 0 16px;
+  font-size: 16px;
+  background: #fff;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow 0.15s;
+}
+textarea.v-input { height: auto; padding: 14px 16px; resize: vertical; line-height: 1.45; }
+.v-input:focus { box-shadow: inset 0 0 0 2px var(--blue); }
+.v-input.is-error { box-shadow: inset 0 0 0 1.5px var(--danger); }
+.v-input::placeholder { color: var(--subtle); }
+.v-input:disabled { background: var(--fill); color: var(--muted); }
+.v-err { font-size: 13px; color: var(--danger); line-height: 1.4; }
+
+/* Phone input with a fixed +234 prefix. */
+.v-phone {
+  display: flex;
+  height: 52px;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  background: #fff;
+  overflow: hidden;
+}
+.v-phone:focus-within { box-shadow: inset 0 0 0 2px var(--blue); }
+.v-phone.is-error { box-shadow: inset 0 0 0 1.5px var(--danger); }
+.v-phone > span {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: var(--fill);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: inset -1px 0 0 var(--line-strong);
+}
+.v-phone > input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  padding: 0 14px;
+  font-size: 16px;
+  background: none;
+}
+
+/* ---- Cards ---- */
+.v-panel {
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #fff;
+}
+.v-form-card {
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(12, 18, 22, 0.06), 0 20px 50px rgba(12, 18, 22, 0.1), inset 0 0 0 1px var(--line);
+  padding: clamp(24px, 3vw, 36px);
+}
+
+.v-lift { transition: transform 0.3s; }
+.v-lift:hover { transform: translateY(-4px); }
+.v-lift-tilt { transition: transform 0.35s var(--ease-out); }
+.v-lift-tilt:hover { transform: translateY(-10px) rotate(-1deg); }
+.v-lift-tilt:nth-child(even):hover { transform: translateY(-10px) rotate(1deg); }
+.v-lift-big { transition: transform 0.35s var(--ease-out); }
+.v-lift-big:hover { transform: translateY(-8px); }
+
+.v-tap { border: 0; background: none; padding: 0; cursor: pointer; text-align: left; color: inherit; text-decoration: none; }
+.v-tap:hover { color: inherit; }
+
+.v-search:focus-within { box-shadow: inset 0 0 0 2px var(--blue); }
+
+.v-category:hover .v-category__tile { transform: translateY(-3px); }
+.v-category__tile { transition: transform 0.25s; }
+
+.v-row-hover { transition: box-shadow 0.2s; }
+.v-row-hover:hover { box-shadow: inset 0 0 0 1px var(--line), 0 12px 30px rgba(12, 18, 22, 0.08); }
+
+/* Add button and quantity stepper that sit on product images. */
+.v-add {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--chip-shadow);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-ink);
+}
+.v-add:hover:not(:disabled) { background: var(--blue); color: #fff; }
+.v-add:disabled { cursor: not-allowed; color: var(--subtle); }
+.v-qty {
+  height: 36px;
+  border-radius: 999px;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  box-shadow: var(--chip-shadow);
+  color: #fff;
+}
+.v-qty button { width: 32px; height: 36px; border: 0; background: none; color: inherit; font-size: 18px; cursor: pointer; }
+.v-qty span { min-width: 14px; text-align: center; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.v-qty--outline { background: #fff; color: var(--text); box-shadow: inset 0 0 0 1px var(--line-strong); height: 38px; }
+.v-qty--outline button { width: 36px; height: 38px; }
+
+.v-marquee { animation: nMarq 60s linear infinite; }
+.v-marquee:hover { animation-play-state: paused; }
+
+.v-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  animation: nSpin 0.8s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.v-pulse-dot { position: relative; width: 12px; height: 12px; flex-shrink: 0; }
+.v-pulse-dot::before,
+.v-pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--blue);
+}
+.v-pulse-dot::after { animation: nPulse 1.6s ease-out infinite; }
+
+.v-role-btn { transition: padding-left 0.2s; }
+.v-role-btn:hover { padding-left: 14px !important; }
+
+.v-store-badge {
+  height: 60px;
+  border-radius: 14px;
+  background: #fff;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  transition: background 0.2s;
+}
+.v-store-badge:hover { background: var(--yellow); }
+
+.v-inv-link {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+.v-inv-link:hover { color: var(--blue-ink); }
+
+.v-footer-link { font-size: 16px; color: #fff; }
+.v-footer-link:hover { color: var(--blue); }
+.v-footer-link--sm { font-size: 14px; color: var(--faint); }
+.v-footer-link--sm:hover { color: #fff; }
+
+/* The design switches header layouts at 720px. */
+@media (max-width: 719px) {
+  .v-desk-only { display: none !important; }
+}
+@media (min-width: 720px) {
+  .v-mob-only { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.v-logo { height: 28px; }
+@media (max-width: 719px) {
+  .v-logo { height: 22px; }
+}
