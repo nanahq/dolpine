@@ -34,9 +34,10 @@ export function priceOrder(input: {
   coupon: { discount: number; freeDelivery: boolean } | null;
 }): Breakdown {
   const { subtotal, merchant, constants, coupon } = input;
-  const service = merchant.isErrand
-    ? constants.errand_fee
-    : Math.min(Math.round((subtotal * constants.service_fee_percentage) / 100), constants.service_fee_cap);
+  const service = Math.min(
+    Math.round((subtotal * constants.service_fee_percentage) / 100),
+    constants.service_fee_cap,
+  );
 
   const charges = Object.entries(merchant.chargeConfig).map(([label, pct]) => ({
     label: `${label} (${pct}%)`,
@@ -55,7 +56,7 @@ export function priceOrder(input: {
     subtotal,
     delivery,
     service,
-    serviceLabel: merchant.isErrand ? 'Errand fee' : 'Service fee',
+    serviceLabel: 'Service fee',
     charges,
     discount,
     total,
