@@ -39,49 +39,6 @@ export function GuaranteeBand() {
   );
 }
 
-const SERVICES = [
-  { n: '01', title: 'Food', copy: 'Restaurants near you, hot and on time.', href: '/marketplace?cat=food', bg: 'var(--blue)', fg: 'var(--ink)', dot: ['var(--ink)', '#fff'] },
-  { n: '02', title: 'Groceries', copy: 'Staples, produce and household, picked fresh.', href: '/marketplace?cat=grocery', bg: 'var(--green)', fg: '#fff', dot: ['var(--yellow)', 'var(--ink)'] },
-  { n: '03 · In the app', title: 'Errands', copy: 'Write a list. A rider shops any store.', href: '#get-app', bg: 'var(--yellow)', fg: 'var(--ink)', dot: ['var(--ink)', '#fff'] },
-  { n: '04 · In the app', title: 'Parcels', copy: 'Send anything across the city, tracked live.', href: '#get-app', bg: 'var(--ink)', fg: '#fff', dot: ['var(--blue)', 'var(--ink)'] },
-];
-
-export function ServicesGrid() {
-  return (
-    <section className="v-wrap" style={{ paddingTop: 'clamp(96px,10vw,140px)', paddingBottom: 40, display: 'flex', flexDirection: 'column', gap: 48 }}>
-      <div className="v-reveal" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 32, flexWrap: 'wrap' }}>
-        <h2 className="v-h2">
-          One app.
-          <br />
-          Four ways
-          <br />
-          to get it done.
-        </h2>
-        <p className="v-lede" style={{ maxWidth: 380 }}>Order from a menu, shop a store, send a rider with a list, or move a parcel across town.</p>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,250px),1fr))', gap: 16 }}>
-        {SERVICES.map((s) => (
-          <Link
-            key={s.title}
-            href={s.href}
-            className="v-tap v-lift-tilt v-reveal"
-            style={{ height: 360, borderRadius: 28, background: s.bg, padding: 26, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <span style={{ fontSize: 14, fontWeight: 600, color: s.fg }}>{s.n}</span>
-              <span style={{ width: 44, height: 44, borderRadius: 999, background: s.dot[0], color: s.dot[1], display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>→</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <span className="v-h3" style={{ fontSize: 40, color: s.fg }}>{s.title}</span>
-              <span style={{ fontSize: 16, lineHeight: 1.45, color: s.fg }}>{s.copy}</span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export function WordSlide() {
   return (
     <section style={{ overflow: 'hidden', padding: '40px 0 20px' }} aria-hidden="true">

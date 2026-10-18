@@ -8,9 +8,9 @@ import {
   HowItWorks,
   LovedAroundTown,
   PartnerCards,
-  ServicesGrid,
   WordSlide,
 } from './components/home/HomeSections';
+import { ServicesGrid } from './components/home/ServicesRail';
 import { GetTheApp } from './components/home/GetTheApp';
 
 export const revalidate = 300;
