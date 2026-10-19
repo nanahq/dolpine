@@ -10,6 +10,8 @@ export class ApiError extends Error {
   constructor(
     message: string,
     readonly status: number,
+    /** The parsed error body, for callers that need more than the message (e.g. per-field errors). */
+    readonly payload: unknown = null,
   ) {
     super(message);
   }
@@ -56,6 +58,6 @@ export async function api<T>(path: string, opts: Options = {}): Promise<T> {
   }
 
   const payload = await res.json().catch(() => null);
-  if (!res.ok) throw new ApiError(messageFrom(payload, res.status), res.status);
+  if (!res.ok) throw new ApiError(messageFrom(payload, res.status), res.status, payload);
   return payload as T;
 }

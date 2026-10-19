@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { NumberedPoints, PageHero } from '../components/pages/PageParts';
 import { VendorForm } from '../components/pages/VendorForm';
+import { EmbeddedForm } from '../components/forms/EmbeddedForm';
 
 export const metadata: Metadata = {
   title: 'Sell on Nana',
@@ -34,7 +35,7 @@ export default function VendorsPage() {
           </div>
         </div>
         <div className="v-form-card" style={{ position: 'sticky', top: 100 }}>
-          <VendorForm />
+          <EmbeddedForm path="/vendors" fallback={<VendorForm />} />
         </div>
       </section>
     </>

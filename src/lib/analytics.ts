@@ -16,6 +16,8 @@ type EventProperties = {
   vendor_application_failed: { reason: 'duplicate' | 'server' | 'network' };
   rider_application_submitted: { vehicle: string; area: string };
   contact_message_sent: { topic: string };
+  form_submitted: { slug: string };
+  form_submit_failed: { slug: string; reason: 'fields' | 'rate_limited' | 'closed' | 'error' };
   help_searched: { query: string; results: number };
   order_tracked: { outcome: 'found' | 'not_found' | 'error' };
   web_order_placed: { payment_method: 'bank_transfer' | 'card'; order_type: string; item_count: number };

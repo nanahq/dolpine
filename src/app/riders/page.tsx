@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { NumberedPoints, PageHero } from '../components/pages/PageParts';
 import { RiderForm } from '../components/pages/RiderForm';
+import { EmbeddedForm } from '../components/forms/EmbeddedForm';
 
 export const metadata: Metadata = {
   title: 'Ride with Nana',
@@ -31,7 +32,7 @@ export default function RidersPage() {
           </div>
         </div>
         <div className="v-form-card" style={{ position: 'sticky', top: 100 }}>
-          <RiderForm />
+          <EmbeddedForm path="/riders" fallback={<RiderForm />} />
         </div>
       </section>
     </>
