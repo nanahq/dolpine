@@ -2,20 +2,46 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["H63XLRDH38.com.nanaeats.nana.app"],
+        "appIDs": [
+          "H63XLRDH38.com.nanaeats.nana.app"
+        ],
         "components": [
           {
+            "/": "/track",
+            "exclude": true,
+            "comment": "Web only"
+          },
+          {
+            "/": "/track/*",
+            "exclude": true,
+            "comment": "Web only"
+          },
+          {
+            "/": "/forms",
+            "exclude": true,
+            "comment": "Web only"
+          },
+          {
+            "/": "/forms/*",
+            "exclude": true,
+            "comment": "Web only"
+          },
+          {
             "/": "/*",
-            "comment": "Match all paths"
+            "comment": "Match all other paths"
           }
         ]
       }
     ]
   },
   "activitycontinuation": {
-    "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
+    "apps": [
+      "H63XLRDH38.com.nanaeats.nana.app"
+    ]
   },
   "webcredentials": {
-    "apps": ["H63XLRDH38.com.nanaeats.nana.app"]
+    "apps": [
+      "H63XLRDH38.com.nanaeats.nana.app"
+    ]
   }
 }
