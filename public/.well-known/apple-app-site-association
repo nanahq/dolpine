@@ -27,6 +27,11 @@
             "comment": "Web only"
           },
           {
+            "/": "/download/*",
+            "exclude": true,
+            "comment": "Ambassador links: the page has to show the code"
+          },
+          {
             "/": "/*",
             "comment": "Match all other paths"
           }
