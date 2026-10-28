@@ -1,0 +1,31 @@
+/* Investor metrics — bar charts and the retention grid. */
+.im-bars { display: flex; align-items: stretch; gap: 2px; position: relative; }
+.im-col { flex: 1; min-width: 0; display: flex; flex-direction: column; position: relative; cursor: default; }
+.im-col__pos, .im-col__neg { display: flex; flex-direction: column; }
+.im-col__pos { justify-content: flex-end; }
+.im-col__neg { justify-content: flex-start; }
+.im-bar { background: var(--blue-ink); min-height: 2px; }
+.im-col__pos .im-bar { border-radius: 4px 4px 0 0; }
+.im-col__neg .im-bar { border-radius: 0 0 4px 4px; background: var(--danger); }
+.im-col--partial .im-bar { background: repeating-linear-gradient(135deg, var(--blue) 0 4px, var(--blue-tint) 4px 7px); }
+.im-col:hover .im-bar { filter: brightness(0.85); }
+.im-zero { position: absolute; left: 0; right: 0; height: 1px; background: var(--line-strong); pointer-events: none; }
+.im-tip {
+  position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: #fff; font-size: 12px; line-height: 1.35; padding: 6px 9px;
+  border-radius: 8px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.12s; z-index: 2;
+}
+.im-col:hover .im-tip { opacity: 1; }
+.im-axis { display: flex; gap: 2px; margin-top: 8px; }
+.im-axis span { flex: 1; min-width: 0; text-align: center; font-size: 11px; color: var(--subtle); overflow: hidden; white-space: nowrap; }
+
+.im-table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.im-table th { text-align: right; font-weight: 600; color: var(--muted); font-size: 12px; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.im-table td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; color: var(--text); }
+.im-table th:first-child, .im-table td:first-child { text-align: left; }
+.im-table tr.im-total td { font-weight: 700; border-top: 1.5px solid var(--line-strong); }
+.im-scroll { overflow-x: auto; margin: 0 calc(-1 * clamp(20px, 3vw, 28px)); padding: 0 clamp(20px, 3vw, 28px); }
+.im-cell { border-radius: 6px; padding: 7px 8px; text-align: center; font-size: 13px; }
+
+.im-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.im-grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); }

@@ -104,6 +104,7 @@ export interface ApiReview {
 export interface ApiAppConstants {
   service_fee_percentage: number;
   service_fee_cap: number;
+  service_fee_min?: number;
   errand_fee: number;
   delivery_fee_multiplier: number;
   max_delivery_distance_km: number;

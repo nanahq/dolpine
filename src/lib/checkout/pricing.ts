@@ -35,7 +35,7 @@ export function priceOrder(input: {
 }): Breakdown {
   const { subtotal, merchant, constants, coupon } = input;
   const service = Math.min(
-    Math.round((subtotal * constants.service_fee_percentage) / 100),
+    Math.max(constants.service_fee_min ?? 0, Math.round((subtotal * constants.service_fee_percentage) / 100)),
     constants.service_fee_cap,
   );
 
