@@ -6,7 +6,7 @@ export type Bar = { label: string; value: number; tip: string; partial?: boolean
  * Single-series column chart. Negative values hang below a zero line (in danger red);
  * a still-running period is hatched so it doesn't read as a drop.
  */
-export function BarChart({ bars, height = 180 }: { bars: Bar[]; height?: number }) {
+export function BarChart({ bars, height = 180, variant }: { bars: Bar[]; height?: number; variant?: 'burn' }) {
   const max = Math.max(0, ...bars.map((b) => b.value));
   const min = Math.min(0, ...bars.map((b) => b.value));
   const span = max - min || 1;
@@ -15,7 +15,7 @@ export function BarChart({ bars, height = 180 }: { bars: Bar[]; height?: number 
 
   return (
     <div>
-      <div className="im-bars" style={{ height }}>
+      <div className={`im-bars${variant ? ` im-bars--${variant}` : ''}`} style={{ height }}>
         {min < 0 && <div className="im-zero" style={{ top: posH }} />}
         {bars.map((b, i) => (
           <div key={b.label} className={`im-col${b.partial ? ' im-col--partial' : ''}`}>

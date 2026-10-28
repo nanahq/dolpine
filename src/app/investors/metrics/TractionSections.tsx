@@ -125,6 +125,7 @@ export function TractionSections({ s }: { s: InvestorSnapshot }) {
         <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 8, color: 'var(--muted)', fontSize: 15, lineHeight: 1.55, maxWidth: 820 }}>
           <li>Money comes from Nana&apos;s double-entry ledger, the same books finance closes. Orders and GMV are counted when the order is delivered.</li>
           <li>Payment-gateway fees before August 2026 are incomplete in the ledger, so contribution in earlier months is slightly overstated.</li>
+          <li>Cash burn counts a cost in the month the cash went out. Up-front purchases, such as the office lease and the first bikes, land in the month they were paid even though the P&amp;L spreads them over their life.</li>
           <li>All figures are Kano. Zone-level splits are not shown yet because zones are not formally defined.</li>
           <li>Rider online hours aren&apos;t recorded reliably, so density is measured per rider-day, not per hour.</li>
         </ul>

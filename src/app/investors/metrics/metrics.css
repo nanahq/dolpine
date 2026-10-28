@@ -7,6 +7,8 @@
 .im-bar { background: var(--blue-ink); min-height: 2px; }
 .im-col__pos .im-bar { border-radius: 4px 4px 0 0; }
 .im-col__neg .im-bar { border-radius: 0 0 4px 4px; background: var(--danger); }
+/* Burn: below zero is cash growing, which is good news, not a loss. */
+.im-bars--burn .im-col__neg .im-bar { background: var(--green); }
 .im-col--partial .im-bar { background: repeating-linear-gradient(135deg, var(--blue) 0 4px, var(--blue-tint) 4px 7px); }
 .im-col:hover .im-bar { filter: brightness(0.85); }
 .im-zero { position: absolute; left: 0; right: 0; height: 1px; background: var(--line-strong); pointer-events: none; }

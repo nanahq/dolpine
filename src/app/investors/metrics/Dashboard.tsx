@@ -3,6 +3,7 @@ import type { InvestorSnapshot } from '@/lib/api/investor-metrics';
 import { BarChart, Panel, Section, Stat } from './charts';
 import { change, dayLabel, int, monthLabel, naira, pct } from './fmt';
 import { TractionSections } from './TractionSections';
+import { CashBurn, MomGrowth } from './GrowthAndBurn';
 
 export function Dashboard({ s }: { s: InvestorSnapshot }) {
   const thisMonth = s.as_of.slice(0, 7);
@@ -57,6 +58,8 @@ export function Dashboard({ s }: { s: InvestorSnapshot }) {
           </Panel>
         </div>
       </Section>
+
+      <MomGrowth full={full} />
 
       <Section
         title="Unit economics"
@@ -123,6 +126,8 @@ export function Dashboard({ s }: { s: InvestorSnapshot }) {
           </div>
         </Panel>
       </Section>
+
+      <CashBurn monthly={s.monthly} thisMonth={thisMonth} />
 
       <TractionSections s={s} />
     </>

@@ -20,6 +20,8 @@ export type MonthlyMoney = VolumePoint & {
   net_profit: number;
   late_refund_total: number;
   late_refund_count: number;
+  /** Net cash out of the business this month; negative = cash grew. */
+  net_burn: number;
 };
 
 export type InvestorSnapshot = {
