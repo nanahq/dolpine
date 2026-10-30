@@ -41,9 +41,10 @@ export function BarChart({ bars, height = 180, variant }: { bars: Bar[]; height?
   );
 }
 
-export function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
+export function Stat({ label, value, note, tag }: { label: string; value: string; note?: string; tag?: string }) {
   return (
     <div className="v-panel" style={{ gap: 8 }}>
+      {tag && <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: 0.6, textTransform: 'uppercase', color: 'var(--blue-ink)' }}>{tag}</span>}
       <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--muted)' }}>{label}</span>
       <span className="v-h3 v-num" style={{ fontSize: 36, color: 'var(--ink)' }}>{value}</span>
       {note && <span style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.4 }}>{note}</span>}

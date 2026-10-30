@@ -24,6 +24,33 @@ export type MonthlyMoney = VolumePoint & {
   net_burn: number;
 };
 
+export type MarketplaceMonth = {
+  month: string;
+  consumer_orders: number;
+  active_customers: number;
+  orders_per_customer: number;
+  repeat_eligible: number;
+  repeat_30d: number;
+  repeat_30d_pct: number;
+  on_time_scored: number;
+  on_time: number;
+  on_time_pct: number;
+  fulfilment_orders: number;
+  fulfilment_avg_minutes: number;
+  fulfilment_median_minutes: number;
+  active_merchants: number;
+  merchant_orders: number;
+  orders_per_merchant: number;
+  new_customers: number;
+  organic_new_customers: number;
+  organic_pct: number;
+  cancelled: number;
+  cancellation_pct: number;
+  /** Marketing spend from the ledger plus ambassador payouts. */
+  acquisition_spend: number;
+  cac: number;
+};
+
 export type InvestorSnapshot = {
   as_of: string;
   monthly: MonthlyMoney[];
@@ -51,6 +78,10 @@ export type InvestorSnapshot = {
     ordered_pct: number;
     ordered_30d_pct: number;
   }>;
+  marketplace: {
+    monthly: MarketplaceMonth[];
+    ltv: { window_days: number; customers: number; orders_per_customer: number };
+  };
   riders: Array<{
     month: string;
     active_riders: number;

@@ -1,7 +1,8 @@
 import React from 'react';
 import type { InvestorSnapshot } from '@/lib/api/investor-metrics';
-import { BarChart, Panel, Section, Stat } from './charts';
-import { change, dayLabel, int, monthLabel, naira, pct } from './fmt';
+import { BarChart, Panel, Section } from './charts';
+import { dayLabel, int, monthLabel, naira, pct } from './fmt';
+import { MarketplaceHealth, Scorecard } from './Scorecard';
 import { TractionSections } from './TractionSections';
 import { CashBurn, MomGrowth } from './GrowthAndBurn';
 
@@ -11,11 +12,6 @@ export function Dashboard({ s }: { s: InvestorSnapshot }) {
   const last = full[full.length - 1];
   const prev = full[full.length - 2];
 
-  // Average week-on-week growth across full weeks (the current week is still running).
-  const weeks = s.weekly.slice(0, -1).filter((w) => w.orders > 0);
-  const wow =
-    weeks.length > 1 ? (Math.pow(weeks[weeks.length - 1].orders / weeks[0].orders, 1 / (weeks.length - 1)) - 1) * 100 : null;
-
   const ue = s.unit_economics;
   const revenue = ue.lines.filter((l) => l.type === 'revenue');
   const costs = ue.lines.filter((l) => l.type === 'cost');
@@ -24,15 +20,7 @@ export function Dashboard({ s }: { s: InvestorSnapshot }) {
 
   return (
     <>
-      {last && (
-        <div className="im-grid">
-          <Stat label={`Orders · ${monthLabel(last.period)}`} value={int(last.orders)} note={prev ? `${change(prev.orders, last.orders)} vs ${monthLabel(prev.period)}` : undefined} />
-          <Stat label={`GMV · ${monthLabel(last.period)}`} value={naira(last.gmv)} note={prev ? `${change(prev.gmv, last.gmv)} vs ${monthLabel(prev.period)}` : undefined} />
-          <Stat label="Avg weekly order growth" value={wow === null ? '—' : `${wow >= 0 ? '+' : '−'}${Math.abs(wow).toFixed(1)}%`} note={`Compounded over the last ${weeks.length} full weeks`} />
-          <Stat label={`Contribution / order · ${monthLabel(last.period)}`} value={naira(last.contribution_per_order)} note={`${pct(last.contribution_margin_pct)} of Nana revenue`} />
-          <Stat label="Customers who reorder" value={pct(s.customers.repeat_pct)} note={`${int(s.customers.repeat)} of ${int(s.customers.ordered)} who ever ordered`} />
-        </div>
-      )}
+      {last && <Scorecard s={s} last={last} prev={prev} cmPerOrder={cmPerOrder} />}
 
       <Section title="Growth" sub="Delivered orders only. Unpaid orders never reach these numbers. B2B is deliveries Nana runs for restaurants that pay Nana directly.">
         <div className="im-grid im-grid--2">
@@ -126,6 +114,8 @@ export function Dashboard({ s }: { s: InvestorSnapshot }) {
           </div>
         </Panel>
       </Section>
+
+      <MarketplaceHealth monthly={s.marketplace.monthly} thisMonth={thisMonth} />
 
       <CashBurn monthly={s.monthly} thisMonth={thisMonth} />
 
