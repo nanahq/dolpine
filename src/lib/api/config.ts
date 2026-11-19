@@ -42,7 +42,8 @@ export async function apiGet<T>(
       console.warn(`[nana-api] ${res.status} for ${url.pathname}`);
       return null;
     }
-    return (await res.json()) as T;
+    const body = await res.text();
+    return body ? (JSON.parse(body) as T) : null;
   } catch (err) {
     console.warn(`[nana-api] request failed for ${url.pathname}:`, err);
     return null;
