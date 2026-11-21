@@ -13,11 +13,12 @@ const NAV = [
   { href: '/vendors', label: 'Vendors' },
   { href: '/riders', label: 'Riders' },
   { href: '/about', label: 'About' },
-  { href: '/careers', label: 'Careers' },
+  { href: '/kano', label: 'Kano' },
 ];
 
 const MORE = [
   { href: '/marketplace', label: 'Marketplace', strong: true },
+  { href: '/kano', label: 'Delivery in Kano' },
   { href: '/vendors', label: 'Sell on Nana' },
   { href: '/riders', label: 'Ride with Nana' },
   { href: '/about', label: 'About' },

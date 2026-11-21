@@ -85,10 +85,6 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
   );
 }
 
-export function JsonLd({ data }: { data: object }) {
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }} />;
-}
-
 export function storeListLd(stores: StoreCardData[], name: string) {
   return {
     '@type': 'ItemList',
@@ -99,12 +95,5 @@ export function storeListLd(stores: StoreCardData[], name: string) {
       url: `${SITE_URL}/merchant/${s.id}`,
       name: s.name,
     })),
-  };
-}
-
-export function breadcrumbLd(trail: { name: string; path: string }[]) {
-  return {
-    '@type': 'BreadcrumbList',
-    itemListElement: trail.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, item: `${SITE_URL}${t.path}` })),
   };
 }

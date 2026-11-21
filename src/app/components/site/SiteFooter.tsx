@@ -36,7 +36,7 @@ export function SiteFooter() {
           ))}
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', paddingTop: 24, boxShadow: 'inset 0 1px 0 rgba(255,255,255,.14)' }}>
-          <span style={{ fontSize: 14, color: 'var(--subtle)' }}>© {new Date().getFullYear()} Nana Technologies</span>
+          <span style={{ fontSize: 14, color: 'var(--subtle)' }}>© {new Date().getFullYear()} Imagyne Ventures Ltd</span>
           <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
             <Link href="/privacy" className="v-footer-link v-footer-link--sm">Privacy</Link>
             <Link href="/terms" className="v-footer-link v-footer-link--sm">Terms</Link>

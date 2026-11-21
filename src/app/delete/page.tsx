@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Delete your account',
+  description: 'Ask Nana Logistics to delete your Nana, Nana Vendor or Nana Rider account and personal information.',
+  alternates: { canonical: '/delete' },
+};
+
 const DELETION_EMAIL = "suraj@trynanaapp.com";
 
 const mailto = (app: string) =>

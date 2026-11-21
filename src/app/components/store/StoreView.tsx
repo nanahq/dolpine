@@ -48,10 +48,19 @@ export function StoreView({ store, hours, openLabel }: Props) {
   return (
     <>
       <div className="v-wrap" style={{ paddingTop: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
-        <Link href="/marketplace" className="v-btn v-btn--soft" style={{ alignSelf: 'flex-start', height: 40, padding: '0 16px', fontSize: 14, gap: 8 }}>
-          <Chevron dir="left" />
-          All stores
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <Link href="/marketplace" className="v-btn v-btn--soft" style={{ height: 40, padding: '0 16px', fontSize: 14, gap: 8 }}>
+            <Chevron dir="left" />
+            All stores
+          </Link>
+          <nav aria-label="Breadcrumb" style={{ fontSize: 14, color: 'var(--muted)', minWidth: 0 }}>
+            <Link href="/" style={{ color: 'var(--muted)' }}>Home</Link>
+            <span aria-hidden="true"> › </span>
+            <Link href="/kano" style={{ color: 'var(--muted)' }}>Kano</Link>
+            <span aria-hidden="true"> › </span>
+            <span aria-current="page" style={{ color: 'var(--text)', fontWeight: 600 }}>{card.name}</span>
+          </nav>
+        </div>
         <div className="v-rise" style={{ position: 'relative', animationDuration: '.7s' }}>
           <StoreArt store={card} height="clamp(200px,26vw,340px)" radius={28} monoSize={180} />
           {card.isErrand && (

@@ -6,7 +6,8 @@ import { getAppConstants } from '@/lib/api/marketplace';
 import { toStoreCard } from '@/lib/shop/catalog';
 import { KANO_TAGLINE, sortStores } from '@/lib/kano';
 import { PageHero } from '../components/pages/PageParts';
-import { AreaLinks, Faq, JsonLd, StoreSection, breadcrumbLd, kanoFaq, storeListLd } from '../components/kano/KanoParts';
+import { AreaLinks, Faq, StoreSection, kanoFaq, storeListLd } from '../components/kano/KanoParts';
+import { JsonLd, breadcrumbLd } from '../components/site/JsonLd';
 import { GetTheApp } from '../components/home/GetTheApp';
 
 export const revalidate = 300;
