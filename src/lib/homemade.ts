@@ -49,7 +49,9 @@ export interface KitchenPage {
     taking_orders: boolean;
   };
   fees: {
+    /** The live homemade promotion's price when `delivery_fee_flat`, otherwise the lowest distance price. */
     delivery_fee: number;
+    delivery_fee_flat: boolean;
     max_distance_km: number;
     service_fee_enabled: boolean;
     delivery_window_minutes: number;
@@ -64,7 +66,10 @@ export interface HomemadeQuote {
   lines: { cook_day_dish_id: string; name: string; plates: number; price: number; total: number; options_text: string | null }[];
   plates: number;
   subtotal: number;
+  /** The distance price before any promotion. */
+  base_delivery_fee: number;
   delivery_fee: number;
+  delivery_promotion: { id: string; name: string | null; saving: number } | null;
   service_fee: number;
   total: number;
   distance_km: number;

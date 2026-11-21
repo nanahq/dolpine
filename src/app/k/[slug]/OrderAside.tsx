@@ -30,7 +30,14 @@ export function OrderAside({ data, day, priced, delivery, showAddress }: Props) 
       <Lines priced={priced} />
       <div style={{ height: 1, background: 'var(--line-strong)' }} />
       <Row label="Plates" value={formatNaira(sub)} />
-      <Row label="Delivery · flat" value={formatNaira(deliveryFee)} />
+      {quote?.delivery_promotion ? (
+        <>
+          <Row label="Delivery" value={formatNaira(quote.base_delivery_fee)} />
+          <Row label={quote.delivery_promotion.name ?? 'Delivery promotion'} value={`− ${formatNaira(quote.delivery_promotion.saving)}`} />
+        </>
+      ) : (
+        <Row label={quote || data.fees.delivery_fee_flat ? 'Delivery' : 'Delivery from'} value={formatNaira(deliveryFee)} />
+      )}
       {quote && quote.service_fee > 0 && <Row label="Service fee" value={formatNaira(quote.service_fee)} />}
       {!data.fees.service_fee_enabled && (
         <span className="k-chip" style={{ height: 24, fontSize: 12, fontWeight: 700, background: '#E7F5EC', color: 'var(--green)', alignSelf: 'flex-start' }}>

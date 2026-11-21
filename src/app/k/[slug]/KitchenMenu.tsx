@@ -76,7 +76,9 @@ export function KitchenMenu({ data, cart, setCart, priced, onContinue, session, 
           </div>
           <div className="k-hero__chips">
             <span className="k-chip" style={{ background: 'var(--ink)', color: '#fff' }}>
-              {formatNaira(fees.delivery_fee)} delivery within {fees.max_distance_km} km
+              {fees.delivery_fee_flat
+                ? `${formatNaira(fees.delivery_fee)} delivery within ${fees.max_distance_km} km`
+                : `Delivery from ${formatNaira(fees.delivery_fee)} · within ${fees.max_distance_km} km`}
             </span>
             {!fees.service_fee_enabled && (
               <span className="k-chip" style={{ background: '#fff', color: 'var(--green)' }}>
@@ -138,10 +140,10 @@ export function KitchenMenu({ data, cart, setCart, priced, onContinue, session, 
                 <Lines priced={priced} />
                 <div style={{ height: 1, background: 'var(--line)' }} />
                 <Row label="Plates" value={formatNaira(priced.subtotal)} />
-                <Row label="Delivery" value={formatNaira(fees.delivery_fee)} />
+                <Row label={fees.delivery_fee_flat ? 'Delivery' : 'Delivery from'} value={formatNaira(fees.delivery_fee)} />
                 {fees.service_fee_enabled && <Row label="Service fee" value="At checkout" />}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <span style={{ fontSize: 15, fontWeight: 600 }}>Total</span>
+                  <span style={{ fontSize: 15, fontWeight: 600 }}>{fees.delivery_fee_flat ? 'Total' : 'Total from'}</span>
                   <span className="v-num" style={{ fontSize: 22, fontWeight: 600 }}>
                     {formatNaira(Math.round((priced.subtotal + fees.delivery_fee) / 10) * 10)}
                   </span>
