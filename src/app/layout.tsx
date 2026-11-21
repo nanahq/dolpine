@@ -3,23 +3,29 @@ import './site-v2.css';
 import { PageWrapper } from './components/layout/Wrapper';
 import { Metadata } from 'next';
 import { Archivo, Instrument_Sans } from 'next/font/google';
+import { KANO_TAGLINE, SITE_URL } from '@/lib/kano';
 
 // Website v2 type: Instrument Sans for text, Archivo's condensed width axis for display.
 const instrument = Instrument_Sans({ subsets: ['latin'], variable: '--font-instrument', display: 'swap' });
 const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
 
+const HOME_TITLE = 'Nana | Food, Grocery & Errand Delivery in Kano';
+const HOME_DESCRIPTION = `${KANO_TAGLINE}. Order from Kano restaurants, supermarkets and stores, pay by card or transfer, and track your rider live.`;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Nana | Food Delivery ',
+    default: HOME_TITLE,
     template: '%s | Nana Food Delivery',
   },
-  description:
-    'Order food from your mobile Phone and get it delivered in minutes!. Browse our diverse menu featuring African dishes, Jollof rice, and more from your favourite restaurants near you',
+  description: HOME_DESCRIPTION,
   openGraph: {
-    url: 'https://trynanaapp.com',
+    url: SITE_URL,
     type: 'website',
-    title:
-      'Order food from your mobile phone and get it delivered in Minutes!.',
+    siteName: 'Nana',
+    locale: 'en_NG',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: [
       {
         url: '/opengraph-image.png',
@@ -29,12 +35,12 @@ export const metadata: Metadata = {
     ],
   },
   keywords:
-    'Food delivery, food delivery driver kano, Food, delivery, order food online',
+    'food delivery Kano, order food online Kano, Kano restaurants, grocery delivery Kano, errand delivery Kano, Nana',
   twitter: {
-    title:
-      'Nana Delivery App - Order food from your mobile phone and get it delivered in minutes!. Browse our diverse menu featuring African dishes, jollof rice, and more from your favourite restaurants near you',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     card: 'summary_large_image',
-    site: 'trynanaapp.com',
+    site: '@nana_app_hq',
     creator: '@nana_app_hq',
     images: ['/opengraph-image.png']
   },

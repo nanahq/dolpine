@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getAllMerchants } from '@/lib/api/merchants';
 import { getHelpArticles } from '@/lib/api/help';
-
-const SITE_URL = 'https://trynanaapp.com';
+import { KANO_AREAS, SITE_URL } from '@/lib/kano';
 
 /**
  * Public marketing routes.
@@ -19,6 +18,8 @@ const ROUTES: {
 }[] = [
   { path: '', priority: 1.0, changeFrequency: 'daily' },
   { path: '/marketplace', priority: 0.9, changeFrequency: 'daily' },
+  { path: '/kano', priority: 0.9, changeFrequency: 'daily' },
+  ...KANO_AREAS.map((a) => ({ path: `/kano/${a.slug}`, priority: 0.8, changeFrequency: 'daily' as const })),
   { path: '/vendors', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/riders', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/help', priority: 0.7, changeFrequency: 'weekly' },

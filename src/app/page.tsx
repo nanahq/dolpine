@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { getAllMerchants } from '../lib/api/merchants';
 import { toStoreCard } from '../lib/shop/catalog';
 import { HeroSearch } from './components/home/HeroSearch';
@@ -14,6 +15,8 @@ import { ServicesGrid } from './components/home/ServicesRail';
 import { GetTheApp } from './components/home/GetTheApp';
 
 export const revalidate = 300;
+
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 
 export default async function HomePage() {
   // Open stores first, the ones with photos ahead of monogram tiles.

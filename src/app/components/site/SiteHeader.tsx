@@ -53,6 +53,9 @@ export function SiteHeader() {
 
   const toggle = (m: Menu) => setMenu((cur) => (cur === m ? null : m));
 
+  // Kitchen pages carry their own checkout header.
+  if (path?.startsWith('/k/')) return null;
+
   return (
     <header
       style={{

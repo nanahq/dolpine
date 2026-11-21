@@ -18,6 +18,8 @@ type Props = {
   transfer: TransferDetails;
   onPaid: (orderNumber: string | null) => void;
   onStartOver: () => void;
+  countdownLabel?: string;
+  expired?: { title: string; body: React.ReactNode; action: string };
 };
 
 const FALLBACK_WINDOW_MS = 30 * 60_000;
@@ -27,7 +29,7 @@ const FALLBACK_WINDOW_MS = 30 * 60_000;
  * Confirms itself — the gateway's webhook moves the order off `pending`, and
  * this panel is polling for exactly that.
  */
-export function TransferPanel({ transfer, onPaid, onStartOver }: Props) {
+export function TransferPanel({ transfer, onPaid, onStartOver, countdownLabel = 'Expires in', expired: expiredCopy }: Props) {
   const { status, orderNumber, checking, checkNow } = usePaymentStatus(transfer.orderId);
   const [deadline] = useState(() => (transfer.expiresAt ? new Date(transfer.expiresAt).getTime() : Date.now() + FALLBACK_WINDOW_MS));
   const [now, setNow] = useState(() => Date.now());
@@ -49,13 +51,17 @@ export function TransferPanel({ transfer, onPaid, onStartOver }: Props) {
   if (expired) {
     return (
       <div className="v-panel" style={{ alignItems: 'flex-start', maxWidth: 640 }}>
-        <span className="v-h3" style={{ fontSize: 30 }}>This account has expired</span>
+        <span className="v-h3" style={{ fontSize: 30 }}>{expiredCopy?.title ?? 'This account has expired'}</span>
         <p style={{ margin: 0, fontSize: 16, lineHeight: 1.55, color: 'var(--muted)' }}>
-          We didn’t see a transfer in time, so the order was cancelled. If you already sent money to{' '}
-          <strong className="v-num">{transfer.accountNumber}</strong>, WhatsApp us on 0812 222 9693 with the time you paid and we’ll sort it out.
+          {expiredCopy?.body ?? (
+            <>
+              We didn’t see a transfer in time, so the order was cancelled. If you already sent money to{' '}
+              <strong className="v-num">{transfer.accountNumber}</strong>, WhatsApp us on 0812 222 9693 with the time you paid and we’ll sort it out.
+            </>
+          )}
         </p>
         <button type="button" className="v-btn v-btn--ink" onClick={onStartOver}>
-          Try again
+          {expiredCopy?.action ?? 'Try again'}
         </button>
       </div>
     );
@@ -85,7 +91,7 @@ export function TransferPanel({ transfer, onPaid, onStartOver }: Props) {
 
       <div style={{ borderRadius: 24, background: 'var(--ink)', color: '#fff', padding: 'clamp(22px,3vw,30px)', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--subtle)' }}>Expires in</span>
+          <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--subtle)' }}>{countdownLabel}</span>
           <span className="v-display v-display--black v-num" style={{ fontSize: 'clamp(64px,8vw,96px)', color: left < 5 * 60_000 ? 'var(--yellow)' : 'var(--blue)' }}>
             {mm}:{String(ss).padStart(2, '0')}
           </span>

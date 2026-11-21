@@ -32,6 +32,11 @@
             "comment": "Ambassador links: the page has to show the code"
           },
           {
+            "/": "/k/*/order",
+            "exclude": true,
+            "comment": "Kitchen card-payment return: the web checkout confirms it"
+          },
+          {
             "/": "/*",
             "comment": "Match all other paths"
           }

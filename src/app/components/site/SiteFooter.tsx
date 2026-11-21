@@ -2,9 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { INSTAGRAM_URL } from '@/lib/site';
+import { KANO_AREAS } from '@/lib/kano';
 
 const COLUMNS = [
   { title: 'Shop', links: [['/marketplace', 'Marketplace'], ['/#get-app', 'Get the app'], ['/help', 'Help centre']] },
+  { title: 'Delivery in Kano', links: [['/kano', 'All of Kano'], ...KANO_AREAS.map((a) => [`/kano/${a.slug}`, a.name])] },
   { title: 'Partners', links: [['/vendors', 'Sell on Nana'], ['/riders', 'Ride with Nana']] },
   { title: 'Company', links: [['/about', 'About'], ['/careers', 'Careers'], ['/investors', 'Investors'], ['/contact', 'Contact']] },
 ];

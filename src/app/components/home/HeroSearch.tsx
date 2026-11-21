@@ -35,14 +35,15 @@ export function HeroSearch() {
           textAlign: 'center',
         }}
       >
-        <h1 className="v-display v-rise" style={{ fontSize: 'clamp(64px,9.6vw,150px)', color: '#fff', textWrap: 'balance' as React.CSSProperties['textWrap'], animationDelay: '.1s' }}>
+        <h1 className="v-eyebrow v-rise" style={{ color: '#fff', margin: 0 }}>Food, grocery &amp; errand delivery in Kano</h1>
+        <div className="v-display v-rise" aria-hidden="true" style={{ fontSize: 'clamp(64px,9.6vw,150px)', color: '#fff', textWrap: 'balance' as React.CSSProperties['textWrap'], animationDelay: '.1s' }}>
           <span style={{ display: 'block', overflow: 'hidden', padding: '.04em 0' }}>
             <span key={i} style={{ display: 'inline-block', animation: 'nSwapUp .6s cubic-bezier(.2,.8,.2,1) both' }}>
               {WORDS[i]}
             </span>
           </span>
           <span style={{ display: 'block' }}>Delivered.</span>
-        </h1>
+        </div>
         <form
           className="v-rise"
           onSubmit={(e) => {
