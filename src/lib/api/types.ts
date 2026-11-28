@@ -72,8 +72,8 @@ export interface ApiMerchant {
   cuisine_types: string[];
   /** Not a Nana partner: a rider buys the order at the counter, for a flat errand fee. */
   is_errand?: boolean;
-  /** Extra charges the merchant levies on the subtotal, e.g. `{ "VAT": 7.5 }` (percent). */
-  charge_config?: Record<string, number> | null;
+  /** Extra merchant charges, e.g. `{ "VAT": { type: "percentage", value: 7.5 } }`; a bare number is a legacy percentage. */
+  charge_config?: Record<string, number | { type: "percentage" | "flat"; value: number | string }> | null;
   created_at?: string;
   address?: ApiAddress | null;
   operating_hours?: ApiOperatingHour[];

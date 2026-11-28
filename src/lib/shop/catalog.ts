@@ -17,7 +17,7 @@ export interface ShopMerchant {
   isErrand: boolean;
   isOpen: boolean;
   minimumOrder: number;
-  chargeConfig: Record<string, number>;
+  chargeConfig: Record<string, { type: "percentage" | "flat"; value: number }>;
   address: {
     id: string;
     line1: string;
@@ -132,9 +132,10 @@ export function toStoreCard(m: ApiMerchant): StoreCard {
 
 export function toShopMerchant(m: ApiMerchant): ShopMerchant {
   const a = m.address;
-  const chargeConfig: Record<string, number> = {};
+  const chargeConfig: ShopMerchant["chargeConfig"] = {};
   for (const [k, v] of Object.entries(m.charge_config ?? {})) {
-    if (num(v) > 0) chargeConfig[k] = num(v);
+    const rule = typeof v === "object" ? { type: v.type === "flat" ? ("flat" as const) : ("percentage" as const), value: num(v.value) } : { type: "percentage" as const, value: num(v) };
+    if (rule.value > 0) chargeConfig[k] = rule;
   }
   return {
     id: m.id,

@@ -39,10 +39,11 @@ export function priceOrder(input: {
     constants.service_fee_cap,
   );
 
-  const charges = Object.entries(merchant.chargeConfig).map(([label, pct]) => ({
-    label: `${label} (${pct}%)`,
-    amount: subtotal * (pct / 100),
-  }));
+  const charges = Object.entries(merchant.chargeConfig).map(([label, rule]) =>
+    rule.type === "flat"
+      ? { label, amount: rule.value }
+      : { label: `${label} (${rule.value}%)`, amount: subtotal * (rule.value / 100) },
+  );
 
   const delivery =
     input.quotedFee == null ? null : coupon?.freeDelivery ? 0 : input.quotedFee * (constants.delivery_fee_multiplier || 1);
